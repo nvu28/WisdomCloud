@@ -2,6 +2,7 @@ target/
 .idea/
 *.iml
 *.iws
+.vscode/
 .DS_Store
 Thumbs.db
 *.log

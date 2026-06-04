@@ -1,0 +1,94 @@
+{
+  "info": {
+    "name": "Product Search API",
+    "description": "Collection cho Product Search System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Search - all params",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/search?q=iphone&category=dien-thoai&minPrice=5000000&maxPrice=50000000&page=0&size=5&sort=price:desc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "products", "search"],
+          "query": [
+            { "key": "q", "value": "iphone" },
+            { "key": "category", "value": "dien-thoai" },
+            { "key": "minPrice", "value": "5000000" },
+            { "key": "maxPrice", "value": "50000000" },
+            { "key": "page", "value": "0" },
+            { "key": "size", "value": "5" },
+            { "key": "sort", "value": "price:desc" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search - keyword only",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/search?q=laptop",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "products", "search"],
+          "query": [
+            { "key": "q", "value": "laptop" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search - category only",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/search?category=tai-nghe",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "products", "search"],
+          "query": [
+            { "key": "category", "value": "tai-nghe" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search - no params",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/search",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "products", "search"]
+        }
+      }
+    },
+    {
+      "name": "Search - pagination",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/v1/products/search?page=1&size=3&sort=price:asc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "products", "search"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "size", "value": "3" },
+            { "key": "sort", "value": "price:asc" }
+          ]
+        }
+      }
+    }
+  ]
+}
