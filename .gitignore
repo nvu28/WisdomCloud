@@ -12,3 +12,6 @@ backend-mock/node_modules/
 frontend/dist/
 __pycache__/
 *.pyc
+README.md
+Timeline_TuanVu_Final.xlsx
+update_timeline.py
