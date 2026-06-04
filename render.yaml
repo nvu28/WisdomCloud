@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: product-search
+    env: node
+    buildCommand: cd frontend && npm install && npm run build && cd ../backend-mock && npm install
+    startCommand: cd backend-mock && node server.js
