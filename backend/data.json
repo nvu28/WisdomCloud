@@ -1,1338 +1,2340 @@
 [
   {
+    "id": 1,
     "name": "C6 Small 1",
+    "slug": "c6-small-1",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 725000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 1\nRAM 1 GB\nBăng thông nội bộ VPC: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 1\nRAM 1 GB\nBăng thông nội bộ VPC: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 Small 1 từ CMC Cloud - Cloud Server - 725,000₫/tháng"
   },
   {
+    "id": 2,
     "name": "C6 Medium 2",
+    "slug": "c6-medium-2",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 800000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 1\nRAM 2GB\nBăng thông tội bộ VPC 500Mbps\nIPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 1\nRAM 2GB\nBăng thông tội bộ VPC 500Mbps\nIPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 Medium 2 từ CMC Cloud - Cloud Server - 800,000₫/tháng"
   },
   {
+    "id": 3,
     "name": "C6 Large 1",
+    "slug": "c6-large-1",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 950000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 2\nRAM 2GB\nBăng thông nội bộ VPC 800Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 2\nRAM 2GB\nBăng thông nội bộ VPC 800Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 Large 1 từ CMC Cloud - Cloud Server - 950,000₫/tháng"
   },
   {
+    "id": 4,
     "name": "C6 Large 2",
+    "slug": "c6-large-2",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 1100000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 2\nRAM 4GB\nBăng thông nội bộ VPC 800Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 2\nRAM 4GB\nBăng thông nội bộ VPC 800Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 Large 2 từ CMC Cloud - Cloud Server - 1,100,000₫/tháng"
   },
   {
+    "id": 5,
     "name": "C6 XLarge 1",
+    "slug": "c6-xlarge-1",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 1400000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 4\nRAM 4GB\nBăng thông nội bộ VPC 1.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 4\nRAM 4GB\nBăng thông nội bộ VPC 1.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 XLarge 1 từ CMC Cloud - Cloud Server - 1,400,000₫/tháng"
   },
   {
+    "id": 6,
     "name": "C6 XLarge 2",
+    "slug": "c6-xlarge-2",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 1700000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 4\nRAM 8GB\nBăng thông nội bộ VPC 1.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 4\nRAM 8GB\nBăng thông nội bộ VPC 1.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 XLarge 2 từ CMC Cloud - Cloud Server - 1,700,000₫/tháng"
   },
   {
+    "id": 7,
     "name": "C6 Large 6",
+    "slug": "c6-large-6",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 1700000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 2\nRAM 12GB\nBăng thông nội bộ VPC 800 Mbps\niPv4 Public: 01\nBăng thông nội bộ: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 2\nRAM 12GB\nBăng thông nội bộ VPC 800 Mbps\niPv4 Public: 01\nBăng thông nội bộ: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 Large 6 từ CMC Cloud - Cloud Server - 1,700,000₫/tháng"
   },
   {
+    "id": 8,
     "name": "C6 XLarge 4",
+    "slug": "c6-xlarge-4",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 2300000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 4\nRAM 16GB\nBăng thông nội bộ VPC 1.000 Mbps\niPv4 Public: 01\nBăng thông nội bộ: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 4\nRAM 16GB\nBăng thông nội bộ VPC 1.000 Mbps\niPv4 Public: 01\nBăng thông nội bộ: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 XLarge 4 từ CMC Cloud - Cloud Server - 2,300,000₫/tháng"
   },
   {
+    "id": 9,
     "name": "C6 2XLarge 2",
+    "slug": "c6-2xlarge-2",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 2900000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 8\nRAM 16GB\nBăng thông nội bộ VPC 2.000 Mbps\niPv4 Public: 01\nBăng thông nội bộ: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 8\nRAM 16GB\nBăng thông nội bộ VPC 2.000 Mbps\niPv4 Public: 01\nBăng thông nội bộ: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 2XLarge 2 từ CMC Cloud - Cloud Server - 2,900,000₫/tháng"
   },
   {
+    "id": 10,
     "name": "C6 2XLarge 1",
+    "slug": "c6-2xlarge-1",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 5900000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 24\nRAM 24GB\nBăng thông nội bộ VPC 6.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 24\nRAM 24GB\nBăng thông nội bộ VPC 6.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 2XLarge 1 từ CMC Cloud - Cloud Server - 5,900,000₫/tháng"
   },
   {
+    "id": 11,
     "name": "C6 8XLarge 1",
+    "slug": "c6-8xlarge-1",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 7700000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 32\nRAM 32GB\nBăng thông nội bộ VPC 8.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 32\nRAM 32GB\nBăng thông nội bộ VPC 8.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 8XLarge 1 từ CMC Cloud - Cloud Server - 7,700,000₫/tháng"
   },
   {
+    "id": 12,
     "name": "C6 18XLarge 1",
+    "slug": "c6-18xlarge-1",
     "provider": "CMC Cloud",
     "category": "Cloud Server",
     "price": 16700000.0,
     "unit": "vnd/tháng",
-    "specs": "vCPU 72\nRAM 72GB\nBăng thông nội bộ VPC 10.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps"
+    "specs": "vCPU 72\nRAM 72GB\nBăng thông nội bộ VPC 10.000 Mbps\niPv4 Public: 01\nBăng thông trong nước: 500Mbps\nBăng thông quốc tế: 10 Mbps",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ C6 18XLarge 1 từ CMC Cloud - Cloud Server - 16,700,000₫/tháng"
   },
   {
+    "id": 13,
     "name": "Cloud Server 1",
+    "slug": "cloud-server-1",
     "provider": "Viettel",
     "category": "Cloud Server",
     "price": 275000.0,
     "unit": "vnd/tháng",
-    "specs": "2 vCPU\n1GB RAM\n20GB HDD\n100 Mbps băng thông\nUnlimited Lưu lượng truyền tải\n1 IP"
+    "specs": "2 vCPU\n1GB RAM\n20GB HDD\n100 Mbps băng thông\nUnlimited Lưu lượng truyền tải\n1 IP",
+    "cores": "2",
+    "ram": "1",
+    "storage": "20GB HDD",
+    "description": "Dịch vụ Cloud Server 1 từ Viettel - Cloud Server - 275,000₫/tháng"
   },
   {
+    "id": 14,
     "name": "Cloud Server 1 SSD",
+    "slug": "cloud-server-1-ssd",
     "provider": "Viettel",
     "category": "Cloud Server",
     "price": 350000.0,
     "unit": "vnd/tháng",
-    "specs": "2 vCPU\n1GB RAM\n20GB SSD\n100 Mbps băng thông\nUnlimited Lưu lượng truyền tải\n1 IP"
+    "specs": "2 vCPU\n1GB RAM\n20GB SSD\n100 Mbps băng thông\nUnlimited Lưu lượng truyền tải\n1 IP",
+    "cores": "2",
+    "ram": "1",
+    "storage": "20GB SSD",
+    "description": "Dịch vụ Cloud Server 1 SSD từ Viettel - Cloud Server - 350,000₫/tháng"
   },
   {
+    "id": 15,
     "name": "Cloud Server 2",
+    "slug": "cloud-server-2",
     "provider": "Viettel",
     "category": "Cloud Server",
     "price": 450000.0,
     "unit": "vnd/tháng",
-    "specs": "2 vCPU\n2GB RAM\n40GB HDD\n100 Mbps băng thông\nUnlimited Lưu lượng truyền tải\n1 IP"
+    "specs": "2 vCPU\n2GB RAM\n40GB HDD\n100 Mbps băng thông\nUnlimited Lưu lượng truyền tải\n1 IP",
+    "cores": "2",
+    "ram": "2",
+    "storage": "40GB HDD",
+    "description": "Dịch vụ Cloud Server 2 từ Viettel - Cloud Server - 450,000₫/tháng"
   },
   {
+    "id": 16,
     "name": "Cloud Server 2 SSD",
+    "slug": "cloud-server-2-ssd",
     "provider": "Viettel",
     "category": "Cloud Server",
     "price": 550000.0,
     "unit": "vnd/tháng",
-    "specs": "2 vCPU\n2GB RAM\n40GB SSD\n100 Mbps băng thông\nUnlimited Lưu lượng truyền tải\n1 IP"
+    "specs": "2 vCPU\n2GB RAM\n40GB SSD\n100 Mbps băng thông\nUnlimited Lưu lượng truyền tải\n1 IP",
+    "cores": "2",
+    "ram": "2",
+    "storage": "40GB SSD",
+    "description": "Dịch vụ Cloud Server 2 SSD từ Viettel - Cloud Server - 550,000₫/tháng"
   },
   {
+    "id": 17,
     "name": "Standard 1",
+    "slug": "standard-1",
     "provider": "FPT",
     "category": "Cloud Server",
     "price": 599000.0,
     "unit": "vnd/tháng",
-    "specs": "2 vCPUs\n4 GB RAM\n40GB SSD\nFirewall Layer 4\nBasic – Load Balancer\n0 GB Backup"
+    "specs": "2 vCPUs\n4 GB RAM\n40GB SSD\nFirewall Layer 4\nBasic – Load Balancer\n0 GB Backup",
+    "cores": "2",
+    "ram": "4",
+    "storage": "40GB SSD",
+    "description": "Dịch vụ Standard 1 từ FPT - Cloud Server - 599,000₫/tháng"
   },
   {
+    "id": 18,
     "name": "Standard 2",
+    "slug": "standard-2",
     "provider": "FPT",
     "category": "Cloud Server",
     "price": 1200000.0,
     "unit": "vnd/tháng",
-    "specs": "4 vCPUs\n8 GB RAM\n100GB SSD\nFirewall Layer 4\nBasic – Load Balancer\n100 GB Backup"
+    "specs": "4 vCPUs\n8 GB RAM\n100GB SSD\nFirewall Layer 4\nBasic – Load Balancer\n100 GB Backup",
+    "cores": "4",
+    "ram": "8",
+    "storage": "100GB SSD",
+    "description": "Dịch vụ Standard 2 từ FPT - Cloud Server - 1,200,000₫/tháng"
   },
   {
+    "id": 19,
     "name": "Standard 3",
+    "slug": "standard-3",
     "provider": "FPT",
     "category": "Cloud Server",
     "price": 3600000.0,
     "unit": "vnd/tháng",
-    "specs": "8 vCPUs\n16 GB RAM\n500GB SSD\nFirewall Layer 4\nBasic – Load Balancer\n500 GB Backup"
+    "specs": "8 vCPUs\n16 GB RAM\n500GB SSD\nFirewall Layer 4\nBasic – Load Balancer\n500 GB Backup",
+    "cores": "8",
+    "ram": "16",
+    "storage": "500GB SSD",
+    "description": "Dịch vụ Standard 3 từ FPT - Cloud Server - 3,600,000₫/tháng"
   },
   {
+    "id": 20,
     "name": "SUN 4",
+    "slug": "sun-4",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 972000.0,
     "unit": "vnd/tháng",
-    "specs": "4 v-CPU\n16Gb RAM\n150Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "4 v-CPU\n16Gb RAM\n150Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 4 từ VNPT - Cloud Server - 972,000₫/tháng"
   },
   {
+    "id": 21,
     "name": "SUN 4 Plus",
+    "slug": "sun-4-plus",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 1215000.0,
     "unit": "vnd/tháng",
-    "specs": "4 v-CPU\n24Gb RAM\n200Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "4 v-CPU\n24Gb RAM\n200Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 4 Plus từ VNPT - Cloud Server - 1,215,000₫/tháng"
   },
   {
+    "id": 22,
     "name": "SUN 8",
+    "slug": "sun-8",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 1822500.0,
     "unit": "vnd/tháng",
-    "specs": "8 v-CPU\n24Gb RAM\n200Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "8 v-CPU\n24Gb RAM\n200Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 8 từ VNPT - Cloud Server - 1,822,500₫/tháng"
   },
   {
+    "id": 23,
     "name": "SUN 8 Plus",
+    "slug": "sun-8-plus",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 2430000.0,
     "unit": "vnd/tháng",
-    "specs": "8 v-CPU\n32Gb RAM\n350Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "8 v-CPU\n32Gb RAM\n350Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 8 Plus từ VNPT - Cloud Server - 2,430,000₫/tháng"
   },
   {
+    "id": 24,
     "name": "SUN 16",
+    "slug": "sun-16",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 3240000.0,
     "unit": "vnd/tháng",
-    "specs": "16 v-CPU\n32Gb RAM\n350Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "16 v-CPU\n32Gb RAM\n350Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 16 từ VNPT - Cloud Server - 3,240,000₫/tháng"
   },
   {
+    "id": 25,
     "name": "SUN 16 Plus",
+    "slug": "sun-16-plus",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 4275000.0,
     "unit": "vnd/tháng",
-    "specs": "16 v-CPU\n48Gb RAM\n500Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "16 v-CPU\n48Gb RAM\n500Gb SSD\n1 Public IP \nUnlimited Data Transfer\n300 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 16 Plus từ VNPT - Cloud Server - 4,275,000₫/tháng"
   },
   {
+    "id": 26,
     "name": "SUN 32",
+    "slug": "sun-32",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 4860000.0,
     "unit": "vnd/tháng",
-    "specs": "32 v-CPU\n48Gb RAM\n500Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "32 v-CPU\n48Gb RAM\n500Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 32 từ VNPT - Cloud Server - 4,860,000₫/tháng"
   },
   {
+    "id": 27,
     "name": "SUN 32 Plus",
+    "slug": "sun-32-plus",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 6075000.0,
     "unit": "vnd/tháng",
-    "specs": "32 v-CPU\n64Gb RAM\n800Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "32 v-CPU\n64Gb RAM\n800Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 32 Plus từ VNPT - Cloud Server - 6,075,000₫/tháng"
   },
   {
+    "id": 28,
     "name": "SUN 40",
+    "slug": "sun-40",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 5346000.0,
     "unit": "vnd/tháng",
-    "specs": "40 v-CPU\n48Gb RAM\n500Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "40 v-CPU\n48Gb RAM\n500Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 40 từ VNPT - Cloud Server - 5,346,000₫/tháng"
   },
   {
+    "id": 29,
     "name": "SUN 40 Plus",
+    "slug": "sun-40-plus",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 6561000.0,
     "unit": "vnd/tháng",
-    "specs": "40 v-CPU\n64Gb RAM\n500Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "40 v-CPU\n64Gb RAM\n500Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 40 Plus từ VNPT - Cloud Server - 6,561,000₫/tháng"
   },
   {
+    "id": 30,
     "name": "SUN 48",
+    "slug": "sun-48",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 7290000.0,
     "unit": "vnd/tháng",
-    "specs": "48 v-CPU\n64Gb RAM\n800Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "48 v-CPU\n64Gb RAM\n800Gb SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 48 từ VNPT - Cloud Server - 7,290,000₫/tháng"
   },
   {
+    "id": 31,
     "name": "SUN 48 Plus",
+    "slug": "sun-48-plus",
     "provider": "VNPT",
     "category": "Cloud Server",
     "price": 8100000.0,
     "unit": "vnd/tháng",
-    "specs": "48 v-CPU\n96Gb RAM\n1TB SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network"
+    "specs": "48 v-CPU\n96Gb RAM\n1TB SSD\n1 Public IP \nUnlimited Data Transfer\n500 Mbps Bandwidth\n10 Gbps Network",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ SUN 48 Plus từ VNPT - Cloud Server - 8,100,000₫/tháng"
   },
   {
+    "id": 32,
     "name": "Cloud Server 0",
+    "slug": "cloud-server-0",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 72000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon [1] Cores\n1 GB RAM + 1GB Free\n20GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon [1] Cores\n1 GB RAM + 1GB Free\n20GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "1",
+    "storage": "20GB SSD",
+    "description": "Dịch vụ Cloud Server 0 từ P.A - Cloud Server - 72,000₫/tháng"
   },
   {
+    "id": 33,
     "name": "Cloud Server 1",
+    "slug": "cloud-server-1",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 136000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon [2] Cores\n1.5GB RAM + 1GB Free\n40GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon [2] Cores\n1.5GB RAM + 1GB Free\n40GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "5",
+    "storage": "40GB SSD",
+    "description": "Dịch vụ Cloud Server 1 từ P.A - Cloud Server - 136,000₫/tháng"
   },
   {
+    "id": 34,
     "name": "Cloud Server 2",
+    "slug": "cloud-server-2",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 256000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon [4] Cores\n4 GB RAM + 1GB Free\n60GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon [4] Cores\n4 GB RAM + 1GB Free\n60GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "4",
+    "storage": "60GB SSD",
+    "description": "Dịch vụ Cloud Server 2 từ P.A - Cloud Server - 256,000₫/tháng"
   },
   {
+    "id": 35,
     "name": "Cloud Server 3",
+    "slug": "cloud-server-3",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 368000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon [6] Cores\n6 GB RAM + 1GB Free\n80GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon [6] Cores\n6 GB RAM + 1GB Free\n80GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "6",
+    "storage": "80GB SSD",
+    "description": "Dịch vụ Cloud Server 3 từ P.A - Cloud Server - 368,000₫/tháng"
   },
   {
+    "id": 36,
     "name": "Cloud Server 4",
+    "slug": "cloud-server-4",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 512000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon [8] Cores\n8 GB RAM + 1GB Free\n120GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon [8] Cores\n8 GB RAM + 1GB Free\n120GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "8",
+    "storage": "120GB SSD",
+    "description": "Dịch vụ Cloud Server 4 từ P.A - Cloud Server - 512,000₫/tháng"
   },
   {
+    "id": 37,
     "name": "Cloud Server 5",
+    "slug": "cloud-server-5",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 696000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon [9] Cores\n10 GB RAM + 1GB Free\n200GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon [9] Cores\n10 GB RAM + 1GB Free\n200GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "10",
+    "storage": "200GB SSD",
+    "description": "Dịch vụ Cloud Server 5 từ P.A - Cloud Server - 696,000₫/tháng"
   },
   {
+    "id": 38,
     "name": "Cloud Server 6",
+    "slug": "cloud-server-6",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 912000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon [10] Cores\n12 GB RAM + 1GB Free\n300GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon [10] Cores\n12 GB RAM + 1GB Free\n300GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "12",
+    "storage": "300GB SSD",
+    "description": "Dịch vụ Cloud Server 6 từ P.A - Cloud Server - 912,000₫/tháng"
   },
   {
+    "id": 39,
     "name": "Cloud Server 7",
+    "slug": "cloud-server-7",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 1128000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon [11] Cores\n14 GB RAM + 1GB Free\n400GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon [11] Cores\n14 GB RAM + 1GB Free\n400GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "14",
+    "storage": "400GB SSD",
+    "description": "Dịch vụ Cloud Server 7 từ P.A - Cloud Server - 1,128,000₫/tháng"
   },
   {
+    "id": 40,
     "name": "Cloud Server Pro 0",
+    "slug": "cloud-server-pro-0",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 221000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [2] Cores\n2 GB RAM + 1GB Free\n40GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [2] Cores\n2 GB RAM + 1GB Free\n40GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "2",
+    "storage": "40GB SSD",
+    "description": "Dịch vụ Cloud Server Pro 0 từ P.A - Cloud Server - 221,000₫/tháng"
   },
   {
+    "id": 41,
     "name": "Cloud Server Pro 1",
+    "slug": "cloud-server-pro-1",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 374000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [4] Cores\n3 GB RAM + 1GB Free\n60GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [4] Cores\n3 GB RAM + 1GB Free\n60GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "3",
+    "storage": "60GB SSD",
+    "description": "Dịch vụ Cloud Server Pro 1 từ P.A - Cloud Server - 374,000₫/tháng"
   },
   {
+    "id": 42,
     "name": "Cloud Server Pro 2",
+    "slug": "cloud-server-pro-2",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 552000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [5] Cores\n6GB RAM + 1GB Free\n80GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [5] Cores\n6GB RAM + 1GB Free\n80GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "6",
+    "storage": "80GB SSD",
+    "description": "Dịch vụ Cloud Server Pro 2 từ P.A - Cloud Server - 552,000₫/tháng"
   },
   {
+    "id": 43,
     "name": "Cloud Server Pro 3",
+    "slug": "cloud-server-pro-3",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 731000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [6] Cores\n8 GB RAM + 1GB Free\n120GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [6] Cores\n8 GB RAM + 1GB Free\n120GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "8",
+    "storage": "120GB SSD",
+    "description": "Dịch vụ Cloud Server Pro 3 từ P.A - Cloud Server - 731,000₫/tháng"
   },
   {
+    "id": 44,
     "name": "Cloud Server Pro 4",
+    "slug": "cloud-server-pro-4",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 952000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [8] Cores\n10 GB RAM + 1GB Free\n160GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [8] Cores\n10 GB RAM + 1GB Free\n160GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "10",
+    "storage": "160GB SSD",
+    "description": "Dịch vụ Cloud Server Pro 4 từ P.A - Cloud Server - 952,000₫/tháng"
   },
   {
+    "id": 45,
     "name": "Cloud Server Pro 5",
+    "slug": "cloud-server-pro-5",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 1130000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [9] Cores\n12 GB RAM + 1GB Free\n200GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [9] Cores\n12 GB RAM + 1GB Free\n200GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "12",
+    "storage": "200GB SSD",
+    "description": "Dịch vụ Cloud Server Pro 5 từ P.A - Cloud Server - 1,130,000₫/tháng"
   },
   {
+    "id": 46,
     "name": "Cloud Server Pro 6",
+    "slug": "cloud-server-pro-6",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 1326000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [10] Cores\n14 GB RAM + 2GB Free\n250GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [10] Cores\n14 GB RAM + 2GB Free\n250GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "14",
+    "storage": "250GB SSD",
+    "description": "Dịch vụ Cloud Server Pro 6 từ P.A - Cloud Server - 1,326,000₫/tháng"
   },
   {
+    "id": 47,
     "name": "Cloud Server Pro 7",
+    "slug": "cloud-server-pro-7",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 1564000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [12] Cores\n16 GB RAM + 2GB Free\n300GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [12] Cores\n16 GB RAM + 2GB Free\n300GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "16",
+    "storage": "300GB SSD",
+    "description": "Dịch vụ Cloud Server Pro 7 từ P.A - Cloud Server - 1,564,000₫/tháng"
   },
   {
+    "id": 48,
     "name": "Cloud Server Pro 8",
+    "slug": "cloud-server-pro-8",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 1946000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [13] Cores\n16 GB RAM + 2GB Free\n500GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [13] Cores\n16 GB RAM + 2GB Free\n500GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "16",
+    "storage": "500GB SSD",
+    "description": "Dịch vụ Cloud Server Pro 8 từ P.A - Cloud Server - 1,946,000₫/tháng"
   },
   {
+    "id": 49,
     "name": "Cloud Server Pro 9",
+    "slug": "cloud-server-pro-9",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 2907000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [14] Cores\n18 GB RAM + 2GB Free\n1TB SSD\nUnlimited \n1 IP"
+    "specs": "Intel Xeon Silver [14] Cores\n18 GB RAM + 2GB Free\n1TB SSD\nUnlimited \n1 IP",
+    "cores": "",
+    "ram": "18",
+    "storage": "",
+    "description": "Dịch vụ Cloud Server Pro 9 từ P.A - Cloud Server - 2,907,000₫/tháng"
   },
   {
+    "id": 50,
     "name": "Cloud Server Pro 10",
+    "slug": "cloud-server-pro-10",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 4649000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver [15] Cores\n18 GB RAM + 2GB Free\n2TB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver [15] Cores\n18 GB RAM + 2GB Free\n2TB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "18",
+    "storage": "",
+    "description": "Dịch vụ Cloud Server Pro 10 từ P.A - Cloud Server - 4,649,000₫/tháng"
   },
   {
+    "id": 51,
     "name": "Cloud Server Super 0",
+    "slug": "cloud-server-super-0",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 234000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [1] Cores\n2 GB RAM + 1GB Free\n25GB SSD\nUnlimited \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [1] Cores\n2 GB RAM + 1GB Free\n25GB SSD\nUnlimited \n1 IP",
+    "cores": "",
+    "ram": "2",
+    "storage": "25GB SSD",
+    "description": "Dịch vụ Cloud Server Super 0 từ P.A - Cloud Server - 234,000₫/tháng"
   },
   {
+    "id": 52,
     "name": "Cloud Server Super 1",
+    "slug": "cloud-server-super-1",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 399000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [2] Cores\n3 GB RAM + 1GB Free\n40GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [2] Cores\n3 GB RAM + 1GB Free\n40GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "3",
+    "storage": "40GB SSD",
+    "description": "Dịch vụ Cloud Server Super 1 từ P.A - Cloud Server - 399,000₫/tháng"
   },
   {
+    "id": 53,
     "name": "Cloud Server Super 2",
+    "slug": "cloud-server-super-2",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 633000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [4] Cores\n4 GB RAM + 1GB Free\n60GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [4] Cores\n4 GB RAM + 1GB Free\n60GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "4",
+    "storage": "60GB SSD",
+    "description": "Dịch vụ Cloud Server Super 2 từ P.A - Cloud Server - 633,000₫/tháng"
   },
   {
+    "id": 54,
     "name": "Cloud Server Super 3",
+    "slug": "cloud-server-super-3",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 841000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [5] Cores\n5 GB RAM + 1GB Free\n80GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [5] Cores\n5 GB RAM + 1GB Free\n80GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "5",
+    "storage": "80GB SSD",
+    "description": "Dịch vụ Cloud Server Super 3 từ P.A - Cloud Server - 841,000₫/tháng"
   },
   {
+    "id": 55,
     "name": "Cloud Server Super 4",
+    "slug": "cloud-server-super-4",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 1071000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [6 Cores\n6 GB RAM + 2GB Free\n120GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [6 Cores\n6 GB RAM + 2GB Free\n120GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "6",
+    "storage": "120GB SSD",
+    "description": "Dịch vụ Cloud Server Super 4 từ P.A - Cloud Server - 1,071,000₫/tháng"
   },
   {
+    "id": 56,
     "name": "Cloud Server Super 5",
+    "slug": "cloud-server-super-5",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 1249000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [7] Cores\n7 GB RAM + 2GB Free\n140GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [7] Cores\n7 GB RAM + 2GB Free\n140GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "7",
+    "storage": "140GB SSD",
+    "description": "Dịch vụ Cloud Server Super 5 từ P.A - Cloud Server - 1,249,000₫/tháng"
   },
   {
+    "id": 57,
     "name": "Cloud Server Super 6",
+    "slug": "cloud-server-super-6",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 1479000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [8] Cores\n8 GB RAM + 2GB Free\n180GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [8] Cores\n8 GB RAM + 2GB Free\n180GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "8",
+    "storage": "180GB SSD",
+    "description": "Dịch vụ Cloud Server Super 6 từ P.A - Cloud Server - 1,479,000₫/tháng"
   },
   {
+    "id": 58,
     "name": "Cloud Server Super 7",
+    "slug": "cloud-server-super-7",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 1708000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [9] Cores\n9GB RAM + 2GB Free\n220GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [9] Cores\n9GB RAM + 2GB Free\n220GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "9",
+    "storage": "220GB SSD",
+    "description": "Dịch vụ Cloud Server Super 7 từ P.A - Cloud Server - 1,708,000₫/tháng"
   },
   {
+    "id": 59,
     "name": "Cloud Server Super 8",
+    "slug": "cloud-server-super-8",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 2040000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [10] Cores\n10 GB RAM + 2GB Free\n300GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [10] Cores\n10 GB RAM + 2GB Free\n300GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "10",
+    "storage": "300GB SSD",
+    "description": "Dịch vụ Cloud Server Super 8 từ P.A - Cloud Server - 2,040,000₫/tháng"
   },
   {
+    "id": 60,
     "name": "Cloud Server Super 9",
+    "slug": "cloud-server-super-9",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 2805000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [12] Cores\n12 GB RAM + 2GB Free\n500GB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [12] Cores\n12 GB RAM + 2GB Free\n500GB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "12",
+    "storage": "500GB SSD",
+    "description": "Dịch vụ Cloud Server Super 9 từ P.A - Cloud Server - 2,805,000₫/tháng"
   },
   {
+    "id": 61,
     "name": "Cloud Server Super 10",
+    "slug": "cloud-server-super-10",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 4335000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [14] Cores\n14 GB RAM + 2GB Free\n1TB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [14] Cores\n14 GB RAM + 2GB Free\n1TB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "14",
+    "storage": "",
+    "description": "Dịch vụ Cloud Server Super 10 từ P.A - Cloud Server - 4,335,000₫/tháng"
   },
   {
+    "id": 62,
     "name": "Cloud Server Super 11",
+    "slug": "cloud-server-super-11",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 7140000.0,
     "unit": "vnd/tháng",
-    "specs": "Intel Xeon Silver/Gold/Platinum [16] Cores\n16 GB RAM + 2GB Free\n2TB SSD\nUnlimited Brandwidth  \n1 IP"
+    "specs": "Intel Xeon Silver/Gold/Platinum [16] Cores\n16 GB RAM + 2GB Free\n2TB SSD\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "16",
+    "storage": "",
+    "description": "Dịch vụ Cloud Server Super 11 từ P.A - Cloud Server - 7,140,000₫/tháng"
   },
   {
+    "id": 63,
     "name": "Cloud Server GPU 1",
+    "slug": "cloud-server-gpu-1",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 5452000.0,
     "unit": "vnd/tháng",
-    "specs": "[8] VCores\n16 GB RAM\n300GB SSD\n16G Nvidia Tesla T4 GPU\nUnlimited Brandwidth  \n1 IP"
+    "specs": "[8] VCores\n16 GB RAM\n300GB SSD\n16G Nvidia Tesla T4 GPU\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "16",
+    "storage": "300GB SSD",
+    "description": "Dịch vụ Cloud Server GPU 1 từ P.A - Cloud Server - 5,452,000₫/tháng"
   },
   {
+    "id": 64,
     "name": "Cloud Server GPU 2",
+    "slug": "cloud-server-gpu-2",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 6806000.0,
     "unit": "vnd/tháng",
-    "specs": "[16] VCores\n32 GB RAM\n300GB SSD\n16G Nvidia Tesla T4 GPU\nUnlimited Brandwidth  \n1 IP"
+    "specs": "[16] VCores\n32 GB RAM\n300GB SSD\n16G Nvidia Tesla T4 GPU\nUnlimited Brandwidth  \n1 IP",
+    "cores": "",
+    "ram": "32",
+    "storage": "300GB SSD",
+    "description": "Dịch vụ Cloud Server GPU 2 từ P.A - Cloud Server - 6,806,000₫/tháng"
   },
   {
+    "id": 65,
     "name": "Virtual Private Cloud 1",
+    "slug": "virtual-private-cloud-1",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 3212000.0,
     "unit": "vnd/tháng",
-    "specs": "[14] VCores\n20 GB RAM\n300GB SSD\n1 Internet Gateway\n1 VM Router firewall\n40Mbps Cổng mạng quốc tế\n1Gbps Cổng mạng trong nước \nUnlimited Brandwidth  \n4 IP V4\n4 IPV6"
+    "specs": "[14] VCores\n20 GB RAM\n300GB SSD\n1 Internet Gateway\n1 VM Router firewall\n40Mbps Cổng mạng quốc tế\n1Gbps Cổng mạng trong nước \nUnlimited Brandwidth  \n4 IP V4\n4 IPV6",
+    "cores": "",
+    "ram": "20",
+    "storage": "300GB SSD",
+    "description": "Dịch vụ Virtual Private Cloud 1 từ P.A - Cloud Server - 3,212,000₫/tháng"
   },
   {
+    "id": 66,
     "name": "Virtual Private Cloud 2",
+    "slug": "virtual-private-cloud-2",
     "provider": "P.A",
     "category": "Cloud Server",
     "price": 29750000.0,
     "unit": "vnd/tháng",
-    "specs": "[48] VCores\n3TB RAM\n300GB SSD\n1 Internet Gateway\n1 VM Router firewall\n40Mbps Cổng mạng quốc tế\n1Gbps Cổng mạng trong nước \nUnlimited Brandwidth  \n6 IP V4\n6 IPV6"
+    "specs": "[48] VCores\n3TB RAM\n300GB SSD\n1 Internet Gateway\n1 VM Router firewall\n40Mbps Cổng mạng quốc tế\n1Gbps Cổng mạng trong nước \nUnlimited Brandwidth  \n6 IP V4\n6 IPV6",
+    "cores": "",
+    "ram": "",
+    "storage": "300GB SSD",
+    "description": "Dịch vụ Virtual Private Cloud 2 từ P.A - Cloud Server - 29,750,000₫/tháng"
   },
   {
+    "id": 67,
     "name": "Object Storage 1",
+    "slug": "object-storage-1",
     "provider": "P.A",
     "category": "Storage",
     "price": 235000.0,
     "unit": "vnd/tháng",
-    "specs": "200GB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn"
+    "specs": "200GB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Object Storage 1 từ P.A - Storage - 235,000₫/tháng"
   },
   {
+    "id": 68,
     "name": "Object Storage 2",
+    "slug": "object-storage-2",
     "provider": "P.A",
     "category": "Storage",
     "price": 535000.0,
     "unit": "vnd/tháng",
-    "specs": "500GB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn"
+    "specs": "500GB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Object Storage 2 từ P.A - Storage - 535,000₫/tháng"
   },
   {
+    "id": 69,
     "name": "Object Storage 3",
+    "slug": "object-storage-3",
     "provider": "P.A",
     "category": "Storage",
     "price": 1019000.0,
     "unit": "vnd/tháng",
-    "specs": "1TB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn"
+    "specs": "1TB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Object Storage 3 từ P.A - Storage - 1,019,000₫/tháng"
   },
   {
+    "id": 70,
     "name": "Object Storage 4",
+    "slug": "object-storage-4",
     "provider": "P.A",
     "category": "Storage",
     "price": 1700000.0,
     "unit": "vnd/tháng",
-    "specs": "2TB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn"
+    "specs": "2TB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Object Storage 4 từ P.A - Storage - 1,700,000₫/tháng"
   },
   {
+    "id": 71,
     "name": "Object Storage 5",
+    "slug": "object-storage-5",
     "provider": "P.A",
     "category": "Storage",
     "price": 4250000.0,
     "unit": "vnd/tháng",
-    "specs": "5TB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn"
+    "specs": "5TB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Object Storage 5 từ P.A - Storage - 4,250,000₫/tháng"
   },
   {
+    "id": 72,
     "name": "Object Storage 6",
+    "slug": "object-storage-6",
     "provider": "P.A",
     "category": "Storage",
     "price": 85000000.0,
     "unit": "vnd/tháng",
-    "specs": "10TB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn"
+    "specs": "10TB dung lượng \nKhông giới hạn lưu lượng truyền tải vào \nKhông giới hạn lưu lượng truyền tải ra\nTương thích S3 AWS \nFull S3 Rest API\nKhông giới hạn truy vấn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Object Storage 6 từ P.A - Storage - 85,000,000₫/tháng"
   },
   {
+    "id": 73,
     "name": "A",
+    "slug": "a",
     "provider": "vHost",
     "category": "Cloud Server",
     "price": 80000.0,
     "unit": "vnd/tháng",
-    "specs": "1 Core CPU Gold\n768MB RAM DDR4\n15GB SSD ENT\nNetwork: 1Gbps"
+    "specs": "1 Core CPU Gold\n768MB RAM DDR4\n15GB SSD ENT\nNetwork: 1Gbps",
+    "cores": "",
+    "ram": "",
+    "storage": "15GB SSD",
+    "description": "Dịch vụ A từ vHost - Cloud Server - 80,000₫/tháng"
   },
   {
+    "id": 74,
     "name": "B",
+    "slug": "b",
     "provider": "vHost",
     "category": "Cloud Server",
     "price": 110000.0,
     "unit": "vnd/tháng",
-    "specs": "1 Core CPU Gold\n1GB RAM DDR4\n20GB SSD ENT\nNetwork: 1Gbps"
+    "specs": "1 Core CPU Gold\n1GB RAM DDR4\n20GB SSD ENT\nNetwork: 1Gbps",
+    "cores": "",
+    "ram": "1",
+    "storage": "20GB SSD",
+    "description": "Dịch vụ B từ vHost - Cloud Server - 110,000₫/tháng"
   },
   {
+    "id": 75,
     "name": "C",
+    "slug": "c",
     "provider": "vHost",
     "category": "Cloud Server",
     "price": 440000.0,
     "unit": "vnd/tháng",
-    "specs": "2 Core CPU Gold\n2GB RAM DDR4\n40GB SSD ENT\nNetwork: 1Gbps"
+    "specs": "2 Core CPU Gold\n2GB RAM DDR4\n40GB SSD ENT\nNetwork: 1Gbps",
+    "cores": "",
+    "ram": "2",
+    "storage": "40GB SSD",
+    "description": "Dịch vụ C từ vHost - Cloud Server - 440,000₫/tháng"
   },
   {
+    "id": 76,
     "name": "D",
+    "slug": "d",
     "provider": "vHost",
     "category": "Cloud Server",
     "price": 660000.0,
     "unit": "vnd/tháng",
-    "specs": "2 Core CPU Gold\n4GB RAM DDR4\n60GB SSD ENT\nNetwork: 1Gbps"
+    "specs": "2 Core CPU Gold\n4GB RAM DDR4\n60GB SSD ENT\nNetwork: 1Gbps",
+    "cores": "",
+    "ram": "4",
+    "storage": "60GB SSD",
+    "description": "Dịch vụ D từ vHost - Cloud Server - 660,000₫/tháng"
   },
   {
+    "id": 77,
     "name": "E",
+    "slug": "e",
     "provider": "vHost",
     "category": "Cloud Server",
     "price": 1080000.0,
     "unit": "vnd/tháng",
-    "specs": "4 Core CPU Gold\n8GB RAM DDR4\n80GB SSD ENT\nNetwork: 1Gbps"
+    "specs": "4 Core CPU Gold\n8GB RAM DDR4\n80GB SSD ENT\nNetwork: 1Gbps",
+    "cores": "",
+    "ram": "8",
+    "storage": "80GB SSD",
+    "description": "Dịch vụ E từ vHost - Cloud Server - 1,080,000₫/tháng"
   },
   {
+    "id": 78,
     "name": "F",
+    "slug": "f",
     "provider": "vHost",
     "category": "Cloud Server",
     "price": 2160000.0,
     "unit": "vnd/tháng",
-    "specs": "8 Core CPU Gold\n16GB RAM DDR4\n160GB SSD ENT\nNetwork: 1Gbps"
+    "specs": "8 Core CPU Gold\n16GB RAM DDR4\n160GB SSD ENT\nNetwork: 1Gbps",
+    "cores": "",
+    "ram": "16",
+    "storage": "160GB SSD",
+    "description": "Dịch vụ F từ vHost - Cloud Server - 2,160,000₫/tháng"
   },
   {
+    "id": 79,
     "name": "G",
+    "slug": "g",
     "provider": "vHost",
     "category": "Cloud Server",
     "price": 4320000.0,
     "unit": "vnd/tháng",
-    "specs": "16 Core CPU Gold\n32GB RAM DDR4\n320GB SSD ENT\nNetwork: 1Gbps"
+    "specs": "16 Core CPU Gold\n32GB RAM DDR4\n320GB SSD ENT\nNetwork: 1Gbps",
+    "cores": "",
+    "ram": "32",
+    "storage": "320GB SSD",
+    "description": "Dịch vụ G từ vHost - Cloud Server - 4,320,000₫/tháng"
   },
   {
+    "id": 80,
     "name": "H",
+    "slug": "h",
     "provider": "vHost",
     "category": "Cloud Server",
     "price": 8650000.0,
     "unit": "vnd/tháng",
-    "specs": "24 Core CPU Gold\n64GB RAM DDR4\n700GB SSD ENT\nNetwork: 1Gbps"
+    "specs": "24 Core CPU Gold\n64GB RAM DDR4\n700GB SSD ENT\nNetwork: 1Gbps",
+    "cores": "",
+    "ram": "64",
+    "storage": "700GB SSD",
+    "description": "Dịch vụ H từ vHost - Cloud Server - 8,650,000₫/tháng"
   },
   {
+    "id": 81,
     "name": "Mail Pro 1",
+    "slug": "mail-pro-1",
     "provider": "Viettel",
     "category": "Cloud Email",
     "price": 50000.0,
     "unit": "vnd/tháng",
-    "specs": "10 số lượng email\n1 số lượng nhóm\n5000 MB dung lượng\n1 số lượng domain"
+    "specs": "10 số lượng email\n1 số lượng nhóm\n5000 MB dung lượng\n1 số lượng domain",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Pro 1 từ Viettel - Cloud Email - 50,000₫/tháng"
   },
   {
+    "id": 82,
     "name": "Mail Pro 2",
+    "slug": "mail-pro-2",
     "provider": "Viettel",
     "category": "Cloud Email",
     "price": 100000.0,
     "unit": "vnd/tháng",
-    "specs": "20 số lượng email\n2 số lượng nhóm\n10000 MB dung lượng\n1 số lượng domain"
+    "specs": "20 số lượng email\n2 số lượng nhóm\n10000 MB dung lượng\n1 số lượng domain",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Pro 2 từ Viettel - Cloud Email - 100,000₫/tháng"
   },
   {
+    "id": 83,
     "name": "Mail Pro 3",
+    "slug": "mail-pro-3",
     "provider": "Viettel",
     "category": "Cloud Email",
     "price": 180000.0,
     "unit": "vnd/tháng",
-    "specs": "50 số lượng email\n5 số lượng nhóm\n25000 MB dung lượng\n2 số lượng domain"
+    "specs": "50 số lượng email\n5 số lượng nhóm\n25000 MB dung lượng\n2 số lượng domain",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Pro 3 từ Viettel - Cloud Email - 180,000₫/tháng"
   },
   {
+    "id": 84,
     "name": "Mail Pro 4",
+    "slug": "mail-pro-4",
     "provider": "Viettel",
     "category": "Cloud Email",
     "price": 350000.0,
     "unit": "vnd/tháng",
-    "specs": "100 số lượng email\n10 số lượng nhóm\n50000 MB dung lượng\n2 số lượng domain"
+    "specs": "100 số lượng email\n10 số lượng nhóm\n50000 MB dung lượng\n2 số lượng domain",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Pro 4 từ Viettel - Cloud Email - 350,000₫/tháng"
   },
   {
+    "id": 85,
     "name": "Mail Pro 5",
+    "slug": "mail-pro-5",
     "provider": "Viettel",
     "category": "Cloud Email",
     "price": 650000.0,
     "unit": "vnd/tháng",
-    "specs": "200 số lượng email\n20 số lượng nhóm\n100.000 MB dung lượng\n3 số lượng domain"
+    "specs": "200 số lượng email\n20 số lượng nhóm\n100.000 MB dung lượng\n3 số lượng domain",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Pro 5 từ Viettel - Cloud Email - 650,000₫/tháng"
   },
   {
+    "id": 86,
     "name": "Mail Pro 6",
+    "slug": "mail-pro-6",
     "provider": "Viettel",
     "category": "Cloud Email",
     "price": 950000.0,
     "unit": "vnd/tháng",
-    "specs": "300 số lượng email\n30 số lượng nhóm\n150.000 MB dung lượng\n3 số lượng domain"
+    "specs": "300 số lượng email\n30 số lượng nhóm\n150.000 MB dung lượng\n3 số lượng domain",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Pro 6 từ Viettel - Cloud Email - 950,000₫/tháng"
   },
   {
+    "id": 87,
     "name": "Mail Plus 1",
+    "slug": "mail-plus-1",
     "provider": "FPT",
     "category": "Cloud Email",
     "price": 150000.0,
     "unit": "vnd/tháng",
-    "specs": "5 số lượng email\n500 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online"
+    "specs": "5 số lượng email\n500 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Plus 1 từ FPT - Cloud Email - 150,000₫/tháng"
   },
   {
+    "id": 88,
     "name": "Mail Plus 2",
+    "slug": "mail-plus-2",
     "provider": "FPT",
     "category": "Cloud Email",
     "price": 250000.0,
     "unit": "vnd/tháng",
-    "specs": "10 số lượng email\n1000 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online"
+    "specs": "10 số lượng email\n1000 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Plus 2 từ FPT - Cloud Email - 250,000₫/tháng"
   },
   {
+    "id": 89,
     "name": "Mail Plus 3",
+    "slug": "mail-plus-3",
     "provider": "FPT",
     "category": "Cloud Email",
     "price": 400000.0,
     "unit": "vnd/tháng",
-    "specs": "25 số lượng email\n2.500 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online"
+    "specs": "25 số lượng email\n2.500 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Plus 3 từ FPT - Cloud Email - 400,000₫/tháng"
   },
   {
+    "id": 90,
     "name": "Mail Plus 4",
+    "slug": "mail-plus-4",
     "provider": "FPT",
     "category": "Cloud Email",
     "price": 700000.0,
     "unit": "vnd/tháng",
-    "specs": "50 số lượng email\n5000 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online"
+    "specs": "50 số lượng email\n5000 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Plus 4 từ FPT - Cloud Email - 700,000₫/tháng"
   },
   {
+    "id": 91,
     "name": "Mail Plus 5",
+    "slug": "mail-plus-5",
     "provider": "FPT",
     "category": "Cloud Email",
     "price": 1000000.0,
     "unit": "vnd/tháng",
-    "specs": "100 số lượng email\n10.000 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online"
+    "specs": "100 số lượng email\n10.000 MB dung lượng\nWebmail/ POP3/SMTP\nAntil Spam\nCpanel quản lý email online",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Mail Plus 5 từ FPT - Cloud Email - 1,000,000₫/tháng"
   },
   {
+    "id": 92,
     "name": "Easy Standard",
+    "slug": "easy-standard",
     "provider": "FPT",
     "category": "Cloud Email",
     "price": 1300000.0,
     "unit": "vnd/tháng",
-    "specs": "CPU (Share): Quad Core Intel Xeon 3430 (2.4GHz, FSB 1066, cache 8MB)        \nRAM(Fix): 1GB\nHDD(Fix): 40GB        \nLưu lượng thông tin: 500 GB/ Tháng        \nĐịa chỉ IP: 1 IP        \nPhương thức quản trị: Remote Desktop        \nHệ điều hành: Window/Linux"
+    "specs": "CPU (Share): Quad Core Intel Xeon 3430 (2.4GHz, FSB 1066, cache 8MB)        \nRAM(Fix): 1GB\nHDD(Fix): 40GB        \nLưu lượng thông tin: 500 GB/ Tháng        \nĐịa chỉ IP: 1 IP        \nPhương thức quản trị: Remote Desktop        \nHệ điều hành: Window/Linux",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Easy Standard từ FPT - Cloud Email - 1,300,000₫/tháng"
   },
   {
+    "id": 93,
     "name": "Easy Power",
+    "slug": "easy-power",
     "provider": "FPT",
     "category": "Cloud Email",
     "price": 1500000.0,
     "unit": "vnd/tháng",
-    "specs": "CPU (Share): Quad Core Intel Xeon 3430 (2.4GHz, FSB 1066, cache 8MB)        \nRAM(Fix): 1GB\nHDD(Fix): 60GB        \nLưu lượng thông tin: 800 GB/ Tháng        \nĐịa chỉ IP: 1 IP        \nPhương thức quản trị: Remote Desktop        \nHệ điều hành: Window/Linux"
+    "specs": "CPU (Share): Quad Core Intel Xeon 3430 (2.4GHz, FSB 1066, cache 8MB)        \nRAM(Fix): 1GB\nHDD(Fix): 60GB        \nLưu lượng thông tin: 800 GB/ Tháng        \nĐịa chỉ IP: 1 IP        \nPhương thức quản trị: Remote Desktop        \nHệ điều hành: Window/Linux",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Easy Power từ FPT - Cloud Email - 1,500,000₫/tháng"
   },
   {
+    "id": 94,
     "name": "Easy Strong",
+    "slug": "easy-strong",
     "provider": "FPT",
     "category": "Cloud Email",
     "price": 1700000.0,
     "unit": "vnd/tháng",
-    "specs": "CPU (Share): Quad Core Intel Xeon 3430 (2.4GHz, FSB 1066, cache 8MB)        \nRAM(Fix): 1.5GB\nHDD(Fix): 80GB        \nLưu lượng thông tin: 1000 GB/ Tháng        \nĐịa chỉ IP: 1 IP        \nPhương thức quản trị: Remote Desktop        \nHệ điều hành: Window/Linux"
+    "specs": "CPU (Share): Quad Core Intel Xeon 3430 (2.4GHz, FSB 1066, cache 8MB)        \nRAM(Fix): 1.5GB\nHDD(Fix): 80GB        \nLưu lượng thông tin: 1000 GB/ Tháng        \nĐịa chỉ IP: 1 IP        \nPhương thức quản trị: Remote Desktop        \nHệ điều hành: Window/Linux",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Easy Strong từ FPT - Cloud Email - 1,700,000₫/tháng"
   },
   {
+    "id": 95,
     "name": "Easy Super",
+    "slug": "easy-super",
     "provider": "FPT",
     "category": "Cloud Email",
     "price": 2100000.0,
     "unit": "vnd/tháng",
-    "specs": "CPU (Share): Quad Core Intel Xeon 3430 (2.4GHz, FSB 1066, cache 8MB)        \nRAM(Fix): 2GB\nHDD(Fix): 100GB        \nLưu lượng thông tin: 1500 GB/ Tháng        \nĐịa chỉ IP: 1 IP        \nPhương thức quản trị: Remote Desktop        \nHệ điều hành: Window/Linux"
+    "specs": "CPU (Share): Quad Core Intel Xeon 3430 (2.4GHz, FSB 1066, cache 8MB)        \nRAM(Fix): 2GB\nHDD(Fix): 100GB        \nLưu lượng thông tin: 1500 GB/ Tháng        \nĐịa chỉ IP: 1 IP        \nPhương thức quản trị: Remote Desktop        \nHệ điều hành: Window/Linux",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Easy Super từ FPT - Cloud Email - 2,100,000₫/tháng"
   },
   {
+    "id": 96,
     "name": "Sun Mail 30",
+    "slug": "sun-mail-30",
     "provider": "VNPT",
     "category": "Cloud Email",
     "price": 400000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 30GB SSD\nSố email khuyến nghị :≤30 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần"
+    "specs": "Storage 30GB SSD\nSố email khuyến nghị :≤30 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần",
+    "cores": "",
+    "ram": "",
+    "storage": "30GB SSD",
+    "description": "Dịch vụ Sun Mail 30 từ VNPT - Cloud Email - 400,000₫/tháng"
   },
   {
+    "id": 97,
     "name": "Sun Mail 50",
+    "slug": "sun-mail-50",
     "provider": "VNPT",
     "category": "Cloud Email",
     "price": 600000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 50GB SSD\nSố email khuyến nghị :≤50 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần"
+    "specs": "Storage 50GB SSD\nSố email khuyến nghị :≤50 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần",
+    "cores": "",
+    "ram": "",
+    "storage": "50GB SSD",
+    "description": "Dịch vụ Sun Mail 50 từ VNPT - Cloud Email - 600,000₫/tháng"
   },
   {
+    "id": 98,
     "name": "Sun Mail 100",
+    "slug": "sun-mail-100",
     "provider": "VNPT",
     "category": "Cloud Email",
     "price": 1000000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 100GB SSD\nSố email khuyến nghị :≤100 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần"
+    "specs": "Storage 100GB SSD\nSố email khuyến nghị :≤100 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần",
+    "cores": "",
+    "ram": "",
+    "storage": "100GB SSD",
+    "description": "Dịch vụ Sun Mail 100 từ VNPT - Cloud Email - 1,000,000₫/tháng"
   },
   {
+    "id": 99,
     "name": "Sun Mail 200",
+    "slug": "sun-mail-200",
     "provider": "VNPT",
     "category": "Cloud Email",
     "price": 1500000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 200GB SSD\nSố email khuyến nghị :≤200 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần"
+    "specs": "Storage 200GB SSD\nSố email khuyến nghị :≤200 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần",
+    "cores": "",
+    "ram": "",
+    "storage": "200GB SSD",
+    "description": "Dịch vụ Sun Mail 200 từ VNPT - Cloud Email - 1,500,000₫/tháng"
   },
   {
+    "id": 100,
     "name": "Sun Mail 300",
+    "slug": "sun-mail-300",
     "provider": "VNPT",
     "category": "Cloud Email",
     "price": 2000000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 300GB SSD\nSố email khuyến nghị :≤300 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần"
+    "specs": "Storage 300GB SSD\nSố email khuyến nghị :≤300 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần",
+    "cores": "",
+    "ram": "",
+    "storage": "300GB SSD",
+    "description": "Dịch vụ Sun Mail 300 từ VNPT - Cloud Email - 2,000,000₫/tháng"
   },
   {
+    "id": 101,
     "name": "Sun Mail 500",
+    "slug": "sun-mail-500",
     "provider": "VNPT",
     "category": "Cloud Email",
     "price": 3500000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 500GB SSD\nSố email khuyến nghị :≤500 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần"
+    "specs": "Storage 500GB SSD\nSố email khuyến nghị :≤500 email\n1 IP riêng        \nUnlimited mail group        \nUnlimited Email Forwarder        \nMã hóa SSL: Let's Encrypt\nAntispam/ Antivirus        \nSPF/ DKIM/ DomainKeys\nBackup Mailbox\nBackup server: Hàng tuần",
+    "cores": "",
+    "ram": "",
+    "storage": "500GB SSD",
+    "description": "Dịch vụ Sun Mail 500 từ VNPT - Cloud Email - 3,500,000₫/tháng"
   },
   {
+    "id": 102,
     "name": "Email Server Riêng #0",
+    "slug": "email-server-riêng-#0",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 343000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 100GB\nCó Global Admin \n1 IP riêng\nCòn lai không giới hạn"
+    "specs": "Storage 100GB\nCó Global Admin \n1 IP riêng\nCòn lai không giới hạn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Server Riêng #0 từ P.A - Cloud Email - 343,000₫/tháng"
   },
   {
+    "id": 103,
     "name": "Email Server Riêng #1",
+    "slug": "email-server-riêng-#1",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 515000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 150GB\nCó Global Admin \n1 IP riêng\nCòn lại không giới hạn"
+    "specs": "Storage 150GB\nCó Global Admin \n1 IP riêng\nCòn lại không giới hạn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Server Riêng #1 từ P.A - Cloud Email - 515,000₫/tháng"
   },
   {
+    "id": 104,
     "name": "Email Server Riêng #2",
+    "slug": "email-server-riêng-#2",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 739000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 250GB\nCó Global Admin \n1 IP riêng\nCòn lại không giới hạn"
+    "specs": "Storage 250GB\nCó Global Admin \n1 IP riêng\nCòn lại không giới hạn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Server Riêng #2 từ P.A - Cloud Email - 739,000₫/tháng"
   },
   {
+    "id": 105,
     "name": "Email Server Riêng #3",
+    "slug": "email-server-riêng-#3",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 1514000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 500GB\nCó Global Admin \n1 IP riêng\nCòn lại không giới hạn"
+    "specs": "Storage 500GB\nCó Global Admin \n1 IP riêng\nCòn lại không giới hạn",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Server Riêng #3 từ P.A - Cloud Email - 1,514,000₫/tháng"
   },
   {
+    "id": 106,
     "name": "Email Pro",
+    "slug": "email-pro",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 24000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 3GB\nĐịa chỉ email: 5\nEmail forwarder: 5\nMail list: 1\nPark Domains: 0"
+    "specs": "Storage 3GB\nĐịa chỉ email: 5\nEmail forwarder: 5\nMail list: 1\nPark Domains: 0",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro từ P.A - Cloud Email - 24,000₫/tháng"
   },
   {
+    "id": 107,
     "name": "Email Pro 2",
+    "slug": "email-pro-2",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 60000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 10GB\nĐịa chỉ email: 20\nEmail forwarder: 20\nMail list: 2\nPark Domains: 1"
+    "specs": "Storage 10GB\nĐịa chỉ email: 20\nEmail forwarder: 20\nMail list: 2\nPark Domains: 1",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro 2 từ P.A - Cloud Email - 60,000₫/tháng"
   },
   {
+    "id": 108,
     "name": "Email Pro 3",
+    "slug": "email-pro-3",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 110000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 25GB\nĐịa chỉ email: 60\nEmail forwarder: 60\nMail list: 5\nPark Domains: 2"
+    "specs": "Storage 25GB\nĐịa chỉ email: 60\nEmail forwarder: 60\nMail list: 5\nPark Domains: 2",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro 3 từ P.A - Cloud Email - 110,000₫/tháng"
   },
   {
+    "id": 109,
     "name": "Email Pro 4",
+    "slug": "email-pro-4",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 195000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 80GB\nĐịa chỉ email: 120\nEmail forwarder: 120\nMail list: 10\nPark Domains: 3"
+    "specs": "Storage 80GB\nĐịa chỉ email: 120\nEmail forwarder: 120\nMail list: 10\nPark Domains: 3",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro 4 từ P.A - Cloud Email - 195,000₫/tháng"
   },
   {
+    "id": 110,
     "name": "Email Pro 5",
+    "slug": "email-pro-5",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 322000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 150GB\nĐịa chỉ email: 250\nEmail forwarder: 250\nMail list: 30\nPark Domains: 4"
+    "specs": "Storage 150GB\nĐịa chỉ email: 250\nEmail forwarder: 250\nMail list: 30\nPark Domains: 4",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro 5 từ P.A - Cloud Email - 322,000₫/tháng"
   },
   {
+    "id": 111,
     "name": "Email Pro 6",
+    "slug": "email-pro-6",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 407000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 200GB\nĐịa chỉ email: 350\nEmail forwarder: 350\nMail list: 50\nPark Domains: 6"
+    "specs": "Storage 200GB\nĐịa chỉ email: 350\nEmail forwarder: 350\nMail list: 50\nPark Domains: 6",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro 6 từ P.A - Cloud Email - 407,000₫/tháng"
   },
   {
+    "id": 112,
     "name": "Email Pro 7",
+    "slug": "email-pro-7",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 552000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 250GB\nĐịa chỉ email: 500\nEmail forwarder: 500\nMail list: 70\nPark Domains: 10"
+    "specs": "Storage 250GB\nĐịa chỉ email: 500\nEmail forwarder: 500\nMail list: 70\nPark Domains: 10",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro 7 từ P.A - Cloud Email - 552,000₫/tháng"
   },
   {
+    "id": 113,
     "name": "Email Pro 8",
+    "slug": "email-pro-8",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 679000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 350GB\nĐịa chỉ email: 700\nEmail forwarder: 700\nMail list: 100\nPark Domains: 20"
+    "specs": "Storage 350GB\nĐịa chỉ email: 700\nEmail forwarder: 700\nMail list: 100\nPark Domains: 20",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro 8 từ P.A - Cloud Email - 679,000₫/tháng"
   },
   {
+    "id": 114,
     "name": "Email Pro 9",
+    "slug": "email-pro-9",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 1700000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 500GB\nĐịa chỉ email: Unlimited\nEmail forwarder: Unlimited\nMail list: 200\nPark Domains: 40"
+    "specs": "Storage 500GB\nĐịa chỉ email: Unlimited\nEmail forwarder: Unlimited\nMail list: 200\nPark Domains: 40",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro 9 từ P.A - Cloud Email - 1,700,000₫/tháng"
   },
   {
+    "id": 115,
     "name": "Email Pro 10",
+    "slug": "email-pro-10",
     "provider": "P.A",
     "category": "Cloud Email",
     "price": 2975000.0,
     "unit": "vnd/tháng",
-    "specs": "Storage 1TB\nĐịa chỉ email: Unlimited\nEmail forwarder: Unlimited\nMail list: 400\nPark Domains: 60"
+    "specs": "Storage 1TB\nĐịa chỉ email: Unlimited\nEmail forwarder: Unlimited\nMail list: 400\nPark Domains: 60",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Email Pro 10 từ P.A - Cloud Email - 2,975,000₫/tháng"
   },
   {
+    "id": 116,
     "name": "Viettel Cloudrity WP-GOLD",
+    "slug": "viettel-cloudrity-wp-gold",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 3990000.0,
     "unit": "vnd/tháng",
-    "specs": "1 tên miền \nTường lửa (WAF) chặn tấn công Top 10 OWASP\nBổ sung 25 tập luật tuy chỉnh\nChống tấn công DDoS tầng mạng (DDo5 L4) 1Gbps\nLưu lượng sạch bảo vệ tối đa 500rps\nNgăn chặn tấn công bot\nRate limit\nGiảm sát bằng thông truy cập\nQuản lý danh sách IP\nBlacklist/Whitelist\nCảnh báo tấn công qua\nEmail\nBáo cáo định kỳ\nHỗ trợ IPv6\nHỗ trợ điện thoại, chat, ernail và ticket 16x7"
+    "specs": "1 tên miền \nTường lửa (WAF) chặn tấn công Top 10 OWASP\nBổ sung 25 tập luật tuy chỉnh\nChống tấn công DDoS tầng mạng (DDo5 L4) 1Gbps\nLưu lượng sạch bảo vệ tối đa 500rps\nNgăn chặn tấn công bot\nRate limit\nGiảm sát bằng thông truy cập\nQuản lý danh sách IP\nBlacklist/Whitelist\nCảnh báo tấn công qua\nEmail\nBáo cáo định kỳ\nHỗ trợ IPv6\nHỗ trợ điện thoại, chat, ernail và ticket 16x7",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Viettel Cloudrity WP-GOLD từ Viettel - Cloud Security - 3,990,000₫/tháng"
   },
   {
+    "id": 117,
     "name": "Viettel Cloud Firewall VCF1-Basic",
+    "slug": "viettel-cloud-firewall-vcf1-basic",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 6600000.0,
     "unit": "vnd/tháng",
-    "specs": "2 vCPU Số VCPU hỗ trợ\n7 GB Bộ nhớ tối thiểu\n60 GB Dung lượng ổ cứng tối thiểu\n3.000 Mbps Thông lượng tường lửa\n1.500 Mbps Thung lượng khi bật tính năng bảo mật\n100 Mbps Thông lượng qua\nIPsec VPN\n250 Số lượng chính sách bảo mật tối đa\n64.000 Số lượng phiên đông thời tôi đa\n3.000 Số lượng phiên mới/giãy\n250 Số lượng đường hầm\nIPSec VPN\n250 Số lượng đường hầm\nSSL VPN\n40 Số lượng Clientless VPN"
+    "specs": "2 vCPU Số VCPU hỗ trợ\n7 GB Bộ nhớ tối thiểu\n60 GB Dung lượng ổ cứng tối thiểu\n3.000 Mbps Thông lượng tường lửa\n1.500 Mbps Thung lượng khi bật tính năng bảo mật\n100 Mbps Thông lượng qua\nIPsec VPN\n250 Số lượng chính sách bảo mật tối đa\n64.000 Số lượng phiên đông thời tôi đa\n3.000 Số lượng phiên mới/giãy\n250 Số lượng đường hầm\nIPSec VPN\n250 Số lượng đường hầm\nSSL VPN\n40 Số lượng Clientless VPN",
+    "cores": "2",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Viettel Cloud Firewall VCF1-Basic từ Viettel - Cloud Security - 6,600,000₫/tháng"
   },
   {
+    "id": 118,
     "name": "Viettel Cloud Firewall VCF2-Basic",
+    "slug": "viettel-cloud-firewall-vcf2-basic",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 9350000.0,
     "unit": "vnd/tháng",
-    "specs": "3 vCPU Số VCPU hỗ trợ\n7 GB Bộ nhớ tối thiểu\n60 GB Dung lượng ổ cứng tối thiểu\n4.500 Mbps Thông lượng tường lửa\n2.250 Mbps Thông lượng khi bật tính năng bảo mật\n1.000 Mbps Thông lượng qua IPsec VPN\n1.500 Số lượng chính sách bảo mật tối đa\n250.000 Số lượng phiên đồng thời tối đa\n15.000 Số lượng phiên mới/giãy\n1.000 Số lượng đường hầm\nIPSec VPN\n500 Số lượng đường hầm\nSSL VPN\n100 Số lượng Clientless VPN"
+    "specs": "3 vCPU Số VCPU hỗ trợ\n7 GB Bộ nhớ tối thiểu\n60 GB Dung lượng ổ cứng tối thiểu\n4.500 Mbps Thông lượng tường lửa\n2.250 Mbps Thông lượng khi bật tính năng bảo mật\n1.000 Mbps Thông lượng qua IPsec VPN\n1.500 Số lượng chính sách bảo mật tối đa\n250.000 Số lượng phiên đồng thời tối đa\n15.000 Số lượng phiên mới/giãy\n1.000 Số lượng đường hầm\nIPSec VPN\n500 Số lượng đường hầm\nSSL VPN\n100 Số lượng Clientless VPN",
+    "cores": "3",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Viettel Cloud Firewall VCF2-Basic từ Viettel - Cloud Security - 9,350,000₫/tháng"
   },
   {
+    "id": 119,
     "name": "Viettel Cloud Firewall VCF2-Basic",
+    "slug": "viettel-cloud-firewall-vcf2-basic",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 12100000.0,
     "unit": "vnd/tháng",
-    "specs": "4 vCPU Số VCPU hỗ trợ\n9 GB Bộ nhớ tối thiểu\n60 GB Dung lượng ổ cứng tối thiểu\n6.000 Mbps Thông lượng tường lửa\n3.000 Mbps Thông lượng khi bật tính năng bảo mật\n1.800 Mbps Thông lượng qua IPsec VPN\n10.000 Số lượng chính sách bảo mật tối đa\n819.000 Số lượng phiên đồng thời tối đa\n30.000 Số lượng phiên mới/giây\n2.000 Số lượng đường hầm\nIPSec VPN\n2.000 Số lượng đường hẩm\nSSL VPN\n400 Số lượng Clientless VPN"
+    "specs": "4 vCPU Số VCPU hỗ trợ\n9 GB Bộ nhớ tối thiểu\n60 GB Dung lượng ổ cứng tối thiểu\n6.000 Mbps Thông lượng tường lửa\n3.000 Mbps Thông lượng khi bật tính năng bảo mật\n1.800 Mbps Thông lượng qua IPsec VPN\n10.000 Số lượng chính sách bảo mật tối đa\n819.000 Số lượng phiên đồng thời tối đa\n30.000 Số lượng phiên mới/giây\n2.000 Số lượng đường hầm\nIPSec VPN\n2.000 Số lượng đường hẩm\nSSL VPN\n400 Số lượng Clientless VPN",
+    "cores": "4",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Viettel Cloud Firewall VCF2-Basic từ Viettel - Cloud Security - 12,100,000₫/tháng"
   },
   {
+    "id": 120,
     "name": "Viettel Endpoint Security for VM",
+    "slug": "viettel-endpoint-security-for-vm",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 380000.0,
     "unit": "vnd/năm",
-    "specs": "Management Options\nAdvanced Anti-Exploit\nAnti-Malware\nSmart Centralized Scanning\nV Content Control\nWeb Traffic Scan\nNetwork Attack Defense\nDevice Control\nFirewall\nProcess\n(Inspector/Advanced Threat\nControl (ATC))\nRansomware\nMitigation"
+    "specs": "Management Options\nAdvanced Anti-Exploit\nAnti-Malware\nSmart Centralized Scanning\nV Content Control\nWeb Traffic Scan\nNetwork Attack Defense\nDevice Control\nFirewall\nProcess\n(Inspector/Advanced Threat\nControl (ATC))\nRansomware\nMitigation",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Viettel Endpoint Security for VM từ Viettel - Cloud Security - 380,000₫/tháng"
   },
   {
+    "id": 121,
     "name": "Viettel Endpoint SecuritY Business",
+    "slug": "viettel-endpoint-security-business",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 385000.0,
     "unit": "vnd/năm",
-    "specs": "Management Options\nAdvanced Anti-Exploit\nAnti-Malware\nContent Control\nAnti-Phishing\nWeb Traffic Scan\nDevice Control\nFirewall\n Process\n(Inspector/Advanced Threat\nControl (ATC))\nRansomware\n(Mitigation)"
+    "specs": "Management Options\nAdvanced Anti-Exploit\nAnti-Malware\nContent Control\nAnti-Phishing\nWeb Traffic Scan\nDevice Control\nFirewall\n Process\n(Inspector/Advanced Threat\nControl (ATC))\nRansomware\n(Mitigation)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Viettel Endpoint SecuritY Business từ Viettel - Cloud Security - 385,000₫/tháng"
   },
   {
+    "id": 122,
     "name": "Viettel Endpoint Security Premium",
+    "slug": "viettel-endpoint-security-premium",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 720000.0,
     "unit": "vnd/năm",
-    "specs": "Management Options\nAdvanced Anti-Exploit\nAnti-Malware\nSmart Centralized Scanning\nContent Control\nAnti-Phishing\nWeb Traffic Scan\nDevice Control\nfrewall\nProcess\n(Inspector/Advanced Threat\nControl (ATC))\nRansomware\nMitigation"
+    "specs": "Management Options\nAdvanced Anti-Exploit\nAnti-Malware\nSmart Centralized Scanning\nContent Control\nAnti-Phishing\nWeb Traffic Scan\nDevice Control\nfrewall\nProcess\n(Inspector/Advanced Threat\nControl (ATC))\nRansomware\nMitigation",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Viettel Endpoint Security Premium từ Viettel - Cloud Security - 720,000₫/tháng"
   },
   {
+    "id": 123,
     "name": "Anti-DDoS Volume-Based DDM1G",
+    "slug": "anti-ddos-volume-based-ddm1g",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 7000000.0,
     "unit": "vnd/tháng",
-    "specs": "8 IP\n1 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)"
+    "specs": "8 IP\n1 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Anti-DDoS Volume-Based DDM1G từ Viettel - Cloud Security - 7,000,000₫/tháng"
   },
   {
+    "id": 124,
     "name": "Anti-DDoS Volume-Based DDM2G",
+    "slug": "anti-ddos-volume-based-ddm2g",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 10000000.0,
     "unit": "vnd/tháng",
-    "specs": "16 IP\n2 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)"
+    "specs": "16 IP\n2 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Anti-DDoS Volume-Based DDM2G từ Viettel - Cloud Security - 10,000,000₫/tháng"
   },
   {
+    "id": 125,
     "name": "Anti-DDoS Volume-Based DDM3G",
+    "slug": "anti-ddos-volume-based-ddm3g",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 14000000.0,
     "unit": "vnd/tháng",
-    "specs": "32 IP\n3 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)"
+    "specs": "32 IP\n3 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Anti-DDoS Volume-Based DDM3G từ Viettel - Cloud Security - 14,000,000₫/tháng"
   },
   {
+    "id": 126,
     "name": "Anti-DDoS Volume-Based DDM5G",
+    "slug": "anti-ddos-volume-based-ddm5g",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 25000000.0,
     "unit": "vnd/tháng",
-    "specs": "256 IP\n5 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)"
+    "specs": "256 IP\n5 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Anti-DDoS Volume-Based DDM5G từ Viettel - Cloud Security - 25,000,000₫/tháng"
   },
   {
+    "id": 127,
     "name": "Anti-DDoS Volume-Based DDM10G",
+    "slug": "anti-ddos-volume-based-ddm10g",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 35000000.0,
     "unit": "vnd/tháng",
-    "specs": "512 IP\n10 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)"
+    "specs": "512 IP\n10 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Anti-DDoS Volume-Based DDM10G từ Viettel - Cloud Security - 35,000,000₫/tháng"
   },
   {
+    "id": 128,
     "name": "Anti-DDoS Volume-Based DDM15G",
+    "slug": "anti-ddos-volume-based-ddm15g",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 50000000.0,
     "unit": "vnd/tháng",
-    "specs": "512 IP\n15 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)"
+    "specs": "512 IP\n15 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Anti-DDoS Volume-Based DDM15G từ Viettel - Cloud Security - 50,000,000₫/tháng"
   },
   {
+    "id": 129,
     "name": "Anti-DDoS Volume-Based DDM20G",
+    "slug": "anti-ddos-volume-based-ddm20g",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 70000000.0,
     "unit": "vnd/tháng",
-    "specs": "512 IP\n20 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)"
+    "specs": "512 IP\n20 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Anti-DDoS Volume-Based DDM20G từ Viettel - Cloud Security - 70,000,000₫/tháng"
   },
   {
+    "id": 130,
     "name": "Anti-DDoS Volume-Based DDM30G",
+    "slug": "anti-ddos-volume-based-ddm30g",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 100000000.0,
     "unit": "vnd/tháng",
-    "specs": "512 IP\n30 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)"
+    "specs": "512 IP\n30 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Anti-DDoS Volume-Based DDM30G từ Viettel - Cloud Security - 100,000,000₫/tháng"
   },
   {
+    "id": 131,
     "name": "Anti-DDoS Volume-Based DDM40G",
+    "slug": "anti-ddos-volume-based-ddm40g",
     "provider": "Viettel",
     "category": "Cloud Security",
     "price": 120000000.0,
     "unit": "vnd/tháng",
-    "specs": "512 IP\n40 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)"
+    "specs": "512 IP\n40 Gbps Bandwidth DDoS\nTự động giám sát, phát hiện và ngăn chặn tấn công DDoS\nCảnh báo bằng Email\nCảnh báo bằng SMS\nPortal riêng cho mỗi khách hàng\nChuyên gia hỗ trợ 24/7/365\nChống tấn công Volumetric Attack (UDP/ICMP... Flood)\nChống tấn công TCP Stack (SYN/ACK/SYN-ACK...Flood))\nChống tấn công Reflection Amplifications Flood (DNS, NTP, SSDP,...)",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Anti-DDoS Volume-Based DDM40G từ Viettel - Cloud Security - 120,000,000₫/tháng"
   },
   {
+    "id": 132,
     "name": "FPT Cloud VA Standard",
+    "slug": "fpt-cloud-va-standard",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 5000000.0,
     "unit": "vnd/tháng",
-    "specs": "Unlimited number of targets\n5 scan\n2 concurrent scan"
+    "specs": "Unlimited number of targets\n5 scan\n2 concurrent scan",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ FPT Cloud VA Standard từ FPT - Cloud Security - 5,000,000₫/tháng"
   },
   {
+    "id": 133,
     "name": "FPT Cloud VA Advanced 1",
+    "slug": "fpt-cloud-va-advanced-1",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 7500000.0,
     "unit": "vnd/tháng",
-    "specs": "Unlimited number of targets\nUnlimited scan\n2 concurrent scan"
+    "specs": "Unlimited number of targets\nUnlimited scan\n2 concurrent scan",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ FPT Cloud VA Advanced 1 từ FPT - Cloud Security - 7,500,000₫/tháng"
   },
   {
+    "id": 134,
     "name": "FPT Cloud WAF - Small Package",
+    "slug": "fpt-cloud-waf---small-package",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 7900000.0,
     "unit": "vnd/tháng",
-    "specs": "100Mbps network\nRPS 50 requests/s\nUnlimited domain\nCustomize Rule\nSSL Certificate\nCache support\nSIEM\nUptime 99.99%\n2 VCPU \n4GB RAM\n150 GB Storage"
+    "specs": "100Mbps network\nRPS 50 requests/s\nUnlimited domain\nCustomize Rule\nSSL Certificate\nCache support\nSIEM\nUptime 99.99%\n2 VCPU \n4GB RAM\n150 GB Storage",
+    "cores": "",
+    "ram": "4",
+    "storage": "",
+    "description": "Dịch vụ FPT Cloud WAF - Small Package từ FPT - Cloud Security - 7,900,000₫/tháng"
   },
   {
+    "id": 135,
     "name": "FPT Cloud WAF - Medium Package",
+    "slug": "fpt-cloud-waf---medium-package",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 10100000.0,
     "unit": "vnd/tháng",
-    "specs": "200Mbps network\nRPS 150 requests/s\nUnlimited domain\nCustomize Rule\nSSL Certificate\nCache support\nSIEM\nUptime 99.99%\n4 VCPU \n8GB RAM\n300 GB Storage"
+    "specs": "200Mbps network\nRPS 150 requests/s\nUnlimited domain\nCustomize Rule\nSSL Certificate\nCache support\nSIEM\nUptime 99.99%\n4 VCPU \n8GB RAM\n300 GB Storage",
+    "cores": "",
+    "ram": "8",
+    "storage": "",
+    "description": "Dịch vụ FPT Cloud WAF - Medium Package từ FPT - Cloud Security - 10,100,000₫/tháng"
   },
   {
+    "id": 136,
     "name": "FPT Cloud WAF - Large Package",
+    "slug": "fpt-cloud-waf---large-package",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 16000000.0,
     "unit": "vnd/tháng",
-    "specs": "500Mbps network\nRPS 500 requests/s\nUnlimited domain\nCustomize Rule\nSSL Certificate\nCache support\nSIEM\nUptime 99.99%\n8 VCPU \n16GB RAM\n500 GB Storage"
+    "specs": "500Mbps network\nRPS 500 requests/s\nUnlimited domain\nCustomize Rule\nSSL Certificate\nCache support\nSIEM\nUptime 99.99%\n8 VCPU \n16GB RAM\n500 GB Storage",
+    "cores": "",
+    "ram": "16",
+    "storage": "",
+    "description": "Dịch vụ FPT Cloud WAF - Large Package từ FPT - Cloud Security - 16,000,000₫/tháng"
   },
   {
+    "id": 137,
     "name": "[Standard] Next-Gen Firewall",
+    "slug": "standard-next-gen-firewall",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 5640000.0,
     "unit": "vnd/tháng",
-    "specs": "2VCPU\n4GB RAM\n110GB SSD"
+    "specs": "2VCPU\n4GB RAM\n110GB SSD",
+    "cores": "",
+    "ram": "4",
+    "storage": "110GB SSD",
+    "description": "Dịch vụ [Standard] Next-Gen Firewall từ FPT - Cloud Security - 5,640,000₫/tháng"
   },
   {
+    "id": 138,
     "name": "[Standard] NGTP Firewall",
+    "slug": "standard-ngtp-firewall",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 6240000.0,
     "unit": "vnd/tháng",
-    "specs": "2VCPU\n4GB RAM\n110GB SSD"
+    "specs": "2VCPU\n4GB RAM\n110GB SSD",
+    "cores": "",
+    "ram": "4",
+    "storage": "110GB SSD",
+    "description": "Dịch vụ [Standard] NGTP Firewall từ FPT - Cloud Security - 6,240,000₫/tháng"
   },
   {
+    "id": 139,
     "name": "[ Standard] NGTX Firewall",
+    "slug": "-standard-ngtx-firewall",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 7200000.0,
     "unit": "vnd/tháng",
-    "specs": "2VCPU\n4GB RAM\n110GB SSD"
+    "specs": "2VCPU\n4GB RAM\n110GB SSD",
+    "cores": "",
+    "ram": "4",
+    "storage": "110GB SSD",
+    "description": "Dịch vụ [ Standard] NGTX Firewall từ FPT - Cloud Security - 7,200,000₫/tháng"
   },
   {
+    "id": 140,
     "name": "[ Advance] Next-Gen Firewall",
+    "slug": "-advance-next-gen-firewall",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 11400.0,
     "unit": "vnd/tháng",
-    "specs": "2VCPU\n4GB RAM\n110GB SSD"
+    "specs": "2VCPU\n4GB RAM\n110GB SSD",
+    "cores": "",
+    "ram": "4",
+    "storage": "110GB SSD",
+    "description": "Dịch vụ [ Advance] Next-Gen Firewall từ FPT - Cloud Security - 11,400₫/tháng"
   },
   {
+    "id": 141,
     "name": "[ Advance] NGTP Firewall",
+    "slug": "-advance-ngtp-firewall",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 12600000.0,
     "unit": "vnd/tháng",
-    "specs": "2VCPU\n4GB RAM\n110GB SSD"
+    "specs": "2VCPU\n4GB RAM\n110GB SSD",
+    "cores": "",
+    "ram": "4",
+    "storage": "110GB SSD",
+    "description": "Dịch vụ [ Advance] NGTP Firewall từ FPT - Cloud Security - 12,600,000₫/tháng"
   },
   {
+    "id": 142,
     "name": "[ Advance] NGTX Firewall",
+    "slug": "-advance-ngtx-firewall",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 15000000.0,
     "unit": "vnd/tháng",
-    "specs": "2VCPU\n4GB RAM\n110GB SSD"
+    "specs": "2VCPU\n4GB RAM\n110GB SSD",
+    "cores": "",
+    "ram": "4",
+    "storage": "110GB SSD",
+    "description": "Dịch vụ [ Advance] NGTX Firewall từ FPT - Cloud Security - 15,000,000₫/tháng"
   },
   {
+    "id": 143,
     "name": "[Premium] Next-Gen Firewall",
+    "slug": "premium-next-gen-firewall",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 22800.0,
     "unit": "vnd/tháng",
-    "specs": "2VCPU\n4GB RAM\n110GB SSD"
+    "specs": "2VCPU\n4GB RAM\n110GB SSD",
+    "cores": "",
+    "ram": "4",
+    "storage": "110GB SSD",
+    "description": "Dịch vụ [Premium] Next-Gen Firewall từ FPT - Cloud Security - 22,800₫/tháng"
   },
   {
+    "id": 144,
     "name": "[Premium] NGTP Firewall",
+    "slug": "premium-ngtp-firewall",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 25200000.0,
     "unit": "vnd/tháng",
-    "specs": "2VCPU\n4GB RAM\n110GB SSD"
+    "specs": "2VCPU\n4GB RAM\n110GB SSD",
+    "cores": "",
+    "ram": "4",
+    "storage": "110GB SSD",
+    "description": "Dịch vụ [Premium] NGTP Firewall từ FPT - Cloud Security - 25,200,000₫/tháng"
   },
   {
+    "id": 145,
     "name": "[Premium] NGTX Firewall",
+    "slug": "premium-ngtx-firewall",
     "provider": "FPT",
     "category": "Cloud Security",
     "price": 30000000.0,
     "unit": "vnd/tháng",
-    "specs": "2VCPU\n4GB RAM\n110GB SSD"
+    "specs": "2VCPU\n4GB RAM\n110GB SSD",
+    "cores": "",
+    "ram": "4",
+    "storage": "110GB SSD",
+    "description": "Dịch vụ [Premium] NGTX Firewall từ FPT - Cloud Security - 30,000,000₫/tháng"
   },
   {
+    "id": 146,
     "name": "AntiDDoS Starter",
+    "slug": "antiddos-starter",
     "provider": "vHost",
     "category": "Cloud Security",
     "price": 4800000.0,
     "unit": "vnd/tháng",
-    "specs": "Băng thông: 2Gbps\nMitigation: Unlimited\nRouting: Symetric\nIPv4: 1\nIPv6: 1"
+    "specs": "Băng thông: 2Gbps\nMitigation: Unlimited\nRouting: Symetric\nIPv4: 1\nIPv6: 1",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ AntiDDoS Starter từ vHost - Cloud Security - 4,800,000₫/tháng"
   },
   {
+    "id": 147,
     "name": "AntiDDoS Pro",
+    "slug": "antiddos-pro",
     "provider": "vHost",
     "category": "Cloud Security",
     "price": 12000000.0,
     "unit": "vnd/tháng",
-    "specs": "Băng thông: 5Gbps\nMitigation: Unlimited\nRouting: Symetric\nIPv4: 1\nIPv6: 1"
+    "specs": "Băng thông: 5Gbps\nMitigation: Unlimited\nRouting: Symetric\nIPv4: 1\nIPv6: 1",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ AntiDDoS Pro từ vHost - Cloud Security - 12,000,000₫/tháng"
   },
   {
+    "id": 148,
     "name": "AntiDDoS Business",
+    "slug": "antiddos-business",
     "provider": "vHost",
     "category": "Cloud Security",
     "price": 24000000.0,
     "unit": "vnd/tháng",
-    "specs": "Băng thông: 10Gbps\nMitigation: Unlimited\nRouting: Symetric\nIPv4: 1\nIPv6: 1"
+    "specs": "Băng thông: 10Gbps\nMitigation: Unlimited\nRouting: Symetric\nIPv4: 1\nIPv6: 1",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ AntiDDoS Business từ vHost - Cloud Security - 24,000,000₫/tháng"
   },
   {
+    "id": 149,
     "name": "Medium",
+    "slug": "medium",
     "provider": "VNPT",
-    "category": "Webhosting",
+    "category": "Web Hosting",
     "price": 60000.0,
     "unit": "vnd/tháng",
-    "specs": "Dung lượng: 750Mb\nTài khoản/ Database: 2\nTên miền phụ: 10\nAddon Domain: 1\nMailbox theo tên miền: 10"
+    "specs": "Dung lượng: 750Mb\nTài khoản/ Database: 2\nTên miền phụ: 10\nAddon Domain: 1\nMailbox theo tên miền: 10",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Medium từ VNPT - Web Hosting - 60,000₫/tháng"
   },
   {
+    "id": 150,
     "name": "Advanced",
+    "slug": "advanced",
     "provider": "VNPT",
-    "category": "Webhosting",
+    "category": "Web Hosting",
     "price": 100000.0,
     "unit": "vnd/tháng",
-    "specs": "Dung lượng: 1.5GB\nTài khoản/ Database: 4\nTên miền phụ: 20\nAddon Domain: 2\nMailbox theo tên miền: 30"
+    "specs": "Dung lượng: 1.5GB\nTài khoản/ Database: 4\nTên miền phụ: 20\nAddon Domain: 2\nMailbox theo tên miền: 30",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Advanced từ VNPT - Web Hosting - 100,000₫/tháng"
   },
   {
+    "id": 151,
     "name": "Pro",
+    "slug": "pro",
     "provider": "VNPT",
-    "category": "Webhosting",
+    "category": "Web Hosting",
     "price": 170000.0,
     "unit": "vnd/tháng",
-    "specs": "Dung lượng: 2.5GB\nTài khoản/ Database: 7\nTên miền phụ: 35\nAddon Domain: 4\nMailbox theo tên miền: 50"
+    "specs": "Dung lượng: 2.5GB\nTài khoản/ Database: 7\nTên miền phụ: 35\nAddon Domain: 4\nMailbox theo tên miền: 50",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Pro từ VNPT - Web Hosting - 170,000₫/tháng"
   },
   {
+    "id": 152,
     "name": "Super",
+    "slug": "super",
     "provider": "VNPT",
-    "category": "Webhosting",
+    "category": "Web Hosting",
     "price": 250000.0,
     "unit": "vnd/tháng",
-    "specs": "Dung lượng: 3.5GB\nTài khoản/ Database: 10\nTên miền phụ: 50\nAddon Domain: 5\nMailbox theo tên miền: 70"
+    "specs": "Dung lượng: 3.5GB\nTài khoản/ Database: 10\nTên miền phụ: 50\nAddon Domain: 5\nMailbox theo tên miền: 70",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Super từ VNPT - Web Hosting - 250,000₫/tháng"
   },
   {
+    "id": 153,
     "name": "MAX",
+    "slug": "max",
     "provider": "VNPT",
-    "category": "Webhosting",
+    "category": "Web Hosting",
     "price": 350000.0,
     "unit": "vnd/tháng",
-    "specs": "Dung lượng: 5GB\nTài khoản/ Database: 15\nTên miền phụ: 75\nAddon Domain: 7\nMailbox theo tên miền: 100\nBổ sung sao lưu dữ liệu hàng ngày: 300.000 đồng/tháng"
+    "specs": "Dung lượng: 5GB\nTài khoản/ Database: 15\nTên miền phụ: 75\nAddon Domain: 7\nMailbox theo tên miền: 100\nBổ sung sao lưu dữ liệu hàng ngày: 300.000 đồng/tháng",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ MAX từ VNPT - Web Hosting - 350,000₫/tháng"
   },
   {
+    "id": 154,
     "name": "COLO 1",
+    "slug": "colo-1",
     "provider": "Viettel",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 1352000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U Không gian máy chủ\n400W Công suất điện\nUnlimited Lưu lượng thông tin\n100 Mbps Băng thông Internet\n1 IPv4"
+    "specs": "1 U Không gian máy chủ\n400W Công suất điện\nUnlimited Lưu lượng thông tin\n100 Mbps Băng thông Internet\n1 IPv4",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ COLO 1 từ Viettel - Data Center - 1,352,000₫/tháng"
   },
   {
+    "id": 155,
     "name": "COLO 2",
+    "slug": "colo-2",
     "provider": "Viettel",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 1680000.0,
     "unit": "vnd/tháng",
-    "specs": "2 U Không gian máy chủ\n500W Công suất điện\nUnlimited Lưu lượng thông tin\n100 Mbps Băng thông Internet\n1 IPv4"
+    "specs": "2 U Không gian máy chủ\n500W Công suất điện\nUnlimited Lưu lượng thông tin\n100 Mbps Băng thông Internet\n1 IPv4",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ COLO 2 từ Viettel - Data Center - 1,680,000₫/tháng"
   },
   {
+    "id": 156,
     "name": "COLO 3",
+    "slug": "colo-3",
     "provider": "Viettel",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 2080000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U Không gian máy chủ\n400W Công suất điện\nUnlimited Lưu lượng thông tin\n200 Mbps Băng thông Internet\n1 IPv4"
+    "specs": "1 U Không gian máy chủ\n400W Công suất điện\nUnlimited Lưu lượng thông tin\n200 Mbps Băng thông Internet\n1 IPv4",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ COLO 3 từ Viettel - Data Center - 2,080,000₫/tháng"
   },
   {
+    "id": 157,
     "name": "COLO 4",
+    "slug": "colo-4",
     "provider": "Viettel",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 2480000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U Không gian máy chủ\n400W Công suất điện\nUnlimited Lưu lượng thông tin\n300 Mbps Băng thông Internet\n1 IPv4"
+    "specs": "1 U Không gian máy chủ\n400W Công suất điện\nUnlimited Lưu lượng thông tin\n300 Mbps Băng thông Internet\n1 IPv4",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ COLO 4 từ Viettel - Data Center - 2,480,000₫/tháng"
   },
   {
+    "id": 158,
     "name": "COLO 5",
+    "slug": "colo-5",
     "provider": "Viettel",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 4640000.0,
     "unit": "vnd/tháng",
-    "specs": "5 U Không gian máy chủ\n900W Công suất điện\nUnlimited Lưu lượng thông tin\n400 Mbps Băng thông Internet\n3 IPv4"
+    "specs": "5 U Không gian máy chủ\n900W Công suất điện\nUnlimited Lưu lượng thông tin\n400 Mbps Băng thông Internet\n3 IPv4",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ COLO 5 từ Viettel - Data Center - 4,640,000₫/tháng"
   },
   {
+    "id": 159,
     "name": "COLO 6",
+    "slug": "colo-6",
     "provider": "Viettel",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 7120000.0,
     "unit": "vnd/tháng",
-    "specs": "10 U Không gian máy chủ\n1.500W Công suất điện\nUnlimited Lưu lượng thông tin\n500 Mbps Băng thông Internet\n5 IPv4"
+    "specs": "10 U Không gian máy chủ\n1.500W Công suất điện\nUnlimited Lưu lượng thông tin\n500 Mbps Băng thông Internet\n5 IPv4",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ COLO 6 từ Viettel - Data Center - 7,120,000₫/tháng"
   },
   {
+    "id": 160,
     "name": "Colo-Limited",
+    "slug": "colo-limited",
     "provider": "P.A",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 1417000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U không gian máy chủ\n2 CPUs\n400W Công suất điện\nMáy phát điện dự phòng/UPS\nHỗ trợ KVM\nHệ thống làm mát\n100Mps/1Gps Cổng card mạng\n15Mps/15Mps Cổng mạng quốc tế\n100Mps/100Mps Cổng mạng trong nước\n1 IPv4\n2500GB/tháng Băng thông"
+    "specs": "1 U không gian máy chủ\n2 CPUs\n400W Công suất điện\nMáy phát điện dự phòng/UPS\nHỗ trợ KVM\nHệ thống làm mát\n100Mps/1Gps Cổng card mạng\n15Mps/15Mps Cổng mạng quốc tế\n100Mps/100Mps Cổng mạng trong nước\n1 IPv4\n2500GB/tháng Băng thông",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Colo-Limited từ P.A - Data Center - 1,417,000₫/tháng"
   },
   {
+    "id": 161,
     "name": "Colo-Unlimited 0",
+    "slug": "colo-unlimited-0",
     "provider": "P.A",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 1890000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U không gian máy chủ\n2 CPUs\n400W Công suất điện\nMáy phát điện dự phòng/UPS\nHỗ trợ KVM\nHệ thống làm mát\n100Mps/1Gps Cổng card mạng\n15Mps/15Mps Cổng mạng quốc tế\n100Mps/100Mps Cổng mạng trong nước\n1 IPv4 \nUnlimited Băng thông"
+    "specs": "1 U không gian máy chủ\n2 CPUs\n400W Công suất điện\nMáy phát điện dự phòng/UPS\nHỗ trợ KVM\nHệ thống làm mát\n100Mps/1Gps Cổng card mạng\n15Mps/15Mps Cổng mạng quốc tế\n100Mps/100Mps Cổng mạng trong nước\n1 IPv4 \nUnlimited Băng thông",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Colo-Unlimited 0 từ P.A - Data Center - 1,890,000₫/tháng"
   },
   {
+    "id": 162,
     "name": "Colo-Unlimited 1",
+    "slug": "colo-unlimited-1",
     "provider": "P.A",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 2650000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U không gian máy chủ\n2 CPUs\n400W Công suất điện\nMáy phát điện dự phòng/UPS\nHỗ trợ KVM\nHệ thống làm mát\n100Mps/1Gps Cổng card mạng\n30Mps/30Mps Cổng mạng quốc tế\n100Mps/100Mps Cổng mạng trong nước\n1 IPv4 \nUnlimited Băng thông"
+    "specs": "1 U không gian máy chủ\n2 CPUs\n400W Công suất điện\nMáy phát điện dự phòng/UPS\nHỗ trợ KVM\nHệ thống làm mát\n100Mps/1Gps Cổng card mạng\n30Mps/30Mps Cổng mạng quốc tế\n100Mps/100Mps Cổng mạng trong nước\n1 IPv4 \nUnlimited Băng thông",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Colo-Unlimited 1 từ P.A - Data Center - 2,650,000₫/tháng"
   },
   {
+    "id": 163,
     "name": "Colo-Unlimited 2",
+    "slug": "colo-unlimited-2",
     "provider": "P.A",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 3100000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U không gian máy chủ\n2 CPUs\n400W Công suất điện\nMáy phát điện dự phòng/UPS\nHỗ trợ KVM\nHệ thống làm mát\n100Mps/1Gps Cổng card mạng\n50Mps/50Mps Cổng mạng quốc tế\n200Mps/200Mps Cổng mạng trong nước\n1 IPv4\nUnlimited Băng thông"
+    "specs": "1 U không gian máy chủ\n2 CPUs\n400W Công suất điện\nMáy phát điện dự phòng/UPS\nHỗ trợ KVM\nHệ thống làm mát\n100Mps/1Gps Cổng card mạng\n50Mps/50Mps Cổng mạng quốc tế\n200Mps/200Mps Cổng mạng trong nước\n1 IPv4\nUnlimited Băng thông",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Colo-Unlimited 2 từ P.A - Data Center - 3,100,000₫/tháng"
   },
   {
+    "id": 164,
     "name": "Silver",
+    "slug": "silver",
     "provider": "FPT",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 2000000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U Không gian máy chủ\n400W Công suất điện \nUnlimited lưu lượng truyền tải \n300 Mps Băng thông trong nước\n5Mps/5Mps Băng thông quốc tế\n1 IP\nHệ thống theo dõi băng thông \nHỗ trợ kỹ thuật 24/7"
+    "specs": "1 U Không gian máy chủ\n400W Công suất điện \nUnlimited lưu lượng truyền tải \n300 Mps Băng thông trong nước\n5Mps/5Mps Băng thông quốc tế\n1 IP\nHệ thống theo dõi băng thông \nHỗ trợ kỹ thuật 24/7",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Silver từ FPT - Data Center - 2,000,000₫/tháng"
   },
   {
+    "id": 165,
     "name": "Titan",
+    "slug": "titan",
     "provider": "FPT",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 2500000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U Không gian máy chủ\n400W Công suất điện \nUnlimited lưu lượng truyền tải \n500 Mps Băng thông trong nước\n10Mps/10Mps Băng thông quốc tế\n1 IP\nHệ thống theo dõi băng thông \nHỗ trợ kỹ thuật 24/7"
+    "specs": "1 U Không gian máy chủ\n400W Công suất điện \nUnlimited lưu lượng truyền tải \n500 Mps Băng thông trong nước\n10Mps/10Mps Băng thông quốc tế\n1 IP\nHệ thống theo dõi băng thông \nHỗ trợ kỹ thuật 24/7",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Titan từ FPT - Data Center - 2,500,000₫/tháng"
   },
   {
+    "id": 166,
     "name": "Gold",
+    "slug": "gold",
     "provider": "FPT",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 3500000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U Không gian máy chủ\n400W Công suất điện \nUnlimited lưu lượng truyền tải \n700 Mps Băng thông trong nước\n15Mps/15Mps Băng thông quốc tế\n1 IP\nHệ thống theo dõi băng thông \nHỗ trợ kỹ thuật 24/7"
+    "specs": "1 U Không gian máy chủ\n400W Công suất điện \nUnlimited lưu lượng truyền tải \n700 Mps Băng thông trong nước\n15Mps/15Mps Băng thông quốc tế\n1 IP\nHệ thống theo dõi băng thông \nHỗ trợ kỹ thuật 24/7",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Gold từ FPT - Data Center - 3,500,000₫/tháng"
   },
   {
+    "id": 167,
     "name": "Platinum",
+    "slug": "platinum",
     "provider": "FPT",
-    "category": "Data Center [Colocation]",
+    "category": "Data Center",
     "price": 5000000.0,
     "unit": "vnd/tháng",
-    "specs": "1 U Không gian máy chủ\n400W Công suất điện \nUnlimited lưu lượng truyền tải \n1 Gps Băng thông trong nước\n20Mps/20Mps Băng thông quốc tế\n1 IP\nHệ thống theo dõi băng thông \nHỗ trợ kỹ thuật 24/7"
+    "specs": "1 U Không gian máy chủ\n400W Công suất điện \nUnlimited lưu lượng truyền tải \n1 Gps Băng thông trong nước\n20Mps/20Mps Băng thông quốc tế\n1 IP\nHệ thống theo dõi băng thông \nHỗ trợ kỹ thuật 24/7",
+    "cores": "",
+    "ram": "",
+    "storage": "",
+    "description": "Dịch vụ Platinum từ FPT - Data Center - 5,000,000₫/tháng"
   }
 ]

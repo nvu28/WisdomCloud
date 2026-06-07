@@ -1,0 +1,119 @@
+{
+  "info": {
+    "name": "Cloud Services Search API",
+    "description": "API tìm kiếm dịch vụ Cloud (Server, Email, Security)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Search - keyword",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cloud-services/search?q=cloud+server&size=5",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "cloud-services", "search"],
+          "query": [
+            { "key": "q", "value": "cloud server" },
+            { "key": "size", "value": "5" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search - by category",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cloud-services/search?category=Cloud%20Email&size=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "cloud-services", "search"],
+          "query": [
+            { "key": "category", "value": "Cloud Email" },
+            { "key": "size", "value": "10" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search - by provider",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cloud-services/search?provider=P.A&sort=price:asc&size=20",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "cloud-services", "search"],
+          "query": [
+            { "key": "provider", "value": "P.A" },
+            { "key": "sort", "value": "price:asc" },
+            { "key": "size", "value": "20" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search - price range",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cloud-services/search?minPrice=500000&maxPrice=2000000&sort=price:asc",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "cloud-services", "search"],
+          "query": [
+            { "key": "minPrice", "value": "500000" },
+            { "key": "maxPrice", "value": "2000000" },
+            { "key": "sort", "value": "price:asc" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search - pagination",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cloud-services/search?size=5&page=2",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "cloud-services", "search"],
+          "query": [
+            { "key": "size", "value": "5" },
+            { "key": "page", "value": "2" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Categories",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/categories",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "categories"]
+        }
+      }
+    },
+    {
+      "name": "Get Providers",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/providers",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "providers"]
+        }
+      }
+    },
+    {
+      "name": "Get Stats",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/cloud-services/stats",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "cloud-services", "stats"]
+        }
+      }
+    }
+  ]
+}
