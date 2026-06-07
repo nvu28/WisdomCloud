@@ -1,17 +1,14 @@
-target/
-.idea/
-*.iml
-*.iws
-.vscode/
+node_modules/
+dist/
+.env
+*.log
 .DS_Store
 Thumbs.db
-*.log
-node_modules/
-frontend/node_modules/
-backend-mock/node_modules/
-frontend/dist/
+.vscode/
+.idea/
 __pycache__/
 *.pyc
-README.md
+generate_timeline.py
 Timeline_TuanVu_Final.xlsx
+Plan_Timeline_Path-planning_Hoang Thi Kim Nhung.xlsx
 update_timeline.py
