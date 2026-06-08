@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const IS_VERCEL = import.meta.env.VITE_VERCEL === 'true';
+
 const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL: IS_VERCEL ? '/_/backend/api/v1' : '/api/v1',
   timeout: 5000,
 });
 

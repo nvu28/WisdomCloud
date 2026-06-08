@@ -13,3 +13,6 @@ Timeline_TuanVu_Final.xlsx
 Plan_Timeline_Path-planning_Hoang Thi Kim Nhung.xlsx
 update_timeline.py
 .opencode/
+.vercel
+workflow/
+*.xlsx
