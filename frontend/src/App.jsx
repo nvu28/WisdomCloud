@@ -33,6 +33,14 @@ export default function App() {
     }
   };
 
+  const [domainQuery, setDomainQuery] = useState('');
+
+  const handleDomainSearch = () => {
+    if (!domainQuery.trim()) return;
+    handleSearch({ q: domainQuery, category: 'Domain' });
+    document.getElementById('search-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const handlePageChange = async (newPage) => {
     setLoading(true);
     try {
@@ -61,9 +69,12 @@ export default function App() {
             <div style={styles.domainRow}>
               <input
                 style={styles.domainInput}
-                placeholder="Nhập tên miền của bạn..."
+                placeholder="Nhập tên miền của bạn (VD: .com, .vn)..."
+                value={domainQuery}
+                onChange={e => setDomainQuery(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleDomainSearch()}
               />
-              <button style={styles.domainBtn}>Tìm tên miền</button>
+              <button style={styles.domainBtn} onClick={handleDomainSearch}>Tìm tên miền</button>
             </div>
           </div>
 
@@ -107,7 +118,7 @@ export default function App() {
         </div>
       </section>
 
-      <section style={styles.searchSection}>
+      <section id="search-section" style={styles.searchSection}>
         <div style={styles.sectionInner}>
           <h2 style={styles.sectionTitle}>Tra Cứu Báo Giá Cloud</h2>
           <p style={styles.sectionSub}>

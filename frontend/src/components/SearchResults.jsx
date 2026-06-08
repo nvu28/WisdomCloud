@@ -7,6 +7,7 @@ const CATEGORY_STYLES = {
   'Storage': { bg: '#f5f3ff', color: '#7c3aed', icon: '💾' },
   'Web Hosting': { bg: '#ecfeff', color: '#0891b2', icon: '🌐' },
   'Data Center': { bg: '#fef2f2', color: '#dc2626', icon: '🏢' },
+  'Domain': { bg: '#fefce8', color: '#a16207', icon: '🌐' },
 };
 
 function formatPrice(price) {

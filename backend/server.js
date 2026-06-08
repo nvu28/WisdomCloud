@@ -10,6 +10,9 @@ app.use(cors());
 
 const services = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), 'utf-8'));
 
+const distPath = path.join(__dirname, '..', 'frontend', 'dist');
+app.use(express.static(distPath));
+
 const VALID_SORT_FIELDS = ['name', 'provider', 'price', 'category'];
 const ALLOWED_SORT_DIRS = ['asc', 'desc'];
 const MAX_SIZE = 100;
@@ -105,6 +108,11 @@ app.get('/api/v1/cloud-services/stats', (req, res) => {
     provs[s.provider] = (provs[s.provider] || 0) + 1;
   });
   res.json({ total: services.length, categories: cats, providers: provs });
+});
+
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api')) return;
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
 const PORT = parseInt(process.env.PORT) || 3000;
