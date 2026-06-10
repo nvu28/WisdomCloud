@@ -42,8 +42,8 @@ export default function Footer() {
             <div style={styles.logo}>
               <span style={styles.logoIcon}>☁️</span>
               <div>
-                <div style={styles.logoName}>CLOUD SERVICES</div>
-                <div style={styles.logoSub}>Giải pháp Cloud toàn diện</div>
+                <div style={styles.logoName}>WISDOMCLOUD</div>
+                <div style={styles.logoSub}>Nền tảng dịch vụ số toàn diện</div>
               </div>
             </div>
             <p style={styles.brandDesc}>
@@ -79,7 +79,7 @@ export default function Footer() {
       <div style={styles.bottom}>
         <div style={styles.bottomInner}>
           <p style={styles.copyright}>
-            &copy; 2026 Cloud Services. Tất cả quyền được bảo lưu.
+            &copy; 2026 WisdomCloud. Tất cả quyền được bảo lưu.
           </p>
           <div style={styles.social}>
             <a href="#" style={styles.socialLink}>Facebook</a>

@@ -21,3 +21,8 @@ export async function getProviders() {
   const response = await api.get('/providers');
   return response.data;
 }
+
+export async function getServiceDetail(id) {
+  const response = await api.get('/cloud-services/detail', { params: { id } });
+  return response.data;
+}

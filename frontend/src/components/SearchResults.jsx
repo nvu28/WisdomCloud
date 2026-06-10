@@ -14,7 +14,7 @@ function formatPrice(price) {
   return price.toLocaleString('vi-VN') + '₫';
 }
 
-export default function SearchResults({ services, loading }) {
+export default function SearchResults({ services, loading, onViewDetail }) {
   if (loading) {
     return (
       <div style={styles.center}>
@@ -72,7 +72,10 @@ export default function SearchResults({ services, loading }) {
               )}
             </div>
 
-            <button style={styles.contactBtn}>Liên hệ tư vấn</button>
+            <div style={styles.actionRow}>
+              <button style={styles.detailBtn} onClick={() => onViewDetail?.(s.id)}>Xem chi tiết</button>
+              <button style={styles.contactBtn}>Liên hệ tư vấn</button>
+            </div>
           </div>
         );
       })}
@@ -163,9 +166,25 @@ const styles = {
     fontSize: 12,
     cursor: 'pointer',
   },
-  contactBtn: {
+  actionRow: {
+    display: 'flex',
+    gap: 8,
+    marginTop: 'auto',
+  },
+  detailBtn: {
+    flex: 1,
     padding: '10px 0',
-    width: '100%',
+    background: '#2563eb',
+    color: '#fff',
+    border: 'none',
+    borderRadius: 8,
+    fontSize: 13,
+    fontWeight: 600,
+    cursor: 'pointer',
+  },
+  contactBtn: {
+    flex: 1,
+    padding: '10px 0',
     background: '#f8fafc',
     color: '#2563eb',
     border: '1px solid #e2e8f0',

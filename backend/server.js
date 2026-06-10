@@ -100,6 +100,16 @@ app.get('/api/v1/providers', (req, res) => {
   res.json(provs);
 });
 
+app.get('/api/v1/cloud-services/detail', (req, res) => {
+  const { id, slug } = req.query;
+  if (!id && !slug) return res.status(400).json({ error: 'Thiếu id hoặc slug' });
+  const service = id
+    ? services.find(s => s.id === parseInt(id))
+    : services.find(s => s.slug === slug);
+  if (!service) return res.status(404).json({ error: 'Không tìm thấy dịch vụ' });
+  res.json(service);
+});
+
 app.get('/api/v1/cloud-services/stats', (req, res) => {
   const cats = {};
   const provs = {};
@@ -123,4 +133,5 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`  GET /api/v1/categories`);
   console.log(`  GET /api/v1/providers`);
   console.log(`  GET /api/v1/cloud-services/stats`);
-});
+  console.log(`  GET /api/v1/cloud-services/detail`);
+  });

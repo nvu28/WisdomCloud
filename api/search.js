@@ -24,6 +24,17 @@ export default function handler(req, res) {
       return res.json(provs);
     }
 
+    if (pathname === '/api/v1/cloud-services/detail') {
+      const id = parseInt(url.searchParams.get('id'));
+      const slug = url.searchParams.get('slug');
+      if (!id && !slug) return res.status(400).json({ error: 'Thiếu id hoặc slug' });
+      const service = id
+        ? services.find(s => s.id === id)
+        : services.find(s => s.slug === slug);
+      if (!service) return res.status(404).json({ error: 'Không tìm thấy dịch vụ' });
+      return res.json(service);
+    }
+
     if (pathname === '/api/v1/cloud-services/stats') {
       const cats = {};
       const provs = {};
