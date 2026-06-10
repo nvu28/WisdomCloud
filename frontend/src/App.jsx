@@ -5,6 +5,8 @@ import SearchForm from './components/SearchForm';
 import SearchResults from './components/SearchResults';
 import Pagination from './components/Pagination';
 import ServiceDetail from './components/ServiceDetail';
+import SubPage from './pages/index';
+import { SUB_PAGES, WHY_CHOOSE } from './data/subPages';
 import { searchServices } from './api/cloudApi';
 
 const SERVICE_CATEGORIES = [
@@ -127,12 +129,7 @@ const TESTIMONIALS = [
   },
 ];
 
-const WHY_CHOOSE = [
-  { icon: '🏆', title: 'Uy tín hàng đầu', desc: 'Nhà đăng ký tên miền được ICANN và VNNIC công nhận' },
-  { icon: '🛡️', title: 'Bảo mật tuyệt đối', desc: 'Cam kết bảo mật thông tin và dữ liệu khách hàng' },
-  { icon: '💬', title: 'Hỗ trợ 24/7', desc: 'Đội ngũ kỹ thuật hỗ trợ tận tình mọi lúc mọi nơi' },
-  { icon: '⚡', title: 'Tốc độ cao', desc: 'Hạ tầng công nghệ hiện đại, tốc độ vượt trội' },
-];
+
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -472,6 +469,18 @@ export default function App() {
             )}
           </div>
         </section>
+      )}
+
+      {SUB_PAGES[currentPage] && (
+        <SubPage
+          pageKey={currentPage}
+          onNavigate={handleNavigate}
+          onDomainSearch={(q) => {
+            setDomainQuery(q);
+            handleNavigate('cloud');
+            handleSearch({ q, category: 'Domain' });
+          }}
+        />
       )}
 
       <Footer />

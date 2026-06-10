@@ -8,20 +8,20 @@ const MENU_ITEMS = [
       {
         title: 'TÊN MIỀN',
         items: [
-          { label: 'Đăng Ký Tên Miền', desc: 'Đừng kinh doanh khi chưa có tên miền' },
-          { label: 'Bảng Giá Tên Miền', desc: 'Giá & thông tin các loại tên miền' },
-          { label: 'Chuyển Về', desc: 'Chuyển tên miền từ nơi khác về' },
-          { label: 'Tìm Tên Miền', desc: 'Khám phá thế giới tên miền' },
-          { label: 'Miền Miễn Phí', desc: 'Phù hợp mọi đối tượng, tiết kiệm chi phí' },
-          { label: 'Miền Tự Do', desc: 'Tên miền .VN hết hạn có thể đăng ký' },
+          { label: 'Đăng Ký Tên Miền', desc: 'Đừng kinh doanh khi chưa có tên miền', page: 'dang-ky-ten-mien' },
+          { label: 'Bảng Giá Tên Miền', desc: 'Giá & thông tin các loại tên miền', page: 'bang-gia-ten-mien' },
+          { label: 'Chuyển Về', desc: 'Chuyển tên miền từ nơi khác về', page: 'chuyen-ve' },
+          { label: 'Tìm Tên Miền', desc: 'Khám phá thế giới tên miền', page: 'tim-ten-mien' },
+          { label: 'Miền Miễn Phí', desc: 'Phù hợp mọi đối tượng, tiết kiệm chi phí', page: 'mien-mien-phi' },
+          { label: 'Miền Tự Do', desc: 'Tên miền .VN hết hạn có thể đăng ký', page: 'mien-tu-do' },
         ],
       },
       {
         title: 'DỊCH VỤ',
         items: [
-          { label: 'Bảo Mật Tên Miền', desc: 'Bảo vệ an toàn tuyệt đối' },
-          { label: 'Tiện Ích DNS', desc: 'Công cụ cần thiết và thiết yếu' },
-          { label: 'Chuyển Nhượng Tên Miền', desc: 'Giao dịch an toàn và nhanh chóng' },
+          { label: 'Bảo Mật Tên Miền', desc: 'Bảo vệ an toàn tuyệt đối', page: 'bao-mat-ten-mien' },
+          { label: 'Tiện Ích DNS', desc: 'Công cụ cần thiết và thiết yếu', page: 'tien-ich-dns' },
+          { label: 'Chuyển Nhượng Tên Miền', desc: 'Giao dịch an toàn và nhanh chóng', page: 'chuyen-nhuong-ten-mien' },
         ],
       },
     ],
@@ -33,34 +33,34 @@ const MENU_ITEMS = [
       {
         title: 'HOSTING',
         items: [
-          { label: 'Web Hosting', desc: 'Hosting chuyên nghiệp, hiệu suất vượt trội' },
-          { label: 'WordPress', desc: 'Thiết kế đặc biệt tối ưu tốc độ' },
-          { label: 'Enterprise Hosting', desc: 'Chuẩn doanh nghiệp, tốc độ cao' },
-          { label: 'Chuyên Dụng', desc: 'NodeJS, Python, Java...' },
+          { label: 'Web Hosting', desc: 'Hosting chuyên nghiệp, hiệu suất vượt trội', page: 'web-hosting' },
+          { label: 'WordPress', desc: 'Thiết kế đặc biệt tối ưu tốc độ', page: 'wordpress' },
+          { label: 'Enterprise Hosting', desc: 'Chuẩn doanh nghiệp, tốc độ cao', page: 'enterprise-hosting' },
+          { label: 'Chuyên Dụng', desc: 'NodeJS, Python, Java...', page: 'chuyen-dung' },
         ],
       },
       {
         title: 'SERVERs',
         items: [
-          { label: 'Cloud Server', desc: 'Hiệu suất cao dễ dàng mở rộng' },
-          { label: 'Virtual Private Cloud', desc: 'Hiệu suất cao dễ dàng mở rộng' },
-          { label: 'Dedicated Server', desc: 'Phần cứng chính hãng' },
-          { label: 'Co-Location', desc: 'Thuê chỗ đặt với chi phí tốt' },
+          { label: 'Cloud Server', desc: 'Hiệu suất cao dễ dàng mở rộng', page: 'cloud-server' },
+          { label: 'Virtual Private Cloud', desc: 'Hiệu suất cao dễ dàng mở rộng', page: 'vpc' },
+          { label: 'Dedicated Server', desc: 'Phần cứng chính hãng', page: 'dedicated-server' },
+          { label: 'Co-Location', desc: 'Thuê chỗ đặt với chi phí tốt', page: 'co-location' },
         ],
       },
       {
         title: 'WEBSITE',
         items: [
-          { label: 'Tạo Website Nhanh', desc: 'Có Web trong vài giây' },
-          { label: 'Chăm Sóc Website', desc: 'Tận tâm chu đáo' },
+          { label: 'Tạo Website Nhanh', desc: 'Có Web trong vài giây', page: 'tao-website-nhanh' },
+          { label: 'Chăm Sóc Website', desc: 'Tận tâm chu đáo', page: 'cham-soc-website' },
         ],
       },
       {
         title: 'DỊCH VỤ',
         items: [
-          { label: 'CDN', desc: 'Tăng tốc Web' },
-          { label: 'Cloud Drive', desc: 'Lưu trữ dữ liệu' },
-          { label: 'Backup & Lưu Trữ', desc: 'Giải pháp bảo vệ dữ liệu' },
+          { label: 'CDN', desc: 'Tăng tốc Web', page: 'cdn' },
+          { label: 'Cloud Drive', desc: 'Lưu trữ dữ liệu', page: 'cloud-drive' },
+          { label: 'Backup & Lưu Trữ', desc: 'Giải pháp bảo vệ dữ liệu', page: 'backup-luu-tru' },
         ],
       },
     ],
@@ -72,19 +72,19 @@ const MENU_ITEMS = [
       {
         title: 'EMAIL SERVER',
         items: [
-          { label: 'Máy Chủ Email Doanh Nghiệp', desc: 'Đáp ứng nhu cầu phức tạp nhất' },
-          { label: 'Google Workspace', desc: 'Email và các ứng dụng làm việc nhóm' },
-          { label: 'Microsoft 365', desc: 'Email và làm việc nhóm trực tuyến' },
-          { label: 'Hybrid Email', desc: 'Tối ưu chi phí đảm bảo chất lượng' },
+          { label: 'Máy Chủ Email Doanh Nghiệp', desc: 'Đáp ứng nhu cầu phức tạp nhất', page: 'may-chu-email' },
+          { label: 'Google Workspace', desc: 'Email và các ứng dụng làm việc nhóm', page: 'google-workspace' },
+          { label: 'Microsoft 365', desc: 'Email và làm việc nhóm trực tuyến', page: 'microsoft-365' },
+          { label: 'Hybrid Email', desc: 'Tối ưu chi phí đảm bảo chất lượng', page: 'hybrid-email' },
         ],
       },
       {
         title: 'DỊCH VỤ',
         items: [
-          { label: 'Chữ Ký Email', desc: '' },
-          { label: 'Chữ Ký Số Email', desc: '' },
-          { label: 'Quản Trị Email Server', desc: '' },
-          { label: 'Bảo Mật & Bảo Vệ Email', desc: '' },
+          { label: 'Chữ Ký Email', desc: '', page: 'chu-ky-email' },
+          { label: 'Chữ Ký Số Email', desc: '', page: 'chu-ky-so-email' },
+          { label: 'Quản Trị Email Server', desc: '', page: 'quan-tri-email' },
+          { label: 'Bảo Mật & Bảo Vệ Email', desc: '', page: 'bao-mat-email' },
         ],
       },
     ],
@@ -96,18 +96,18 @@ const MENU_ITEMS = [
       {
         title: 'CHỨNG CHỈ SỐ SSL',
         items: [
-          { label: 'Sectigo', desc: 'Tiêu chuẩn cao cấp nhất' },
-          { label: 'Sectigo Comodo', desc: 'Giá tốt từ thương hiệu Sectigo' },
-          { label: 'Rapid & Geotrust', desc: 'Chứng chỉ bảo mật chất lượng' },
-          { label: 'Digicert', desc: 'Chứng chỉ bảo mật cao cấp' },
-          { label: 'Thawte', desc: 'Một sản phẩm thuộc Symantec' },
+          { label: 'Sectigo', desc: 'Tiêu chuẩn cao cấp nhất', page: 'sectigo' },
+          { label: 'Sectigo Comodo', desc: 'Giá tốt từ thương hiệu Sectigo', page: 'sectigo-comodo' },
+          { label: 'Rapid & Geotrust', desc: 'Chứng chỉ bảo mật chất lượng', page: 'rapid-geotrust' },
+          { label: 'Digicert', desc: 'Chứng chỉ bảo mật cao cấp', page: 'digicert' },
+          { label: 'Thawte', desc: 'Một sản phẩm thuộc Symantec', page: 'thawte' },
         ],
       },
       {
         title: 'BẢO MẬT',
         items: [
-          { label: 'Bảo Mật Website', desc: 'Tường lửa bảo vệ Web' },
-          { label: 'CloudBric WAF', desc: 'Bảo vệ website hạn chế DDoS' },
+          { label: 'Bảo Mật Website', desc: 'Tường lửa bảo vệ Web', page: 'bao-mat-website' },
+          { label: 'CloudBric WAF', desc: 'Bảo vệ website hạn chế DDoS', page: 'cloudbric-waf' },
         ],
       },
     ],
@@ -192,7 +192,7 @@ export default function Header({ onNavigate, currentPage }) {
                         <div key={j} style={styles.megaCol}>
                           <div style={styles.megaTitle}>{col.title}</div>
                           {col.items.map((link, k) => (
-                            <a key={k} href="#" style={styles.megaLink}>
+                            <a key={k} href="#" onClick={(e) => { e.preventDefault(); if (onNavigate && link.page) { onNavigate(link.page); setOpenMenu(null); }}} style={styles.megaLink}>
                               <div style={styles.megaLabel}>{link.label}</div>
                               {link.desc && <div style={styles.megaDesc}>{link.desc}</div>}
                             </a>
