@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logo from '../assets/logo.jpg';
 
 const MENU_ITEMS = [
   {
@@ -163,7 +164,7 @@ export default function Header({ onNavigate, currentPage }) {
       <div style={styles.mainBar}>
         <div style={styles.mainInner}>
           <div style={styles.logo} onClick={() => onNavigate && onNavigate('home')}>
-            <span style={styles.logoIcon}>☁️</span>
+            <img src={logo} alt="WisdomCloud" style={styles.logoImg} />
             <div>
               <div style={styles.logoName}>WISDOMCLOUD</div>
               <div style={styles.logoSub}>Nền tảng dịch vụ số toàn diện</div>
@@ -261,6 +262,7 @@ const styles = {
   },
   logo: { display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' },
   logoIcon: { fontSize: 32 },
+  logoImg: { width: 36, height: 36, borderRadius: 8, objectFit: 'contain' },
   logoName: { fontSize: 18, fontWeight: 800, color: '#1e293b', letterSpacing: 1 },
   logoSub: { fontSize: 11, color: '#94a3b8', letterSpacing: 0.5 },
   nav: { display: 'flex', gap: 4, height: '100%' },

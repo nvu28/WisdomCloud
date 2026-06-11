@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../assets/logo.jpg';
 
 const FOOTER_COLS = [
   {
@@ -40,7 +41,7 @@ export default function Footer() {
         <div style={styles.inner}>
           <div style={styles.brandCol}>
             <div style={styles.logo}>
-              <span style={styles.logoIcon}>☁️</span>
+              <img src={logo} alt="WisdomCloud" style={styles.logoImg} />
               <div>
                 <div style={styles.logoName}>WISDOMCLOUD</div>
                 <div style={styles.logoSub}>Nền tảng dịch vụ số toàn diện</div>
@@ -118,6 +119,7 @@ const styles = {
     marginBottom: 16,
   },
   logoIcon: { fontSize: 28 },
+  logoImg: { width: 32, height: 32, borderRadius: 6, objectFit: 'contain' },
   logoName: {
     fontSize: 16,
     fontWeight: 800,

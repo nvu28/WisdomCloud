@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import DomainRegisterPage from './DomainRegisterPage';
 import DomainPricePage from './DomainPricePage';
+import HostingPage from './HostingPage';
+import EmailPage from './EmailPage';
 import { SUB_PAGES, CATEGORY_NAV, CATEGORY_FAQS } from '../data/subPages';
 
 const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
 
-const LAYOUT_PAGES = {
-  'dang-ky-ten-mien': 'domain-register',
-  'bang-gia-ten-mien': 'domain-price',
-};
+const HOSTING_PAGES = ['web-hosting', 'wordpress', 'enterprise-hosting', 'chuyen-dung', 'cloud-server', 'vpc', 'dedicated-server', 'co-location'];
+const EMAIL_PAGES = ['may-chu-email', 'google-workspace', 'microsoft-365', 'hybrid-email', 'chu-ky-email', 'chu-ky-so-email', 'quan-tri-email', 'bao-mat-email'];
 
 function ServiceSubMenu({ category, currentPage, onNavigate }) {
   const nav = CATEGORY_NAV[category];
@@ -202,14 +202,20 @@ function FAQSection({ faqs }) {
 }
 
 export default function PageRouter({ pageKey, onNavigate, onDomainSearch }) {
-  const layout = LAYOUT_PAGES[pageKey];
-
-  if (layout === 'domain-register') {
+  if (pageKey === 'dang-ky-ten-mien') {
     return <DomainRegisterPage onNavigate={onNavigate} onDomainSearch={onDomainSearch} />;
   }
 
-  if (layout === 'domain-price') {
+  if (pageKey === 'bang-gia-ten-mien') {
     return <DomainPricePage onNavigate={onNavigate} />;
+  }
+
+  if (HOSTING_PAGES.includes(pageKey)) {
+    return <HostingPage pageKey={pageKey} onNavigate={onNavigate} />;
+  }
+
+  if (EMAIL_PAGES.includes(pageKey)) {
+    return <EmailPage pageKey={pageKey} onNavigate={onNavigate} />;
   }
 
   const p = SUB_PAGES[pageKey];
