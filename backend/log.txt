@@ -1,7 +1,0 @@
-Cloud Services API running on http://localhost:3000
-Endpoints:
-  GET /api/v1/cloud-services/search
-  GET /api/v1/categories
-  GET /api/v1/providers
-  GET /api/v1/cloud-services/stats
-  GET /api/v1/cloud-services/detail

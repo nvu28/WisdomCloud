@@ -16,3 +16,4 @@ update_timeline.py
 .vercel
 workflow/
 *.xlsx
+report-cloud.pdf
