@@ -1,40 +1,21 @@
 import React from 'react';
 import logo from '../assets/logo.jpg';
+import { useTranslation } from '../i18n';
 
-const FOOTER_COLS = [
-  {
-    title: 'DỊCH VỤ',
-    items: [
-      'Tên miền', 'Web Hosting', 'Cloud Server',
-      'Email Server', 'SSL Certificate', 'Cloud Security',
-    ],
-  },
-  {
-    title: 'GIẢI PHÁP',
-    items: [
-      'Thiết Kế Website', 'Chuyển Đổi Số', 'Hóa Đơn Điện Tử',
-      'Tổng Đài Ảo', 'Email Marketing', 'Lưu Trữ Dữ Liệu',
-    ],
-  },
-  {
-    title: 'HỖ TRỢ',
-    items: [
-      'Trung Tâm Hỗ Trợ', 'Hướng Dẫn Sử Dụng',
-      'Bảng Giá', 'Tra Cứu Thông Tin',
-      'Báo Sự Cố', 'Góp Ý Khiếu Nại',
-    ],
-  },
-  {
-    title: 'VỀ CHÚNG TÔI',
-    items: [
-      'Giới Thiệu', 'Tin Tức', 'Tuyển Dụng',
-      'Đối Tác', 'Chính Sách Bảo Mật',
-      'Điều Khoản Sử Dụng',
-    ],
-  },
+const FOOTER_KEYS = [
+  { titleKey: 'footer.services', itemKeys: 'footer.serviceItems' },
+  { titleKey: 'footer.solutions', itemKeys: 'footer.solutionItems' },
+  { titleKey: 'footer.support', itemKeys: 'footer.supportItems' },
+  { titleKey: 'footer.about', itemKeys: 'footer.aboutItems' },
 ];
 
 export default function Footer() {
+  const { t } = useTranslation();
+
+  const FOOTER_COLS = FOOTER_KEYS.map(col => ({
+    title: t(col.titleKey),
+    items: t(col.itemKeys),
+  }));
   return (
     <footer style={styles.footer}>
       <div style={styles.main}>
@@ -47,11 +28,7 @@ export default function Footer() {
                 <div style={styles.logoSub}>Nền tảng dịch vụ số toàn diện</div>
               </div>
             </div>
-            <p style={styles.brandDesc}>
-              Cung cấp các giải pháp Cloud Server, Cloud Email, 
-              Cloud Security hàng đầu Việt Nam. Với hơn 10 năm kinh nghiệm 
-              trong lĩnh vực công nghệ thông tin.
-            </p>
+            <p style={styles.brandDesc}>{t('footer.brandDesc')}</p>
             <div style={styles.contact}>
               <div style={styles.contactItem}>
                 <span style={styles.contactIcon}>📞</span>
@@ -63,7 +40,7 @@ export default function Footer() {
               </div>
               <div style={styles.contactItem}>
                 <span style={styles.contactIcon}>📍</span>
-                <span>123 Nguyễn Huệ, Quận 1, TP.HCM</span>
+                <span>{t('footer.address')}</span>
               </div>
             </div>
           </div>
@@ -80,7 +57,7 @@ export default function Footer() {
       <div style={styles.bottom}>
         <div style={styles.bottomInner}>
           <p style={styles.copyright}>
-            &copy; 2026 WisdomCloud. Tất cả quyền được bảo lưu.
+            &copy; 2026 WisdomCloud. {t('footer.copyright')}
           </p>
           <div style={styles.social}>
             <a href="#" style={styles.socialLink}>Facebook</a>

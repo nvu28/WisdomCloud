@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CATEGORY_NAV } from '../data/subPages';
+import { getCategoryNav } from '../data/subPages';
 
 const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
 
@@ -14,6 +14,19 @@ const VIETNAMESE_DOMAINS = [
   { tld: '.io.vn', reg: '50.000₫', renew: '200.000₫', transfer: 'Miễn phí', discount: 'Giảm 20K' },
   { tld: '.biz.vn', reg: '200.000₫', renew: '200.000₫', transfer: 'Miễn phí', discount: null },
   { tld: '.name.vn', reg: '200.000₫', renew: '200.000₫', transfer: 'Miễn phí', discount: null },
+];
+
+const VIETNAMESE_DOMAINS_EN = [
+  { tld: '.vn', reg: '450.000₫', renew: '150.000₫', transfer: 'Free', discount: 'Save 250K' },
+  { tld: '.com.vn', reg: '250.000₫', renew: '250.000₫', transfer: 'Free', discount: 'Save 200K' },
+  { tld: '.net.vn', reg: '550.000₫', renew: '550.000₫', transfer: 'Free', discount: 'Save 20K' },
+  { tld: '.edu.vn', reg: '250.000₫', renew: '250.000₫', transfer: 'Contact', discount: null },
+  { tld: '.org.vn', reg: '250.000₫', renew: '250.000₫', transfer: 'Contact', discount: null },
+  { tld: '.gov.vn', reg: '250.000₫', renew: '250.000₫', transfer: 'Contact', discount: null },
+  { tld: '.id.vn', reg: '200.000₫', renew: '200.000₫', transfer: 'Free', discount: 'Save 20K' },
+  { tld: '.io.vn', reg: '50.000₫', renew: '200.000₫', transfer: 'Free', discount: 'Save 20K' },
+  { tld: '.biz.vn', reg: '200.000₫', renew: '200.000₫', transfer: 'Free', discount: null },
+  { tld: '.name.vn', reg: '200.000₫', renew: '200.000₫', transfer: 'Free', discount: null },
 ];
 
 const INTERNATIONAL_DOMAINS = [
@@ -44,9 +57,39 @@ const INTERNATIONAL_DOMAINS = [
   { tld: '.one', reg: '15.000₫', renew: '140.000₫', transfer: 'Miễn phí', badge: false },
 ];
 
-export default function DomainPricePage({ onNavigate }) {
+const INTERNATIONAL_DOMAINS_EN = [
+  { tld: '.com', reg: '19.000₫', renew: '250.000₫', transfer: 'Free', badge: true },
+  { tld: '.net', reg: '99.000₫', renew: '280.000₫', transfer: 'Free', badge: false },
+  { tld: '.org', reg: '245.000₫', renew: '280.000₫', transfer: 'Free', badge: false },
+  { tld: '.asia', reg: '36.000₫', renew: '180.000₫', transfer: 'Free', badge: true },
+  { tld: '.xyz', reg: '10.000₫', renew: '140.000₫', transfer: 'Free', badge: true },
+  { tld: '.click', reg: '10.000₫', renew: '120.000₫', transfer: 'Free', badge: false },
+  { tld: '.cloud', reg: '45.000₫', renew: '200.000₫', transfer: 'Free', badge: false },
+  { tld: '.info', reg: '120.000₫', renew: '200.000₫', transfer: 'Free', badge: false },
+  { tld: '.top', reg: '15.000₫', renew: '120.000₫', transfer: 'Free', badge: true },
+  { tld: '.online', reg: '15.000₫', renew: '180.000₫', transfer: 'Free', badge: true },
+  { tld: '.site', reg: '10.000₫', renew: '120.000₫', transfer: 'Free', badge: true },
+  { tld: '.store', reg: '79.000₫', renew: '280.000₫', transfer: 'Free', badge: false },
+  { tld: '.website', reg: '15.000₫', renew: '180.000₫', transfer: 'Free', badge: true },
+  { tld: '.me', reg: '99.000₫', renew: '200.000₫', transfer: 'Free', badge: false },
+  { tld: '.work', reg: '15.000₫', renew: '120.000₫', transfer: 'Free', badge: false },
+  { tld: '.vip', reg: '69.000₫', renew: '380.000₫', transfer: 'Free', badge: false },
+  { tld: '.club', reg: '29.000₫', renew: '140.000₫', transfer: 'Free', badge: false },
+  { tld: '.pro', reg: '59.000₫', renew: '200.000₫', transfer: 'Free', badge: false },
+  { tld: '.tv', reg: '450.000₫', renew: '550.000₫', transfer: 'Free', badge: false },
+  { tld: '.link', reg: '15.000₫', renew: '120.000₫', transfer: 'Free', badge: false },
+  { tld: '.tech', reg: '79.000₫', renew: '350.000₫', transfer: 'Free', badge: false },
+  { tld: '.space', reg: '15.000₫', renew: '120.000₫', transfer: 'Free', badge: false },
+  { tld: '.fun', reg: '15.000₫', renew: '150.000₫', transfer: 'Free', badge: false },
+  { tld: '.art', reg: '59.000₫', renew: '200.000₫', transfer: 'Free', badge: false },
+  { tld: '.one', reg: '15.000₫', renew: '140.000₫', transfer: 'Free', badge: false },
+];
+
+export default function DomainPricePage({ onNavigate, lang }) {
   const [expandedRow, setExpandedRow] = useState(null);
-  const nav = CATEGORY_NAV['domain'];
+  const nav = getCategoryNav(lang)['domain'];
+  const vietnameseDomains = lang === 'en' ? VIETNAMESE_DOMAINS_EN : VIETNAMESE_DOMAINS;
+  const internationalDomains = lang === 'en' ? INTERNATIONAL_DOMAINS_EN : INTERNATIONAL_DOMAINS;
 
   return (
     <div>
@@ -54,7 +97,7 @@ export default function DomainPricePage({ onNavigate }) {
       <nav style={styles.subNav}>
         <div style={sectionInner}>
           <div style={styles.subNavInner}>
-            <span style={styles.subNavTitle}>TÊN MIỀN</span>
+            <span style={styles.subNavTitle}>{lang === 'en' ? 'DOMAINS' : 'TÊN MIỀN'}</span>
             {nav.items.map((item, i) => (
               <a
                 key={i}
@@ -65,7 +108,7 @@ export default function DomainPricePage({ onNavigate }) {
                 {item.label}
               </a>
             ))}
-            <span style={styles.subNavMore}>Khám Phá Thêm ▼</span>
+            <span style={styles.subNavMore}>{lang === 'en' ? 'Explore More ▼' : 'Khám Phá Thêm ▼'}</span>
           </div>
         </div>
       </nav>
@@ -74,10 +117,10 @@ export default function DomainPricePage({ onNavigate }) {
       <section style={styles.hero}>
         <div style={sectionInner}>
           <div style={{ textAlign: 'center' }}>
-            <p style={styles.heroTitle}>Bảng giá</p>
-            <h1 style={styles.heroHeading}>TÊN MIỀN VIỆT NAM & QUỐC TẾ</h1>
+            <p style={styles.heroTitle}>{lang === 'en' ? 'Pricing' : 'Bảng giá'}</p>
+            <h1 style={styles.heroHeading}>{lang === 'en' ? 'VIETNAMESE & INTERNATIONAL DOMAINS' : 'TÊN MIỀN VIỆT NAM & QUỐC TẾ'}</h1>
             <p style={styles.heroDesc}>
-              Giá cập nhật mới nhất — Nhiều ưu đãi hấp dẫn — Hỗ trợ chuyển về miễn phí
+              {lang === 'en' ? 'Latest updated prices — Great deals — Free transfer support' : 'Giá cập nhật mới nhất — Nhiều ưu đãi hấp dẫn — Hỗ trợ chuyển về miễn phí'}
             </p>
           </div>
         </div>
@@ -86,20 +129,20 @@ export default function DomainPricePage({ onNavigate }) {
       {/* VIETNAMESE DOMAIN TABLE */}
       <section style={styles.tableSection}>
         <div style={sectionInner}>
-          <h2 style={styles.tableTitle}>BẢNG GIÁ TÊN MIỀN VIỆT NAM</h2>
+          <h2 style={styles.tableTitle}>{lang === 'en' ? 'VIETNAMESE DOMAIN PRICES' : 'BẢNG GIÁ TÊN MIỀN VIỆT NAM'}</h2>
           <div style={styles.tableWrap}>
             <table style={styles.table}>
               <thead>
                 <tr>
-                  <th style={styles.th}>Tên miền</th>
-                  <th style={styles.th}>Đăng ký</th>
-                  <th style={styles.th}>Phí DV gia hạn</th>
-                  <th style={styles.th}>Chuyển về P.A</th>
+                  <th style={styles.th}>{lang === 'en' ? 'Domain' : 'Tên miền'}</th>
+                  <th style={styles.th}>{lang === 'en' ? 'Register' : 'Đăng ký'}</th>
+                  <th style={styles.th}>{lang === 'en' ? 'Renewal' : 'Phí DV gia hạn'}</th>
+                  <th style={styles.th}>{lang === 'en' ? 'Transfer' : 'Chuyển về P.A'}</th>
                   <th style={styles.th}></th>
                 </tr>
               </thead>
               <tbody>
-                {VIETNAMESE_DOMAINS.map((d, i) => (
+                {vietnameseDomains.map((d, i) => (
                   <React.Fragment key={i}>
                     <tr style={i % 2 === 0 ? styles.trEven : styles.trOdd}>
                       <td style={styles.td}>
@@ -114,7 +157,7 @@ export default function DomainPricePage({ onNavigate }) {
                           onClick={() => setExpandedRow(expandedRow === i ? null : i)}
                           style={styles.expandBtn}
                         >
-                          Chi tiết {expandedRow === i ? '▲' : '▼'}
+                          {lang === 'en' ? 'Details' : 'Chi tiết'} {expandedRow === i ? '▲' : '▼'}
                         </button>
                       </td>
                     </tr>
@@ -123,11 +166,11 @@ export default function DomainPricePage({ onNavigate }) {
                         <td colSpan={5} style={styles.expandedRow}>
                           <div style={styles.feeGrid}>
                             {[
-                              { label: 'Lệ phí đăng ký', value: '0₫', note: 'Đã bao gồm trong gói' },
-                              { label: 'Phí duy trì', value: d.renew },
-                              { label: 'Phí dịch vụ tài khoản', value: 'Miễn phí' },
-                              { label: 'Thuế GTGT (10%)', value: parseInt(d.renew.replace(/[₫K.]/g, '')) * 0.1 + 'K₫' },
-                              { label: 'Tổng cộng', value: d.reg, highlight: true },
+                              { label: lang === 'en' ? 'Registration fee' : 'Lệ phí đăng ký', value: '0₫', note: lang === 'en' ? 'Included in package' : 'Đã bao gồm trong gói' },
+                              { label: lang === 'en' ? 'Maintenance fee' : 'Phí duy trì', value: d.renew },
+                              { label: lang === 'en' ? 'Account service fee' : 'Phí dịch vụ tài khoản', value: lang === 'en' ? 'Free' : 'Miễn phí' },
+                              { label: lang === 'en' ? 'VAT (10%)' : 'Thuế GTGT (10%)', value: parseInt(d.renew.replace(/[₫K.]/g, '')) * 0.1 + 'K₫' },
+                              { label: lang === 'en' ? 'Total' : 'Tổng cộng', value: d.reg, highlight: true },
                             ].map((fee, j) => (
                               <div key={j} style={{
                                 ...styles.feeItem,
@@ -150,31 +193,31 @@ export default function DomainPricePage({ onNavigate }) {
               </tbody>
             </table>
           </div>
-          <p style={styles.tableNote}>* Giá chưa gồm VAT</p>
+          <p style={styles.tableNote}>{lang === 'en' ? '* Prices exclude VAT' : '* Giá chưa gồm VAT'}</p>
         </div>
       </section>
 
       {/* INTERNATIONAL DOMAIN TABLE */}
       <section style={{ ...styles.tableSection, background: '#f8fafc' }}>
         <div style={sectionInner}>
-          <h2 style={styles.tableTitle}>BẢNG GIÁ TÊN MIỀN QUỐC TẾ</h2>
-          <p style={styles.tableSub}>Dành cho các tên miền .com, .net, .org và hơn 70+ đuôi tên miền khác</p>
+          <h2 style={styles.tableTitle}>{lang === 'en' ? 'INTERNATIONAL DOMAIN PRICES' : 'BẢNG GIÁ TÊN MIỀN QUỐC TẾ'}</h2>
+          <p style={styles.tableSub}>{lang === 'en' ? 'For .com, .net, .org and 70+ other domain extensions' : 'Dành cho các tên miền .com, .net, .org và hơn 70+ đuôi tên miền khác'}</p>
           <div style={styles.tableWrap}>
             <table style={styles.table}>
               <thead>
                 <tr>
-                  <th style={styles.th}>Tên miền</th>
-                  <th style={styles.th}>Đăng ký</th>
-                  <th style={styles.th}>Gia hạn</th>
-                  <th style={styles.th}>Chuyển về P.A</th>
+                  <th style={styles.th}>{lang === 'en' ? 'Domain' : 'Tên miền'}</th>
+                  <th style={styles.th}>{lang === 'en' ? 'Register' : 'Đăng ký'}</th>
+                  <th style={styles.th}>{lang === 'en' ? 'Renewal' : 'Gia hạn'}</th>
+                  <th style={styles.th}>{lang === 'en' ? 'Transfer' : 'Chuyển về P.A'}</th>
                 </tr>
               </thead>
               <tbody>
-                {INTERNATIONAL_DOMAINS.map((d, i) => (
+                {internationalDomains.map((d, i) => (
                   <tr key={i} style={i % 2 === 0 ? styles.trEven : styles.trOdd}>
                     <td style={styles.td}>
                       <strong>{d.tld}</strong>
-                      {d.badge && <span style={styles.badgeGreen}>Có ưu đãi</span>}
+                      {d.badge && <span style={styles.badgeGreen}>{lang === 'en' ? 'Promo' : 'Có ưu đãi'}</span>}
                     </td>
                     <td style={styles.td}>
                       <span style={styles.salePrice}>{d.reg}</span>
@@ -186,7 +229,7 @@ export default function DomainPricePage({ onNavigate }) {
               </tbody>
             </table>
           </div>
-          <p style={styles.tableNote}>* Giá chưa gồm VAT — Giá năm đầu áp dụng cho đăng ký mới</p>
+          <p style={styles.tableNote}>{lang === 'en' ? '* Prices exclude VAT — First year price applies to new registrations' : '* Giá chưa gồm VAT — Giá năm đầu áp dụng cho đăng ký mới'}</p>
         </div>
       </section>
     </div>

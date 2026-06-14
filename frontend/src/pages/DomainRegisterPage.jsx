@@ -1,323 +1,226 @@
 import React, { useState } from 'react';
-import { CATEGORY_NAV, CATEGORY_FAQS } from '../data/subPages';
+import { getCategoryNav } from '../data/subPages';
 
-const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
+const si = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
 
-const STYLES = {
-  subNav: {
-    background: '#fff', borderBottom: '1px solid #e8e8e8',
-    position: 'sticky', top: 0, zIndex: 50,
-  },
-  subNavInner: {
-    display: 'flex', alignItems: 'center', gap: 20,
-    padding: '10px 0', overflowX: 'auto',
-  },
-  subNavTitle: {
-    fontSize: 13, fontWeight: 800, color: '#1e293b',
-    whiteSpace: 'nowrap', letterSpacing: 1,
-  },
-  subNavLink: (active) => ({
-    padding: '6px 14px', fontSize: 13,
-    color: active ? '#fff' : '#555',
-    background: active ? '#2563eb' : 'none',
-    borderRadius: 6, textDecoration: 'none', whiteSpace: 'nowrap',
-    fontWeight: active ? 600 : 500,
-  }),
-  subNavMore: {
-    padding: '6px 14px', fontSize: 13, color: '#555',
-    textDecoration: 'none', whiteSpace: 'nowrap', cursor: 'pointer',
-    display: 'flex', alignItems: 'center', gap: 4,
-  },
-  hero: {
-    background: '#ededed', padding: '45px 0 35px',
-  },
-  heroTitle: {
-    fontSize: 15, fontWeight: 600, color: '#555',
-    margin: '0 0 4px',
-  },
-  heroHeading: {
-    fontSize: 28, fontWeight: 900, color: '#1e293b',
-    margin: '0 0 20px', textTransform: 'uppercase',
-  },
-  searchForm: {
-    display: 'flex', gap: 0, maxWidth: 560,
-    margin: '0 auto 24px',
-    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-    borderRadius: 8, overflow: 'hidden',
-  },
-  searchInput: {
-    flex: 1, padding: '16px 20px', border: 'none',
-    fontSize: 15, outline: 'none',
-  },
-  searchBtn: {
-    padding: '16px 32px', background: '#000', color: '#fff',
-    border: 'none', fontSize: 14, fontWeight: 600,
-    textTransform: 'uppercase', cursor: 'pointer',
-  },
-  tldRow: {
-    display: 'flex', gap: 12, justifyContent: 'center',
-    flexWrap: 'wrap', marginBottom: 8,
-  },
-  tldBadge: (color) => ({
-    border: '1px solid ' + color, borderRadius: 8,
-    padding: '6px 14px', background: '#fff', textAlign: 'center',
-    minWidth: 80,
-  }),
-  tldBadgeName: (color) => ({ display: 'block', fontSize: 15, fontWeight: 800, color }),
-  tldBadgePrice: { display: 'block', fontSize: 12, fontWeight: 600, color: '#333' },
-  tldBadgeNote: { display: 'block', fontSize: 11, color: '#999' },
+const TLD_HERO = [
+  { tld: '.com', price: '19.000₫', label: 'Khi đăng ký từ 03 năm', color: '#2563eb' },
+  { tld: '.vn', price: '250.000₫', label: 'năm đầu', color: '#dc2626' },
+  { tld: '.com.vn', price: '150.000₫', label: 'Khi đăng ký từ 03 năm', color: '#dc2626' },
+  { tld: '.net', price: '25.000₫', label: 'năm đầu', color: '#2563eb' },
+  { tld: '.xyz', price: '10.000₫', label: 'năm đầu', color: '#059669' },
+  { tld: '.cloud', price: '45.000₫', label: 'năm đầu', color: '#7c3aed' },
+  { tld: '.asia', price: '36.000₫', label: 'năm đầu', color: '#d97706' },
+  { tld: '.org', price: '245.000₫', label: 'năm đầu', color: '#0891b2' },
+];
 
-  promoBanner: {
-    background: 'linear-gradient(135deg, #dd1b5c 0%, #ff4d7a 100%)',
-    padding: '20px 24px', borderRadius: 12,
-    marginTop: 20, display: 'flex', gap: 24,
-    alignItems: 'center', justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  promoItem: {
-    color: '#fff', textAlign: 'center', fontSize: 13,
-  },
-  promoHighlight: {
-    display: 'block', fontSize: 14, fontWeight: 700,
-    marginTop: 2,
-  },
-
-  trustBar: {
-    padding: '40px 0', textAlign: 'center', background: '#fff',
-  },
-  trustTitle: {
-    fontSize: 26, fontWeight: 800, color: '#1e293b',
-    margin: '0 0 8px',
-  },
-  trustSub: {
-    fontSize: 14, color: '#666',
-    margin: 0, maxWidth: 600, marginLeft: 'auto', marginRight: 'auto',
-  },
-
-  domainGrid: {
-    display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)',
-    gap: 16, padding: 24, background: '#f2f2f2',
-    borderRadius: 12, marginTop: 24,
-  },
-  domainCard: {
-    background: '#fff', borderRadius: 10, padding: '20px 16px',
-    textAlign: 'center', border: '1px solid #e8e8e8',
-    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
-  },
-  dcFlag: { fontSize: 28 },
-  dcTld: {
-    padding: '3px 14px', background: '#e6e6e6',
-    borderRadius: 12, fontSize: 13, fontWeight: 700, color: '#555',
-  },
-  dcDesc: { fontSize: 12, color: '#777', lineHeight: 1.3, margin: 0, minHeight: 32 },
-  dcPrice: { fontSize: 13, color: '#333', margin: 0, fontWeight: 600 },
-  dcOldPrice: { fontSize: 12, color: '#999', textDecoration: 'line-through', margin: 0 },
-  dcBtn: {
-    padding: '6px 16px', border: '2px solid #ddd',
-    borderRadius: 6, fontSize: 12, color: '#555',
-    textDecoration: 'none', fontWeight: 600, marginTop: 'auto',
-    transition: 'all 0.2s',
-    cursor: 'pointer', background: '#fff',
-  },
-
-  whySection: {
-    padding: '50px 0', background: '#fff',
-  },
-  whyGrid: {
-    display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24,
-  },
-  whyCard: {
-    textAlign: 'center', padding: 24,
-    background: '#f8fafc', borderRadius: 12, border: '1px solid #f1f5f9',
-  },
-  whyIcon: { fontSize: 36, display: 'block', marginBottom: 10 },
-  whyTitle: { fontSize: 16, fontWeight: 700, margin: '0 0 6px' },
-  whyDesc: { fontSize: 13, color: '#666', lineHeight: 1.5, margin: 0 },
-
-  principles: {
-    padding: '50px 0', background: '#f8fafc',
-  },
-  principlesGrid: {
-    display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: 16, marginTop: 24,
-  },
-  principleCard: {
-    background: '#fff', borderRadius: 10, padding: 20,
-    border: '1px solid #eee', display: 'flex', gap: 14,
-    alignItems: 'flex-start',
-  },
-  principleNum: {
-    fontSize: 20, fontWeight: 800, color: '#2563eb',
-    minWidth: 28,
-  },
-  principleText: {
-    fontSize: 13, color: '#555', lineHeight: 1.5, margin: 0,
-  },
-
-  promoSection: {
-    padding: '50px 0', background: '#fff',
-  },
-  promoGrid: {
-    display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16,
-  },
-  promoCard: {
-    background: '#fff', borderRadius: 8, padding: 28,
-    textAlign: 'center', border: '1px solid #e8e8e8',
-    display: 'flex', flexDirection: 'column', gap: 10,
-    minHeight: 150, justifyContent: 'center',
-  },
-  promoCardTitle: { fontSize: 15, fontWeight: 700, margin: 0, color: '#1e293b' },
-  promoCardDesc: { fontSize: 13, color: '#666', margin: 0 },
-  promoCardBtn: {
-    padding: '8px 20px', background: '#58595b', color: '#fff',
-    borderRadius: 4, fontSize: 13, textDecoration: 'none',
-    alignSelf: 'center',
-  },
-
-  faqSection: {
-    padding: '50px 0', background: '#f8fafc',
-  },
-  faqInner: { maxWidth: 800, margin: '0 auto' },
-  faqItem: {
-    borderBottom: '1px solid #e8e8e8',
-  },
-  faqBtn: (expanded) => ({
-    width: '100%', padding: '14px 0', border: 'none',
-    background: 'none', cursor: 'pointer', fontSize: 14,
-    fontWeight: 500, color: expanded ? '#dd1b5c' : '#1e293b',
-    display: 'flex', alignItems: 'center', gap: 8, textAlign: 'left',
-  }),
-  faqContent: (expanded) => ({
-    maxHeight: expanded ? '300px' : '0',
-    opacity: expanded ? 1 : 0,
-    overflow: 'hidden',
-    transition: 'all 0.25s ease',
-  }),
-  faqAnswer: {
-    fontSize: 14, color: '#666', lineHeight: 1.7, margin: 0,
-    padding: '0 0 16px',
-  },
-};
-
-const TLD_BADGES = [
-  { tld: '.com', price: '19.000₫', note: '3 năm đầu', color: '#2563eb' },
-  { tld: '.vn', price: '250.000₫', note: 'năm đầu', color: '#dc2626' },
-  { tld: '.xyz', price: '10.000₫', note: 'năm đầu', color: '#059669' },
-  { tld: '.cloud', price: '45.000₫', note: 'năm đầu', color: '#7c3aed' },
-  { tld: '.asia', price: '36.000₫', note: 'năm đầu', color: '#d97706' },
-  { tld: '.org', price: '245.000₫', note: 'năm đầu', color: '#0891b2' },
+const TLD_HERO_EN = [
+  { tld: '.com', price: '19.000₫', label: 'When registering 3+ years', color: '#2563eb' },
+  { tld: '.vn', price: '250.000₫', label: 'first year', color: '#dc2626' },
+  { tld: '.com.vn', price: '150.000₫', label: 'When registering 3+ years', color: '#dc2626' },
+  { tld: '.net', price: '25.000₫', label: 'first year', color: '#2563eb' },
+  { tld: '.xyz', price: '10.000₫', label: 'first year', color: '#059669' },
+  { tld: '.cloud', price: '45.000₫', label: 'first year', color: '#7c3aed' },
+  { tld: '.asia', price: '36.000₫', label: 'first year', color: '#d97706' },
+  { tld: '.org', price: '245.000₫', label: 'first year', color: '#0891b2' },
 ];
 
 const DOMAIN_TLDS = [
-  { flag: '🇻🇳', tld: '.vn', price: '150.000₫', oldPrice: '700.000₫', desc: 'Tên miền quốc gia — Kết nối thương mại Việt' },
-  { flag: '🌐', tld: '.com', price: '19.000₫', oldPrice: '250.000₫', desc: 'Tên miền toàn cầu — Phổ biến nhất thế giới' },
-  { flag: '🔗', tld: '.net', price: '25.000₫', oldPrice: '280.000₫', desc: 'Mạng lưới — Dành cho dịch vụ mạng' },
-  { flag: '🏛️', tld: '.org', price: '245.000₫', oldPrice: '280.000₫', desc: 'Tổ chức — Phi lợi nhuận, cộng đồng' },
-  { flag: '✨', tld: '.xyz', price: '10.000₫', oldPrice: '140.000₫', desc: 'Thế hệ mới — Sáng tạo, công nghệ' },
-  { flag: '☁️', tld: '.cloud', price: '45.000₫', oldPrice: '200.000₫', desc: 'Đám mây — Dịch vụ cloud, SaaS' },
-  { flag: '🌏', tld: '.asia', price: '36.000₫', oldPrice: '180.000₫', desc: 'Châu Á — Định vị thị trường châu Á' },
-  { flag: '🇻🇳', tld: '.com.vn', price: '150.000₫', oldPrice: null, desc: 'Thương mại Việt — Doanh nghiệp tại Việt Nam' },
-  { flag: '📚', tld: '.edu.vn', price: '200.000₫', oldPrice: null, desc: 'Giáo dục Việt — Trường học, đào tạo' },
-  { flag: '🏛️', tld: '.gov.vn', price: '300.000₫', oldPrice: null, desc: 'Chính phủ — Cơ quan nhà nước' },
+  { icon: 'V', label: '.vn', price: '150.000₫', old: '700.000₫', desc: 'Tên miền quốc gia — Kết nối thương mại Việt', url: '#' },
+  { icon: 'C', label: '.com', price: '19.000₫', old: '429.000₫', desc: 'Tên miền uy tín nhất cho website của bạn', url: '#' },
+  { icon: 'N', label: '.net', price: '159.000₫', old: '439.000₫', desc: 'Mở rộng thương hiệu toàn cầu với tên miền .net', url: '#' },
+  { icon: 'O', label: '.org', price: '289.000₫', old: '445.000₫', desc: 'Xây dựng niềm tin từ cộng đồng', url: '#' },
+  { icon: 'I', label: '.info', price: '139.000₫', old: '807.000₫', desc: 'Cập nhật thông tin nhanh chóng', url: '#' },
+  { icon: 'T', label: '.top', price: '48.000₫', old: '249.000₫', desc: 'Dẫn đầu thương hiệu với tên miền .top', url: '#' },
+  { icon: 'X', label: '.xyz', price: '18.000₫', old: '423.000₫', desc: 'Tạo khác biệt với tên miền thế hệ mới', url: '#' },
+  { icon: 'A', label: '.asia', price: '36.000₫', old: '439.000₫', desc: 'Chinh phục thị trường Châu Á', url: '#' },
+  { icon: 'S', label: '.site', price: '49.000₫', old: '1.012.000₫', desc: 'Định vị thương hiệu doanh nghiệp', url: '#' },
+  { icon: 'O', label: '.online', price: '39.000₫', old: '1.012.000₫', desc: 'Kết nối thế giới với tên miền .online', url: '#' },
+];
+
+const DOMAIN_TLDS_EN = [
+  { icon: 'V', label: '.vn', price: '150.000₫', old: '700.000₫', desc: 'Vietnam national domain — Connect Vietnamese commerce', url: '#' },
+  { icon: 'C', label: '.com', price: '19.000₫', old: '429.000₫', desc: 'The most trusted domain for your website', url: '#' },
+  { icon: 'N', label: '.net', price: '159.000₫', old: '439.000₫', desc: 'Expand your brand globally with .net', url: '#' },
+  { icon: 'O', label: '.org', price: '289.000₫', old: '445.000₫', desc: 'Build trust from the community', url: '#' },
+  { icon: 'I', label: '.info', price: '139.000₫', old: '807.000₫', desc: 'Quick information sharing', url: '#' },
+  { icon: 'T', label: '.top', price: '48.000₫', old: '249.000₫', desc: 'Lead your brand with .top', url: '#' },
+  { icon: 'X', label: '.xyz', price: '18.000₫', old: '423.000₫', desc: 'Stand out with next-generation domains', url: '#' },
+  { icon: 'A', label: '.asia', price: '36.000₫', old: '439.000₫', desc: 'Conquer the Asian market', url: '#' },
+  { icon: 'S', label: '.site', price: '49.000₫', old: '1.012.000₫', desc: 'Position your business brand', url: '#' },
+  { icon: 'O', label: '.online', price: '39.000₫', old: '1.012.000₫', desc: 'Connect the world with .online', url: '#' },
+];
+
+const EXTRA_TLDS = [
+  { icon: '⛅', label: '.cloud', price: '45.000₫', old: '719.000₫', desc: 'Thương hiệu công nghệ hàng đầu' },
+  { icon: '🛍️', label: '.store', price: '39.000₫', old: '1.519.000₫', desc: 'Có tên miền .store - Khỏi lo ế hàng' },
+  { icon: '🔧', label: '.work', price: '385.000₫', old: null, desc: 'Xây dựng giá trị thương hiệu' },
+  { icon: '🔗', label: '.link', price: '346.000₫', old: null, desc: 'Tên miền kết nối mọi người' },
+  { icon: '🖱️', label: '.click', price: '55.000₫', old: '384.000₫', desc: 'Tên miền tạo cảm hứng hành động' },
+  { icon: '🎯', label: '.club', price: '576.000₫', old: null, desc: 'Chia sẻ đam mê — Kết nối bất tận' },
+  { icon: '💼', label: '.pro', price: '139.000₫', old: '807.000₫', desc: 'Bước đệm khẳng định sự chuyên nghiệp' },
+  { icon: '🚀', label: '.space', price: '49.000₫', old: '904.000₫', desc: 'Không gian để bạn thỏa sức sáng tạo' },
+  { icon: '🌐', label: '.website', price: '49.000₫', old: '746.000₫', desc: 'Tên miền hoàn hảo cho mọi trang web' },
+  { icon: '📝', label: '.blog', price: '108.000₫', old: null, desc: 'Khẳng định chất tôi với tên miền blog' },
+];
+
+const EXTRA_TLDS_EN = [
+  { icon: '⛅', label: '.cloud', price: '45.000₫', old: '719.000₫', desc: 'Leading technology brand' },
+  { icon: '🛍️', label: '.store', price: '39.000₫', old: '1.519.000₫', desc: 'Get a .store domain - never worry about inventory' },
+  { icon: '🔧', label: '.work', price: '385.000₫', old: null, desc: 'Build brand value' },
+  { icon: '🔗', label: '.link', price: '346.000₫', old: null, desc: 'A domain that connects people' },
+  { icon: '🖱️', label: '.click', price: '55.000₫', old: '384.000₫', desc: 'A domain that inspires action' },
+  { icon: '🎯', label: '.club', price: '576.000₫', old: null, desc: 'Share passion — Endless connection' },
+  { icon: '💼', label: '.pro', price: '139.000₫', old: '807.000₫', desc: 'A stepping stone to professionalism' },
+  { icon: '🚀', label: '.space', price: '49.000₫', old: '904.000₫', desc: 'Space for unlimited creativity' },
+  { icon: '🌐', label: '.website', price: '49.000₫', old: '746.000₫', desc: 'The perfect domain for any website' },
+  { icon: '📝', label: '.blog', price: '108.000₫', old: null, desc: 'Showcase your style with a blog domain' },
+];
+
+const WHY_US = [
+  { icon: '🏆', title: 'Thị phần lớn nhất Việt Nam', desc: 'Nhà đăng ký có thị phần tên miền Lớn Nhất Việt Nam' },
+  { icon: '🌐', title: 'Hỗ trợ nhiều tên miền nhất', desc: 'Hơn 500 đuôi tên miền khác nhau, mang đến sự lựa chọn phong phú' },
+  { icon: '💬', title: 'Hỗ trợ 24/7/365', desc: 'Hỗ trợ kỹ thuật 24/7 theo phong cách các nhà cung cấp tốt nhất thế giới' },
+];
+
+const WHY_US_EN = [
+  { icon: '🏆', title: 'Largest Market Share in Vietnam', desc: 'Domain registrar with the largest market share in Vietnam' },
+  { icon: '🌐', title: 'Supports Most Domains', desc: 'Over 500 different domain extensions, offering a wide selection' },
+  { icon: '💬', title: '24/7/365 Support', desc: 'Technical support 24/7 in the style of the world\'s best providers' },
 ];
 
 const PRINCIPLES = [
   'Đăng ký tên miền được thực hiện theo nguyên tắc bình đẳng',
   'Tên miền phải xây dựng dựa trên khách hàng mục tiêu',
-  'Tên miền dễ đọc và không gây nhầm lẫn',
+  'Tên miền dễ đọc và không gây nhầm lẫn, khó viết sai chính tả',
   'Tên miền dễ nhớ, liên quan đến lĩnh vực hoạt động',
-  'Đăng ký bảo vệ để bảo vệ thương hiệu',
+  'Đăng ký bao vây để bảo vệ thương hiệu',
   'Đặt tên miền ngắn gọn',
-  'Chủ động nộp phí duy trì',
-  'Chủ thể tự chịu trách nhiệm',
+  'Chủ động nộp phí duy trì trước khi tên miền hết thời hạn sử dụng',
+  'Chủ thể tự chịu trách nhiệm tuân thủ quy định quốc tế & pháp luật nước sở tại',
 ];
 
-const PROMOS = [
-  { title: 'GIẢM ĐẾN 450K', desc: '.VN chỉ 250K | .COM.VN chỉ 150K' },
-  { title: '.XYZ SIÊU RẺ', desc: 'Chỉ 10.000₫ cho năm đầu tiên' },
-  { title: 'COMBO TIẾT KIỆM', desc: 'Tên miền + Hosting chỉ từ 50K/tháng' },
-  { title: 'MIỄN PHÍ WHOIS', desc: 'Bảo vệ thông tin cá nhân trọn đời' },
+const PRINCIPLES_EN = [
+  'Domain registration is conducted on the principle of equality',
+  'Domain names should be built around target customers',
+  'Easy to read, not confusing, and hard to misspell',
+  'Easy to remember, relevant to your field of activity',
+  'Register variations to protect your brand',
+  'Keep domain names short and concise',
+  'Proactively pay renewal fees before domain expiration',
+  'Registrants are responsible for complying with international regulations & local laws',
 ];
 
 const FAQS = [
-  { q: 'Tên miền là gì?', a: 'Tên miền (Domain) là tên của một Website trên Internet, giúp người dùng dễ dàng truy cập thay vì phải nhập địa chỉ IP số.' },
-  { q: 'Làm cách nào để kiểm tra tên miền?', a: 'Bạn chỉ cần nhập tên miền mong muốn vào ô tìm kiếm phía trên, hệ thống sẽ kiểm tra và thông báo kết quả ngay lập tức.' },
-  { q: 'Thời gian sử dụng tên miền trong bao lâu?', a: 'Tên miền có thể đăng ký theo năm, tối thiểu 1 năm và tối đa 10 năm. Bạn có thể gia hạn trước thời hạn.' },
-  { q: 'Các nguyên tắc chọn tên miền?', a: 'Tên miền nên ngắn gọn, dễ nhớ, liên quan đến thương hiệu/ngành nghề, không gây nhầm lẫn và nên đăng ký bảo vệ các biến thể.' },
-  { q: 'Cách đăng ký tên miền nhanh nhất?', a: 'Kiểm tra tên miền còn trống → Điền thông tin → Thanh toán → Kích hoạt trong 24h.' },
+  { q: 'Tên miền là gì?', a: 'Tên miền (Domain) là tên của một Website hoạt động trên Internet hay còn gọi là "địa chỉ Web" nhằm thay thế cho các địa chỉ IP của máy chủ giúp người dùng ghi nhớ dễ dàng hơn.' },
+  { q: 'Làm cách nào để kiểm tra Tên miền đã được đăng ký hay chưa?', a: 'Trên hệ thống của WisdomCloud, bạn có thể tra cứu Tên miền muốn đăng ký một cách nhanh chóng, hệ thống sẽ liệt kê những Tên miền phổ biến nhất để bạn so sánh giá.' },
+  { q: 'Thời gian sử dụng tên miền trong bao lâu?', a: 'Thời gian đăng ký tối thiểu cho một Tên miền là 01 năm. Thời gian cho phép gia hạn là từ 0-70 ngày tính từ ngày hết hạn tùy vào Tên miền.' },
+  { q: 'Các nguyên tắc chọn Tên miền phù hợp cho Website?', a: 'Tên miền không quá 63 ký tự, chỉ gồm a-z, 0-9 và dấu gạch ngang. Nên ngắn gọn, dễ nhớ, liên quan đến thương hiệu hoặc lĩnh vực hoạt động.' },
+  { q: 'Cách đăng ký Tên miền nhanh nhất?', a: 'Bước 1: Truy cập WisdomCloud. Bước 2: Vào danh mục Tên miền → Đăng ký Tên miền. Bước 3: Nhập tên miền vào thanh tìm kiếm. Bước 4: Thêm vào giỏ hàng → Thanh toán.' },
 ];
 
-export default function DomainRegisterPage({ onNavigate, onDomainSearch }) {
-  const [domainQuery, setDomainQuery] = useState('');
-  const [expandedFaq, setExpandedFaq] = useState(null);
-  const nav = CATEGORY_NAV['domain'];
+const FAQS_EN = [
+  { q: 'What is a domain name?', a: 'A domain name is the name of a website on the Internet, also known as a "web address", which replaces server IP addresses to help users remember more easily.' },
+  { q: 'How do I check if a domain has been registered?', a: 'On WisdomCloud\'s system, you can quickly look up the domain you want to register. The system will list the most popular domains for you to compare prices.' },
+  { q: 'How long can I use a domain name?', a: 'The minimum registration period for a domain name is 1 year. The renewal grace period is 0-70 days from the expiration date depending on the domain.' },
+  { q: 'What are the principles for choosing a suitable domain name?', a: 'Domain names must not exceed 63 characters, consisting only of a-z, 0-9, and hyphens. They should be short, easy to remember, and relevant to your brand or field of activity.' },
+  { q: 'What is the fastest way to register a domain?', a: 'Step 1: Visit WisdomCloud. Step 2: Go to Domains → Register Domain. Step 3: Enter your domain in the search bar. Step 4: Add to cart → Checkout.' },
+];
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (!domainQuery.trim()) return;
-    onDomainSearch(domainQuery);
-  };
+export default function DomainRegisterPage({ onNavigate, onDomainSearch, lang }) {
+  const [q, setQ] = useState('');
+  const [ef, setEf] = useState(null);
+  const [hoverIdx, setHoverIdx] = useState(null);
+  const [extHover, setExtHover] = useState(null);
+  const nav = getCategoryNav(lang)['domain'];
+  const tldHero = lang === 'en' ? TLD_HERO_EN : TLD_HERO;
+  const domainTlds = lang === 'en' ? DOMAIN_TLDS_EN : DOMAIN_TLDS;
+  const extraTlds = lang === 'en' ? EXTRA_TLDS_EN : EXTRA_TLDS;
+  const whyUs = lang === 'en' ? WHY_US_EN : WHY_US;
+  const principles = lang === 'en' ? PRINCIPLES_EN : PRINCIPLES;
+  const faqs = lang === 'en' ? FAQS_EN : FAQS;
+
+  const handleSearch = (e) => { e.preventDefault(); if (q.trim()) onDomainSearch(q); };
 
   return (
     <div>
-      {/* SERVICE SUB-MENU */}
-      <nav style={STYLES.subNav}>
-        <div style={sectionInner}>
-          <div style={STYLES.subNavInner}>
-            <span style={STYLES.subNavTitle}>TÊN MIỀN</span>
+      {/* SUB-NAV */}
+      <nav style={{ background: '#fff', borderBottom: '1px solid #e8e8e8', position: 'sticky', top: 0, zIndex: 50 }}>
+        <div style={si}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '10px 0', overflowX: 'auto' }}>
+            <span style={{ fontSize: 13, fontWeight: 800, color: '#1e293b', whiteSpace: 'nowrap', letterSpacing: 1 }}>{lang === 'en' ? 'DOMAINS' : 'TÊN MIỀN'}</span>
             {nav.items.map((item, i) => (
-              <a
-                key={i}
-                href="#"
-                onClick={(e) => { e.preventDefault(); onNavigate(item.page); }}
-                style={STYLES.subNavLink(item.page === 'dang-ky-ten-mien')}
-              >
+              <a key={i} href="#" onClick={(e) => { e.preventDefault(); onNavigate(item.page); }}
+                style={{
+                  padding: '6px 14px', fontSize: 13,
+                  color: item.page === 'dang-ky-ten-mien' ? '#fff' : '#555',
+                  background: item.page === 'dang-ky-ten-mien' ? '#2563eb' : 'none',
+                  borderRadius: 6, textDecoration: 'none', whiteSpace: 'nowrap',
+                  fontWeight: item.page === 'dang-ky-ten-mien' ? 600 : 500,
+                }}>
                 {item.label}
               </a>
             ))}
-            <span style={STYLES.subNavMore}>
-              Khám Phá Thêm ▼
-            </span>
           </div>
         </div>
       </nav>
 
-      {/* HERO: Domain Search + TLD Badges */}
-      <section style={STYLES.hero}>
-        <div style={sectionInner}>
+      {/* HERO */}
+      <section style={{ background: '#f5f5f5', padding: '40px 0 30px', borderBottom: '1px solid #e8e8e8' }}>
+        <div style={si}>
           <div style={{ textAlign: 'center' }}>
-            <p style={STYLES.heroTitle}>Các giải pháp</p>
-            <h1 style={STYLES.heroHeading}>TÊN MIỀN</h1>
+            <p style={{ fontSize: 15, fontWeight: 600, color: '#555', margin: '0 0 4px' }}>{lang === 'en' ? 'Solutions' : 'Các giải pháp'}</p>
+            <h1 style={{ fontSize: 30, fontWeight: 900, color: '#1e293b', margin: '0 0 8px', textTransform: 'uppercase' }}>{lang === 'en' ? 'DOMAINS' : 'TÊN MIỀN'}</h1>
+            <p style={{ fontSize: 14, color: '#888', margin: '0 0 20px' }}>
+              {lang === 'en' ? 'Best domain prices — Own your domain for your business today' : 'Tên miền giá tốt nhất — Sở hữu ngay tên miền cho doanh nghiệp của bạn'}
+            </p>
 
-            <form onSubmit={handleSearch} style={STYLES.searchForm}>
-              <input
-                style={STYLES.searchInput}
-                placeholder="Nhập tên miền mong muốn..."
-                value={domainQuery}
-                onChange={e => setDomainQuery(e.target.value)}
-              />
-              <button type="submit" style={STYLES.searchBtn}>Kiểm tra</button>
+            <form onSubmit={handleSearch} style={{
+              display: 'flex', gap: 0, maxWidth: 560, margin: '0 auto 20px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.1)', borderRadius: 8, overflow: 'hidden',
+            }}>
+              <input style={{
+                flex: 1, padding: '16px 20px', border: 'none', fontSize: 15, outline: 'none',
+              }} placeholder={lang === 'en' ? 'Enter your desired domain...' : 'Nhập tên miền mong muốn...'} value={q} onChange={e => setQ(e.target.value)} />
+              <button type="submit" style={{
+                padding: '16px 32px', background: '#000', color: '#fff', border: 'none',
+                fontSize: 14, fontWeight: 600, textTransform: 'uppercase', cursor: 'pointer',
+              }}>{lang === 'en' ? 'Check' : 'Kiểm tra'}</button>
             </form>
 
-            <div style={STYLES.tldRow}>
-              {TLD_BADGES.map((t, i) => (
-                <div key={i} style={STYLES.tldBadge(t.color)}>
-                  <span style={STYLES.tldBadgeName(t.color)}>{t.tld}</span>
-                  <span style={STYLES.tldBadgePrice}>{t.price}</span>
-                  <span style={STYLES.tldBadgeNote}>{t.note}</span>
+            {/* Hero badges */}
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+              {tldHero.map((t, i) => (
+                <div key={i} style={{
+                  border: `1px solid ${t.color}`, borderRadius: 8, padding: '6px 14px',
+                  background: '#fff', textAlign: 'center', minWidth: 85,
+                }}>
+                  <span style={{ display: 'block', fontSize: 15, fontWeight: 800, color: t.color }}>{t.tld}</span>
+                  <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: '#333' }}>{t.price}</span>
+                  <span style={{ display: 'block', fontSize: 11, color: '#999' }}>{t.label}</span>
                 </div>
               ))}
             </div>
 
-            <div style={STYLES.promoBanner}>
-              {[
-                '.ID.VN | .BIZ.VN — Miễn phí đăng ký',
-                '.XYZ | .SITE | .ONLINE | .CLICK — Chỉ 10K/năm đầu',
-                '.IO.VN — Chỉ 30K/năm đầu',
-                '.ASIA — Chỉ 36K/năm đầu',
-              ].map((text, i) => (
-                <span key={i} style={STYLES.promoItem}>
-                  <span style={STYLES.promoHighlight}>🔥 {text}</span>
+            {/* Promo banners */}
+            <div style={{
+              background: 'linear-gradient(135deg, #dd1b5c 0%, #ff4d7a 100%)',
+              padding: '14px 20px', borderRadius: 10, marginTop: 18,
+              display: 'flex', gap: 20, alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap',
+            }}>
+              {(lang === 'en' ? [
+                '.ID.VN | .BIZ.VN: Free registration',
+                '.XYZ | .SITE | .ONLINE | .CLICK: Only 10K/first year',
+                '.IO.VN: Only 30K/first year',
+                '.ASIA: Only 36K/first year',
+              ] : [
+                '.ID.VN | .BIZ.VN: Miễn phí đăng ký',
+                '.XYZ | .SITE | .ONLINE | .CLICK: Chỉ 10K/năm đầu',
+                '.IO.VN: Chỉ 30K/năm đầu',
+                '.ASIA: Chỉ 36K/năm đầu',
+              ]).map((text, i) => (
+                <span key={i} style={{ color: '#fff', textAlign: 'center', fontSize: 13, fontWeight: 600 }}>
+                  🔥 {text}
                 </span>
               ))}
             </div>
@@ -326,95 +229,152 @@ export default function DomainRegisterPage({ onNavigate, onDomainSearch }) {
       </section>
 
       {/* TRUST BAR */}
-      <section style={STYLES.trustBar}>
-        <div style={sectionInner}>
-          <h2 style={STYLES.trustTitle}>P.A Việt Nam Là Nhà Đăng Ký Tên Miền Lớn Nhất Việt Nam</h2>
-          <p style={STYLES.trustSub}>
-            Trực thuộc tổ chức tên miền quốc tế ICANN và trung tâm internet Việt Nam VNNIC
+      <section style={{ padding: '36px 0', textAlign: 'center', background: '#fff' }}>
+        <div style={si}>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: '#1e293b', margin: '0 0 6px' }}>
+            {lang === 'en' ? 'WisdomCloud Is the Largest Domain Registrar in Vietnam' : 'WisdomCloud Là Nhà Đăng Ký Tên Miền Lớn Nhất Việt Nam'}
+          </h2>
+          <p style={{ fontSize: 14, color: '#666', margin: 0 }}>
+            {lang === 'en' ? 'Under ICANN and Vietnam Internet Center VNNIC' : 'Trực thuộc tổ chức tên miền quốc tế ICANN và trung tâm internet Việt Nam VNNIC'}
           </p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 40, marginTop: 14 }}>
+            <span style={{ fontSize: 12, color: '#888', fontWeight: 600 }}>✓ ICANN Accredited</span>
+            <span style={{ fontSize: 12, color: '#888', fontWeight: 600 }}>✓ VNNIC Partner</span>
+            <span style={{ fontSize: 12, color: '#888', fontWeight: 600 }}>{lang === 'en' ? '✓ 25+ Years experience' : '✓ 25+ Năm kinh nghiệm'}</span>
+          </div>
         </div>
       </section>
 
-      {/* DOMAIN TLD PRICING GRID */}
+      {/* MAIN TLD GRID */}
       <section style={{ background: '#f2f2f2', padding: '0 0 50px' }}>
-        <div style={sectionInner}>
-          <div style={STYLES.domainGrid}>
-            {DOMAIN_TLDS.map((d, i) => (
-              <div key={i} style={STYLES.domainCard}>
-                <span style={STYLES.dcFlag}>{d.flag}</span>
-                <span style={STYLES.dcTld}>{d.tld}</span>
-                <p style={STYLES.dcDesc}>{d.desc?.substring(0, 50)}</p>
-                <p style={STYLES.dcPrice}>Giá từ <strong>{d.price}</strong></p>
-                {d.oldPrice && (
-                  <p style={STYLES.dcOldPrice}>Giá cũ {d.oldPrice}</p>
-                )}
-                <a
-                  href="#"
-                  style={STYLES.dcBtn}
-                  onClick={(e) => { e.preventDefault(); onDomainSearch(d.tld); }}
-                >
-                  Kiểm tra tồn tại
-                </a>
+        <div style={si}>
+          <div style={{
+            display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16,
+            padding: 24, background: '#f2f2f2', borderRadius: 12, marginTop: 0,
+          }}>
+            {domainTlds.map((d, i) => (
+              <div key={i}
+                onMouseEnter={() => setHoverIdx(i)}
+                onMouseLeave={() => setHoverIdx(null)}
+                style={{
+                  background: hoverIdx === i ? '#f0f7ff' : '#fff',
+                  borderRadius: 10, padding: '20px 14px', textAlign: 'center',
+                  border: hoverIdx === i ? '2px solid #2563eb' : '1px solid #e8e8e8',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+                  transition: 'all 0.2s', cursor: 'pointer',
+                }}>
+                <div style={{
+                  width: 48, height: 48, borderRadius: '50%',
+                  background: i < 2 ? '#2563eb' : '#f1f5f9',
+                  color: i < 2 ? '#fff' : '#1e293b',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 20, fontWeight: 900,
+                }}>{d.icon}</div>
+                <span style={{
+                  padding: '3px 14px', background: hoverIdx === i ? '#2563eb' : '#e6e6e6',
+                  borderRadius: 12, fontSize: 14, fontWeight: 700,
+                  color: hoverIdx === i ? '#fff' : '#555', transition: 'all 0.2s',
+                }}>{d.label}</span>
+                <p style={{ fontSize: 12, color: '#777', lineHeight: 1.3, margin: '4px 0', minHeight: 32 }}>
+                  {d.desc}
+                </p>
+                <p style={{ fontSize: 13, color: '#333', margin: 0, fontWeight: 600 }}>
+                  {lang === 'en' ? 'From' : 'Giá từ'} <strong style={{ color: '#2563eb' }}>{d.price}</strong>
+                </p>
+                {d.old && <p style={{ fontSize: 12, color: '#999', textDecoration: 'line-through', margin: 0 }}>{lang === 'en' ? 'Old price' : 'Giá cũ'} {d.old}</p>}
+                <button onClick={(e) => { e.preventDefault(); onDomainSearch(d.label); }}
+                  style={{
+                    padding: '7px 18px', border: hoverIdx === i ? 'none' : '2px solid #ddd',
+                    borderRadius: 6, fontSize: 12, fontWeight: 600,
+                    background: hoverIdx === i ? '#2563eb' : '#fff',
+                    color: hoverIdx === i ? '#fff' : '#555',
+                    cursor: 'pointer', marginTop: 'auto', transition: 'all 0.2s',
+                  }}>
+                  {lang === 'en' ? 'Check Availability' : 'Kiểm tra tồn tại'}
+                </button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* WHY CHOOSE US (3 columns) */}
-      <section style={STYLES.whySection}>
-        <div style={sectionInner}>
-          <h2 style={{ textAlign: 'center', fontSize: 24, fontWeight: 800, margin: '0 0 28px', textTransform: 'uppercase' }}>
-            TẠI SAO NÊN CHỌN WISDOMCLOUD
+      {/* WHY CHOOSE US */}
+      <section style={{ padding: '50px 0', background: '#fff' }}>
+        <div style={si}>
+          <h2 style={{ textAlign: 'center', fontSize: 22, fontWeight: 800, color: '#1e293b', margin: '0 0 28px', textTransform: 'uppercase' }}>
+            {lang === 'en' ? 'WHY CHOOSE WISDOMCLOUD' : 'TẠI SAO NÊN CHỌN WISDOMCLOUD'}
           </h2>
-          <div style={STYLES.whyGrid}>
-            {[
-              { icon: '🏆', title: 'Thị phần lớn nhất Việt Nam', desc: 'Nhà đăng ký tên miền số 1 Việt Nam với hơn 25 năm kinh nghiệm' },
-              { icon: '🌐', title: 'Hỗ trợ nhiều tên miền nhất', desc: 'Hơn 500+ loại tên miền quốc tế và .VN đáp ứng mọi nhu cầu' },
-              { icon: '💬', title: 'Hỗ trợ 24/7/365', desc: 'Đội ngũ kỹ thuật hỗ trợ tận tình mọi lúc, kể cả ngày lễ' },
-            ].map((w, i) => (
-              <div key={i} style={STYLES.whyCard}>
-                <span style={STYLES.whyIcon}>{w.icon}</span>
-                <h3 style={STYLES.whyTitle}>{w.title}</h3>
-                <p style={STYLES.whyDesc}>{w.desc}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+            {whyUs.map((w, i) => (
+              <div key={i} style={{ textAlign: 'center', padding: 28, background: '#f8fafc', borderRadius: 12, border: '1px solid #f1f5f9' }}>
+                <span style={{ fontSize: 40, display: 'block', marginBottom: 12 }}>{w.icon}</span>
+                <h3 style={{ fontSize: 16, fontWeight: 700, margin: '0 0 8px' }}>{w.title}</h3>
+                <p style={{ fontSize: 13, color: '#666', lineHeight: 1.6, margin: 0 }}>{w.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 8 PRINCIPLES */}
-      <section style={STYLES.principles}>
-        <div style={sectionInner}>
-          <h2 style={{ textAlign: 'center', fontSize: 24, fontWeight: 800, margin: '0 0 8px', textTransform: 'uppercase' }}>
-            NGUYÊN TẮC CƠ BẢN
+      {/* EXTRA TLD GRID */}
+      <section style={{ padding: '50px 0', background: '#f8fafc' }}>
+        <div style={si}>
+          <h2 style={{ textAlign: 'center', fontSize: 22, fontWeight: 800, color: '#1e293b', margin: '0 0 28px', textTransform: 'uppercase' }}>
+            {lang === 'en' ? 'MORE DOMAIN EXTENSIONS' : 'THÊM NHIỀU TÊN MIỀN KHÁC'}
           </h2>
-          <p style={{ textAlign: 'center', fontSize: 14, color: '#666', margin: '0 0 4px' }}>
-            Khi đăng ký và sử dụng tên miền
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 14 }}>
+            {extraTlds.map((d, i) => (
+              <div key={i}
+                onMouseEnter={() => setExtHover(i)}
+                onMouseLeave={() => setExtHover(null)}
+                style={{
+                  background: extHover === i ? '#fff' : '#fff',
+                  borderRadius: 10, padding: '16px 12px', textAlign: 'center',
+                  border: extHover === i ? '2px solid #d97706' : '1px solid #e8e8e8',
+                  transition: 'all 0.2s', cursor: 'pointer',
+                }}>
+                <span style={{ fontSize: 24, display: 'block', marginBottom: 4 }}>{d.icon}</span>
+                <span style={{ fontSize: 14, fontWeight: 700, color: '#1e293b', display: 'block' }}>{d.label}</span>
+                <p style={{ fontSize: 11, color: '#777', margin: '3px 0', lineHeight: 1.3 }}>{d.desc}</p>
+                <p style={{ fontSize: 13, fontWeight: 700, color: '#2563eb', margin: '4px 0' }}>{d.price}</p>
+                {d.old && <p style={{ fontSize: 11, color: '#999', textDecoration: 'line-through', margin: 0 }}>{d.old}</p>}
+                <button onClick={() => onDomainSearch(d.label)}
+                  style={{
+                    padding: '5px 14px', border: '1px solid #d97706', borderRadius: 5,
+                    fontSize: 11, fontWeight: 600,
+                    background: extHover === i ? '#d97706' : '#fff',
+                    color: extHover === i ? '#fff' : '#d97706',
+                    cursor: 'pointer', marginTop: 6, transition: 'all 0.2s',
+                  }}>
+                  {lang === 'en' ? 'Check' : 'Kiểm tra'}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRINCIPLES */}
+      <section style={{ padding: '50px 0', background: '#fff' }}>
+        <div style={si}>
+          <h2 style={{ textAlign: 'center', fontSize: 22, fontWeight: 800, color: '#1e293b', margin: '0 0 4px', textTransform: 'uppercase' }}>
+            {lang === 'en' ? 'BASIC PRINCIPLES' : 'NGUYÊN TẮC CƠ BẢN'}
+          </h2>
+          <p style={{ textAlign: 'center', fontSize: 14, color: '#666', margin: '0 0 24px' }}>
+            {lang === 'en' ? 'When registering & using' : 'Khi đăng ký & sử dụng'}
           </p>
-          <div style={STYLES.principlesGrid}>
-            {PRINCIPLES.map((p, i) => (
-              <div key={i} style={STYLES.principleCard}>
-                <span style={STYLES.principleNum}>{i + 1}.</span>
-                <p style={STYLES.principleText}>{p}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PROMOTIONS */}
-      <section style={STYLES.promoSection}>
-        <div style={sectionInner}>
-          <h2 style={{ textAlign: 'center', fontSize: 24, fontWeight: 800, margin: '0 0 28px', textTransform: 'uppercase' }}>
-            Ưu đãi tốt nhất hôm nay
-          </h2>
-          <div style={STYLES.promoGrid}>
-            {PROMOS.map((p, i) => (
-              <div key={i} style={STYLES.promoCard}>
-                <h3 style={STYLES.promoCardTitle}>{p.title}</h3>
-                <p style={STYLES.promoCardDesc}>{p.desc}</p>
-                <a href="#" style={STYLES.promoCardBtn}>Xem chi tiết</a>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}>
+            {principles.map((p, i) => (
+              <div key={i} style={{
+                background: '#fff', borderRadius: 10, padding: 16,
+                border: '1px solid #eee', display: 'flex', gap: 12, alignItems: 'flex-start',
+              }}>
+                <div style={{
+                  width: 32, height: 32, borderRadius: '50%', background: '#eff6ff',
+                  color: '#2563eb', display: 'flex', alignItems: 'center',
+                  justifyContent: 'center', fontSize: 13, fontWeight: 800, flexShrink: 0,
+                }}>{i + 1}</div>
+                <p style={{ fontSize: 13, color: '#555', lineHeight: 1.5, margin: 0 }}>{p}</p>
               </div>
             ))}
           </div>
@@ -422,28 +382,35 @@ export default function DomainRegisterPage({ onNavigate, onDomainSearch }) {
       </section>
 
       {/* FAQ */}
-      <section style={STYLES.faqSection}>
-        <div style={sectionInner}>
-          <h2 style={{ textAlign: 'center', fontSize: 24, fontWeight: 800, margin: '0 0 28px', textTransform: 'uppercase' }}>
-            Câu hỏi thường gặp
+      <section style={{ padding: '50px 0', background: '#f8fafc' }}>
+        <div style={si}>
+          <h2 style={{ textAlign: 'center', fontSize: 22, fontWeight: 800, color: '#1e293b', margin: '0 0 28px', textTransform: 'uppercase' }}>
+            {lang === 'en' ? 'Frequently Asked Questions' : 'Câu hỏi thường gặp'}
           </h2>
-          <div style={STYLES.faqInner}>
-            {FAQS.map((faq, i) => (
-              <div key={i} style={STYLES.faqItem}>
+          <div style={{ maxWidth: 800, margin: '0 auto' }}>
+            {faqs.map((faq, i) => (
+              <div key={i} style={{ borderBottom: '1px solid #e8e8e8' }}>
                 <button
-                  onClick={() => setExpandedFaq(expandedFaq === i ? null : i)}
-                  style={STYLES.faqBtn(expandedFaq === i)}
-                >
-                  <span style={{ fontWeight: 700, minWidth: 24 }}>{i + 1}.</span>
+                  onClick={() => setEf(ef === i ? null : i)}
+                  style={{
+                    width: '100%', padding: '14px 0', border: 'none', background: 'none',
+                    cursor: 'pointer', fontSize: 14, fontWeight: 500,
+                    color: ef === i ? '#2563eb' : '#1e293b',
+                    display: 'flex', alignItems: 'center', gap: 8, textAlign: 'left',
+                  }}>
+                  <span style={{ fontWeight: 700, minWidth: 24, color: '#2563eb' }}>{i + 1}.</span>
                   <span style={{ flex: 1, textAlign: 'left' }}>{faq.q}</span>
                   <span style={{
                     color: '#aaa', fontSize: 11,
-                    transform: expandedFaq === i ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transform: ef === i ? 'rotate(180deg)' : 'rotate(0deg)',
                     transition: 'transform 0.2s',
                   }}>▼</span>
                 </button>
-                <div style={STYLES.faqContent(expandedFaq === i)}>
-                  <p style={STYLES.faqAnswer}>{faq.a}</p>
+                <div style={{
+                  maxHeight: ef === i ? '300px' : '0', opacity: ef === i ? 1 : 0,
+                  overflow: 'hidden', transition: 'all 0.25s ease',
+                }}>
+                  <p style={{ fontSize: 14, color: '#666', lineHeight: 1.7, margin: 0, padding: '0 0 16px' }}>{faq.a}</p>
                 </div>
               </div>
             ))}

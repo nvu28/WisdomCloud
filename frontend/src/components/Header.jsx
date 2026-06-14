@@ -1,127 +1,143 @@
 import React, { useState } from 'react';
 import logo from '../assets/logo.jpg';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from '../i18n';
 
-const MENU_ITEMS = [
+const MENU_CONFIG = [
   {
-    label: 'Tên miền',
+    key: 'domains',
     page: null,
     columns: [
       {
-        title: 'TÊN MIỀN',
+        titleKey: 'header.domainRegister',
         items: [
-          { label: 'Đăng Ký Tên Miền', desc: 'Đừng kinh doanh khi chưa có tên miền', page: 'dang-ky-ten-mien' },
-          { label: 'Bảng Giá Tên Miền', desc: 'Giá & thông tin các loại tên miền', page: 'bang-gia-ten-mien' },
-          { label: 'Chuyển Về', desc: 'Chuyển tên miền từ nơi khác về', page: 'chuyen-ve' },
-          { label: 'Tìm Tên Miền', desc: 'Khám phá thế giới tên miền', page: 'tim-ten-mien' },
-          { label: 'Miền Miễn Phí', desc: 'Phù hợp mọi đối tượng, tiết kiệm chi phí', page: 'mien-mien-phi' },
-          { label: 'Miền Tự Do', desc: 'Tên miền .VN hết hạn có thể đăng ký', page: 'mien-tu-do' },
+          { labelKey: 'header.domainRegister', descKey: 'header.domainRegisterDesc', page: 'dang-ky-ten-mien' },
+          { labelKey: 'header.domainPrice', descKey: 'header.domainPriceDesc', page: 'bang-gia-ten-mien' },
+          { labelKey: 'header.domainTransfer', descKey: 'header.domainTransferDesc', page: 'chuyen-ve' },
+          { labelKey: 'header.domainSearch', descKey: 'header.domainSearchDesc', page: 'tim-ten-mien' },
+          { labelKey: 'header.domainFree', descKey: 'header.domainFreeDesc', page: 'mien-mien-phi' },
+          { labelKey: 'header.domainExpired', descKey: 'header.domainExpiredDesc', page: 'mien-tu-do' },
         ],
       },
       {
-        title: 'DỊCH VỤ',
+        titleKey: 'common.support',
         items: [
-          { label: 'Bảo Mật Tên Miền', desc: 'Bảo vệ an toàn tuyệt đối', page: 'bao-mat-ten-mien' },
-          { label: 'Tiện Ích DNS', desc: 'Công cụ cần thiết và thiết yếu', page: 'tien-ich-dns' },
-          { label: 'Chuyển Nhượng Tên Miền', desc: 'Giao dịch an toàn và nhanh chóng', page: 'chuyen-nhuong-ten-mien' },
+          { labelKey: 'header.domainSecurity', descKey: 'header.domainSecurityDesc', page: 'bao-mat-ten-mien' },
+          { labelKey: 'header.domainDns', descKey: 'header.domainDnsDesc', page: 'tien-ich-dns' },
+          { labelKey: 'header.domainTransferService', descKey: 'header.domainTransferServiceDesc', page: 'chuyen-nhuong-ten-mien' },
         ],
       },
     ],
   },
   {
-    label: 'Web & Hosting',
+    key: 'webHosting',
     page: null,
     columns: [
       {
-        title: 'HOSTING',
+        titleKey: 'categoryNav.hosting.title',
         items: [
-          { label: 'Web Hosting', desc: 'Hosting chuyên nghiệp, hiệu suất vượt trội', page: 'web-hosting' },
-          { label: 'WordPress', desc: 'Thiết kế đặc biệt tối ưu tốc độ', page: 'wordpress' },
-          { label: 'Enterprise Hosting', desc: 'Chuẩn doanh nghiệp, tốc độ cao', page: 'enterprise-hosting' },
-          { label: 'Chuyên Dụng', desc: 'NodeJS, Python, Java...', page: 'chuyen-dung' },
+          { labelKey: 'header.hosting', descKey: 'header.hostingDesc', page: 'web-hosting' },
+          { labelKey: 'header.wordpress', descKey: 'header.wordpressDesc', page: 'wordpress' },
+          { labelKey: 'header.enterpriseHosting', descKey: 'header.enterpriseHostingDesc', page: 'enterprise-hosting' },
+          { labelKey: 'header.dedicatedHosting', descKey: 'header.dedicatedHostingDesc', page: 'chuyen-dung' },
         ],
       },
       {
-        title: 'SERVERs',
+        titleKey: 'header.cloudServer',
         items: [
-          { label: 'Cloud Server', desc: 'Hiệu suất cao dễ dàng mở rộng', page: 'cloud-server' },
-          { label: 'Virtual Private Cloud', desc: 'Hiệu suất cao dễ dàng mở rộng', page: 'vpc' },
-          { label: 'Dedicated Server', desc: 'Phần cứng chính hãng', page: 'dedicated-server' },
-          { label: 'Co-Location', desc: 'Thuê chỗ đặt với chi phí tốt', page: 'co-location' },
+          { labelKey: 'header.cloudServer', descKey: 'header.cloudServerDesc', page: 'cloud-server' },
+          { labelKey: 'header.vpc', descKey: 'header.vpcDesc', page: 'vpc' },
+          { labelKey: 'header.dedicatedServer', descKey: 'header.dedicatedServerDesc', page: 'dedicated-server' },
+          { labelKey: 'header.colocation', descKey: 'header.colocationDesc', page: 'co-location' },
         ],
       },
       {
-        title: 'WEBSITE',
+        titleKey: 'common.viewMore',
         items: [
-          { label: 'Tạo Website Nhanh', desc: 'Có Web trong vài giây', page: 'tao-website-nhanh' },
-          { label: 'Chăm Sóc Website', desc: 'Tận tâm chu đáo', page: 'cham-soc-website' },
+          { labelKey: 'header.quickWebsite', descKey: 'header.quickWebsiteDesc', page: 'tao-website-nhanh' },
+          { labelKey: 'header.websiteCare', descKey: 'header.websiteCareDesc', page: 'cham-soc-website' },
         ],
       },
       {
-        title: 'DỊCH VỤ',
+        titleKey: 'common.wisdomcloud',
         items: [
-          { label: 'CDN', desc: 'Tăng tốc Web', page: 'cdn' },
-          { label: 'Cloud Drive', desc: 'Lưu trữ dữ liệu', page: 'cloud-drive' },
-          { label: 'Backup & Lưu Trữ', desc: 'Giải pháp bảo vệ dữ liệu', page: 'backup-luu-tru' },
+          { labelKey: 'header.cdn', descKey: 'header.cdnDesc', page: 'cdn' },
+          { labelKey: 'header.cloudDrive', descKey: 'header.cloudDriveDesc', page: 'cloud-drive' },
+          { labelKey: 'header.backup', descKey: 'header.backupDesc', page: 'backup-luu-tru' },
         ],
       },
     ],
   },
   {
-    label: 'Email',
+    key: 'email',
     page: null,
     columns: [
       {
-        title: 'EMAIL SERVER',
+        titleKey: 'header.emailServer',
         items: [
-          { label: 'Máy Chủ Email Doanh Nghiệp', desc: 'Đáp ứng nhu cầu phức tạp nhất', page: 'may-chu-email' },
-          { label: 'Google Workspace', desc: 'Email và các ứng dụng làm việc nhóm', page: 'google-workspace' },
-          { label: 'Microsoft 365', desc: 'Email và làm việc nhóm trực tuyến', page: 'microsoft-365' },
-          { label: 'Hybrid Email', desc: 'Tối ưu chi phí đảm bảo chất lượng', page: 'hybrid-email' },
+          { labelKey: 'header.emailServer', descKey: 'header.emailServerDesc', page: 'may-chu-email' },
+          { labelKey: 'header.googleWorkspace', descKey: 'header.googleWorkspaceDesc', page: 'google-workspace' },
+          { labelKey: 'header.microsoft365', descKey: 'header.microsoft365Desc', page: 'microsoft-365' },
+          { labelKey: 'header.hybridEmail', descKey: 'header.hybridEmailDesc', page: 'hybrid-email' },
         ],
       },
       {
-        title: 'DỊCH VỤ',
+        titleKey: 'common.wisdomcloud',
         items: [
-          { label: 'Chữ Ký Email', desc: '', page: 'chu-ky-email' },
-          { label: 'Chữ Ký Số Email', desc: '', page: 'chu-ky-so-email' },
-          { label: 'Quản Trị Email Server', desc: '', page: 'quan-tri-email' },
-          { label: 'Bảo Mật & Bảo Vệ Email', desc: '', page: 'bao-mat-email' },
+          { labelKey: 'header.emailSignature', descKey: 'header.emailSignatureDesc', page: 'chu-ky-email' },
+          { labelKey: 'header.emailDigitalSignature', descKey: 'header.emailDigitalSignatureDesc', page: 'chu-ky-so-email' },
+          { labelKey: 'header.emailAdmin', descKey: 'header.emailAdminDesc', page: 'quan-tri-email' },
+          { labelKey: 'header.emailSecurity', descKey: 'header.emailSecurityDesc', page: 'bao-mat-email' },
         ],
       },
     ],
   },
   {
-    label: 'SSL & Bảo Mật',
+    key: 'sslSecurity',
     page: null,
     columns: [
       {
-        title: 'CHỨNG CHỈ SỐ SSL',
+        titleKey: 'common.wisdomcloud',
         items: [
-          { label: 'Sectigo', desc: 'Tiêu chuẩn cao cấp nhất', page: 'sectigo' },
-          { label: 'Sectigo Comodo', desc: 'Giá tốt từ thương hiệu Sectigo', page: 'sectigo-comodo' },
-          { label: 'Rapid & Geotrust', desc: 'Chứng chỉ bảo mật chất lượng', page: 'rapid-geotrust' },
-          { label: 'Digicert', desc: 'Chứng chỉ bảo mật cao cấp', page: 'digicert' },
-          { label: 'Thawte', desc: 'Một sản phẩm thuộc Symantec', page: 'thawte' },
+          { labelKey: 'header.sectigo', descKey: 'header.sectigoDesc', page: 'sectigo' },
+          { labelKey: 'header.sectigoComodo', descKey: 'header.sectigoComodoDesc', page: 'sectigo-comodo' },
+          { labelKey: 'header.rapidGeotrust', descKey: 'header.rapidGeotrustDesc', page: 'rapid-geotrust' },
+          { labelKey: 'header.digicert', descKey: 'header.digicertDesc', page: 'digicert' },
+          { labelKey: 'header.thawte', descKey: 'header.thawteDesc', page: 'thawte' },
         ],
       },
       {
-        title: 'BẢO MẬT',
+        titleKey: 'common.wisdomcloud',
         items: [
-          { label: 'Bảo Mật Website', desc: 'Tường lửa bảo vệ Web', page: 'bao-mat-website' },
-          { label: 'CloudBric WAF', desc: 'Bảo vệ website hạn chế DDoS', page: 'cloudbric-waf' },
+          { labelKey: 'header.websiteSecurity', descKey: 'header.websiteSecurityDesc', page: 'bao-mat-website' },
+          { labelKey: 'header.cloudbric', descKey: 'header.cloudbricDesc', page: 'cloudbric-waf' },
         ],
       },
     ],
   },
   {
-    label: 'Cloud',
+    key: 'cloud',
     page: 'cloud',
     columns: [],
   },
 ];
 
 export default function Header({ onNavigate, currentPage }) {
+  const { t } = useTranslation();
   const [openMenu, setOpenMenu] = useState(null);
+
+  const MENU_ITEMS = MENU_CONFIG.map(cfg => ({
+    label: t(`header.${cfg.key}`),
+    page: cfg.page,
+    columns: cfg.columns.map(col => ({
+      title: t(col.titleKey),
+      items: col.items.map(item => ({
+        label: t(item.labelKey),
+        desc: t(item.descKey),
+        page: item.page,
+      })),
+    })),
+  }));
 
   const handleToggle = (i, e) => {
     e.preventDefault();
@@ -151,13 +167,14 @@ export default function Header({ onNavigate, currentPage }) {
       <div style={styles.topBar}>
         <div style={styles.topInner}>
           <div style={styles.topLeft}>
-            <span style={styles.topItem}>Hỗ trợ: 1900 1234</span>
+            <span style={styles.topItem}>{t('common.support')}: 1900 1234</span>
             <span style={styles.topDivider}>|</span>
-            <span style={styles.topItem}>Email: support@wisdomcloud.vn</span>
+            <span style={styles.topItem}>{t('common.email')}: support@wisdomcloud.vn</span>
           </div>
           <div style={styles.topRight}>
-            <a href="#" style={styles.topLink}>Đăng nhập</a>
-            <a href="#" style={styles.topLink}>Đăng ký</a>
+            <a href="#" style={styles.topLink}>{t('common.login')}</a>
+            <a href="#" style={styles.topLink}>{t('common.register')}</a>
+            <LanguageSwitcher />
           </div>
         </div>
       </div>
@@ -167,7 +184,7 @@ export default function Header({ onNavigate, currentPage }) {
             <img src={logo} alt="WisdomCloud" style={styles.logoImg} />
             <div>
               <div style={styles.logoName}>WISDOMCLOUD</div>
-              <div style={styles.logoSub}>Nền tảng dịch vụ số toàn diện</div>
+              <div style={styles.logoSub}>{t('common.subtitle')}</div>
             </div>
           </div>
           <nav style={styles.nav}>
@@ -208,7 +225,7 @@ export default function Header({ onNavigate, currentPage }) {
           </nav>
             <a href="#" style={styles.promoBtn}>
               <span style={styles.promoDot}>🔥</span>
-              Săn ngay ưu đãi
+              {t('common.promoFlash')}
             </a>
         </div>
       </div>
@@ -246,7 +263,7 @@ const styles = {
     justifyContent: 'space-between',
   },
   topLeft: { display: 'flex', alignItems: 'center', gap: 8 },
-  topRight: { display: 'flex', gap: 16 },
+  topRight: { display: 'flex', gap: 16, alignItems: 'center' },
   topItem: { color: '#94a3b8' },
   topDivider: { color: '#475569' },
   topLink: { color: '#94a3b8', textDecoration: 'none', fontWeight: 500 },

@@ -755,5 +755,121 @@ const CATEGORY_FAQS = {
   ],
 };
 
+const SUB_PAGES_EN = JSON.parse(JSON.stringify(SUB_PAGES));
+
+const EN_TRANSLATIONS = {
+  'dang-ky-ten-mien': { title: 'Register Domain', desc: 'Register .com, .vn, .xyz, .cloud domains — protect your brand today.', hero: { title: 'Best domain prices', subtitle: 'Get your domain for your business today', placeholder: 'Enter your desired domain...' }, features: ['International domain registration (.com, .net, .org, .xyz, .cloud, .asia)', '.VN domain registration (.vn, .com.vn, .edu.vn, .gov.vn)', 'WHOIS protection, auto-renewal, fast DNS propagation', 'Domain management via intuitive, easy-to-use interface', 'Support transferring domains from other providers'], price: 'From only 10,000₫ / year', promotions: [{ title: 'SAVE UP TO 450K', desc: '.VN only 250K | .COM.VN only 150K', link: '#' }, { title: '.XYZ SUPER CHEAP', desc: 'Only 10,000₫ for the first year', link: '#' }, { title: 'COMBO SAVINGS', desc: 'Domain + Hosting from only 50K/month', link: '#' }, { title: 'FREE WHOIS', desc: 'Lifetime personal information protection', link: '#' }], faqs: [{ q: 'What is a domain?', a: 'A domain is the name of a website on the Internet, helping users easily access instead of having to enter a numeric IP address.' }, { q: 'Where to register domains reliably?', a: 'WisdomCloud is an ICANN and VNNIC accredited domain registrar, ensuring great prices and 24/7 support.' }, { q: 'What is the domain registration process?', a: 'Simply check if your domain is available, fill in your information and make payment. The domain will be activated within 24 hours.' }, { q: 'Can I transfer my domain from another provider to WisdomCloud?', a: 'Yes, we support domain transfers from all providers. Fast process, keeping your existing validity period.' }] },
+  'bang-gia-ten-mien': { title: 'Domain Pricing', desc: 'Check the latest domain pricing. Great prices, many offers.', content: { columns: ['Domain', 'First Year', 'Renewal', 'Transfer', 'WHOIS Protection'] }, rows: [['.com', '25,000₫', '250,000₫', 'Free', '25,000₫'], ['.vn', '250,000₫', '350,000₫', 'Free', '25,000₫'], ['.net', '25,000₫', '280,000₫', 'Free', '25,000₫'], ['.org', '245,000₫', '280,000₫', 'Free', '25,000₫'], ['.xyz', '10,000₫', '140,000₫', 'Free', '25,000₫'], ['.cloud', '45,000₫', '200,000₫', 'Free', '25,000₫'], ['.asia', '36,000₫', '180,000₫', 'Free', '25,000₫'], ['.com.vn', '250,000₫', '250,000₫', '—', '—']] },
+  'chuyen-ve': { title: 'Transfer Domain', desc: 'Transfer your domain to WisdomCloud easily and quickly.', features: ['Free domain transfer service', 'Keep your remaining validity period', 'Free WHOIS privacy protection', 'Fast DNS propagation within 24 hours', '24/7 dedicated support during transfer'], price: 'Free' },
+  'tim-ten-mien': { title: 'Find Domain', desc: 'Explore and discover the perfect domain for your brand.', features: ['Smart domain search with instant suggestions', 'Search in multiple TLDs simultaneously', 'Check domain availability in real time', 'Suggest similar alternative domains', 'Domain price comparison across all TLDs'] },
+  'mien-mien-phi': { title: 'Free Domain', desc: 'Get a free domain when registering hosting services.', features: ['Free domain with hosting package', 'Various TLD options', 'Free WHOIS privacy protection', 'Easy DNS management', 'Auto-renewal to avoid expiration'], price: 'Free with hosting' },
+  'mien-tu-do': { title: 'Expired Domains', desc: 'Register recently expired .VN domains before others.', features: ['Recently expired .VN domains', 'First come, first served registration', 'No priority rights, transparent registration', 'Check availability before payment', 'Quick activation process'], price: 'From 200,000₫ / year' },
+  'bao-mat-ten-mien': { title: 'Domain Security', desc: 'Protect your domain with advanced security features.', features: ['WHOIS privacy protection', 'Domain lock against unauthorized transfer', 'Two-factor authentication (2FA)', 'Registry lock support', 'Real-time security alerts'], price: 'From 25,000₫ / year' },
+  'tien-ich-dns': { title: 'DNS Tools', desc: 'Essential DNS management tools for your domains.', features: ['DNS record management (A, CNAME, MX, TXT, NS)', 'DNS forwarding and redirect', 'DNSSEC security extension', 'Quick DNS propagation check', 'Bulk DNS record update'], price: 'Free' },
+  'chuyen-nhuong-ten-mien': { title: 'Domain Transfer Service', desc: 'Safe and transparent domain transfer between parties.', features: ['Secure escrow service', 'Ensure safe transfer from seller to buyer', 'Transparent transaction process', 'Professional contract support', '24/7 transaction monitoring'], price: 'Contact for pricing' },
+  'web-hosting': { title: 'Web Hosting', desc: 'Professional hosting, high speed with licensed Litespeed, easy cPanel.', features: ['Multi-platform Linux/Windows support', 'Optimized speed with licensed Litespeed + Redis Cache', 'Intuitive cPanel hosting management, easy to use', '99.9% uptime guarantee, DDoS protected', 'SSL, WordPress, PHP, NodeJS, Python support'], price: 'From only 33,000₫ / month', content: { plans: [{ name: 'Starter', price: '33,000₫', features: ['1GB Storage', '10GB Bandwidth', '5 Domains', '1 Database', 'Free SSL'], popular: false }, { name: 'Business', price: '99,000₫', features: ['5GB Storage', '50GB Bandwidth', '20 Domains', '10 Databases', 'Free SSL', 'Daily Backup'], popular: true }, { name: 'Enterprise', price: '199,000₫', features: ['20GB Storage', '200GB Bandwidth', 'Unlimited Domains', 'Unlimited Databases', 'Free SSL', 'Daily Backup', 'Priority Support'], popular: false }] } },
+  'wordpress': { title: 'WordPress Hosting', desc: 'WordPress hosting specially optimized for speed and performance.', features: ['Pre-installed WordPress with one click', 'Optimized Litespeed cache for WordPress', 'Free WordPress themes and plugins', 'Automatic WordPress updates', 'WordPress security scanning'], price: 'From 49,000₫ / month' },
+  'enterprise-hosting': { title: 'Enterprise Hosting', desc: 'Enterprise-grade hosting with dedicated resources, high performance.', features: ['Dedicated CPU and RAM resources', 'High-speed NVMe SSD storage', 'Advanced DDoS protection', 'SLA commitment 99.99% uptime', '24/7 dedicated technical support'], price: 'From 499,000₫ / month' },
+  'chuyen-dung': { title: 'Dedicated Hosting', desc: 'Dedicated hosting environment for NodeJS, Python, Java applications.', features: ['NodeJS, Python, Java, Ruby support', 'Custom runtime configuration', 'SSH access for full control', 'Composer, npm, pip pre-installed', 'Git deployment support'], price: 'From 149,000₫ / month' },
+  'cloud-server': { title: 'Cloud Server', desc: 'Intel Xeon cloud servers, NVMe SSD, Unlimited bandwidth.', features: ['New generation Intel Xeon, NVMe SSD storage', 'Unlimited bandwidth, free IPv6', 'Flexible auto-scaling resources', 'Proactive setup via management interface', 'Protected by CloudBric WAF, DDoS protection'], price: 'From only 175,000₫ / month', content: { plans: [{ name: 'Cloud 1', price: '175,000₫', features: ['1 vCPU', '2GB RAM', '30GB NVMe', 'Unlimited Bandwidth', 'Free IPv6'], popular: true }, { name: 'Cloud 2', price: '350,000₫', features: ['2 vCPU', '4GB RAM', '60GB NVMe', 'Unlimited Bandwidth', 'Free IPv6'], popular: false }, { name: 'Cloud 4', price: '700,000₫', features: ['4 vCPU', '8GB RAM', '120GB NVMe', 'Unlimited Bandwidth', 'Free IPv6', 'CloudBric WAF'], popular: false }] } },
+  'vpc': { title: 'Virtual Private Cloud', desc: 'Isolated virtual network with high security for your cloud infrastructure.', features: ['Isolated virtual network environment', 'Private IP address range', 'VPN tunnel connection', 'Subnet and routing management', 'Network security group/firewall'], price: 'From 350,000₫ / month' },
+  'dedicated-server': { title: 'Dedicated Server', desc: 'Genuine hardware dedicated servers with high performance.', features: ['Genuine Intel Xeon processors', 'ECC RAM for server stability', 'Enterprise NVMe/SSD storage', 'IPMI remote management', '99.99% uptime SLA'], price: 'From 1,500,000₫ / month' },
+  'co-location': { title: 'Co-Location', desc: 'Server colocation services with optimal costs and professional data center.', features: ['Professional data center in HCMC', '24/7 security and environmental monitoring', 'Unlimited bandwidth', 'Remote hands support', 'Power backup with generator'], price: 'From 500,000₫ / month' },
+  'tao-website-nhanh': { title: 'Quick Website Builder', desc: 'Create a professional website in seconds with our website builder.', features: ['Drag & drop website builder', '100+ professional templates', 'Mobile responsive design', 'SEO optimization built-in', 'E-commerce integration'], price: 'From 99,000₫ / month' },
+  'cham-soc-website': { title: 'Website Care', desc: 'Professional website maintenance and care services.', features: ['Regular security updates', 'Content updates', 'Performance optimization', 'Database optimization', 'Regular backup reports'], price: 'From 199,000₫ / month' },
+  'cdn': { title: 'CDN — Speed Up Your Website', desc: 'Global CDN to speed up your website and improve user experience.', features: ['Global CDN with multiple PoPs', 'Automatic content caching', 'DDoS protection', 'SSL/TLS acceleration', 'Real-time analytics'], price: 'From 50,000₫ / month' },
+  'cloud-drive': { title: 'Cloud Drive', desc: 'Secure cloud storage for your data.', features: ['Enterprise data encryption', 'Multi-platform file sync', 'File sharing and permissions', 'Version history management', 'Integration with existing tools'], price: 'From 20,000₫ / month' },
+  'backup-luu-tru': { title: 'Backup & Storage', desc: 'Comprehensive backup and data storage solutions.', features: ['Automated scheduled backups', 'Multiple backup locations', 'Quick data restore', '256-bit encryption', 'Compliance-ready storage'], price: 'From 15,000₫ / month' },
+  'may-chu-email': { title: 'Business Email Server', desc: 'Professional business email, high security, AI anti-spam.', features: ['Dedicated email server, superior security', 'AI anti-spam, anti-virus, end-to-end encryption', 'Large storage, unlimited send/receive', 'Compatible with Outlook, Webmail, Mobile', 'Google Workspace, Microsoft 365 support'], price: 'From only 24,000₫ / month' },
+  'google-workspace': { title: 'Google Workspace', desc: 'Google Workspace: professional email, cloud storage, and team collaboration.', features: ['Professional email with Gmail interface', '30GB cloud storage per user', 'Google Docs, Sheets, Slides', 'Google Meet video conferencing', 'Admin panel and security management'], price: 'From 50,000₫ / user / month' },
+  'microsoft-365': { title: 'Microsoft 365', desc: 'Microsoft 365: Office apps, email, and cloud storage in one solution.', features: ['Full Office apps (Word, Excel, PowerPoint)', 'Professional email with Exchange', '1TB OneDrive cloud storage', 'Microsoft Teams collaboration', 'Enterprise-level security'], price: 'From 70,000₫ / user / month' },
+  'hybrid-email': { title: 'Hybrid Email', desc: 'Hybrid email solution: optimal cost with guaranteed quality.', features: ['Save up to 80% compared to Google/Microsoft', 'Standard email features', 'Easy integration with existing system', 'Gradual migration support', 'Professional technical support'], price: 'From 10,000₫ / month' },
+  'chu-ky-email': { title: 'Email Signature', desc: 'Create professional email signatures for your entire organization.', features: ['Professional email signature templates', 'Centralized signature management', 'Automatic marketing banner insertion', 'Compatible with all email platforms', 'Tracking and analytics'], price: 'From 5,000₫ / user / month' },
+  'chu-ky-so-email': { title: 'Digital Email Signature', desc: 'Digital signatures for email, ensuring authenticity and integrity.', features: ['Digital certificate for email signing', 'Complies with e-transaction law', 'Compatible with Outlook, Webmail', 'Centralized management', 'Tamper-proof verification'], price: 'From 15,000₫ / user / month' },
+  'quan-tri-email': { title: 'Email Server Administration', desc: 'Professional email server administration services.', features: ['24/7 email server monitoring', 'Spam and virus filter management', 'Backup and disaster recovery', 'Performance optimization', 'Security audit and reporting'], price: 'From 200,000₫ / month' },
+  'bao-mat-email': { title: 'Email Security & Protection', desc: 'Protect your email system with advanced security solutions.', features: ['AI anti-spam, anti-phishing', 'End-to-end email encryption', 'DMARC, DKIM, SPF configuration', 'Email archiving and compliance', 'Real-time security alerts'], price: 'From 30,000₫ / month' },
+  'sectigo': { title: 'Sectigo SSL', desc: 'Sectigo premium SSL certificates from the world\'s leading CA.', features: ['Sectigo, a leading global CA', 'Support DV, OV, EV certificates', '256-bit encryption', 'Free unlimited server license', '30-day money-back guarantee'], price: 'From 800,000₫ / year' },
+  'sectigo-comodo': { title: 'Sectigo Comodo SSL', desc: 'Affordable SSL certificates from the trusted Sectigo Comodo brand.', features: ['Sectigo Comodo brand — great value', 'Support DV, OV certificates', '256-bit encryption', 'Free unlimited server license', 'Trusted by millions of websites'], price: 'From 250,000₫ / year' },
+  'rapid-geotrust': { title: 'Rapid & Geotrust SSL', desc: 'Quality SSL certificates from RapidSSL and GeoTrust.', features: ['RapidSSL — fast issuance within minutes', 'GeoTrust — trusted by enterprises', '256-bit encryption', 'Free unlimited server license', 'Widely compatible with all browsers'], price: 'From 350,000₫ / year' },
+  'digicert': { title: 'Digicert SSL', desc: 'Premium Digicert SSL certificates, the highest security standard.', features: ['Digicert — premium standard', 'Support OV, EV certificates', '256-bit encryption', 'Free unlimited server license', 'Green address bar (EV)'], price: 'From 3,000,000₫ / year' },
+  'thawte': { title: 'Thawte SSL', desc: 'Thawte SSL certificates, a Symantec (now DigiCert) product.', features: ['Thawte — renowned brand since 1995', 'Support DV, OV, EV certificates', '256-bit encryption', 'Free unlimited server license', 'Widely trusted by browsers'], price: 'From 600,000₫ / year' },
+  'bao-mat-website': { title: 'Website Security', desc: 'Protect your website with advanced security solutions.', features: ['Website firewall (WAF)', 'Malware scanning and removal', 'DDoS attack protection', 'SQL injection prevention, XSS', 'Security report and alerts'], price: 'From 100,000₫ / month' },
+  'cloudbric-waf': { title: 'CloudBric WAF', desc: 'CloudBric WAF — intelligent web application firewall.', features: ['AI-powered WAF technology', 'Real-time threat blocking', 'OWASP Top 10 protection', 'DDoS protection', 'Dashboard and analytics'], price: 'From 200,000₫ / month' },
+};
+
+for (const key of Object.keys(EN_TRANSLATIONS)) {
+  const en = EN_TRANSLATIONS[key];
+  const vi = SUB_PAGES_EN[key];
+  if (!vi) continue;
+  vi.title = en.title || vi.title;
+  vi.desc = en.desc || vi.desc;
+  if (en.features) vi.features = en.features;
+  if (en.price) vi.price = en.price;
+  if (en.promotions) vi.promotions = en.promotions;
+  if (en.faqs) vi.faqs = en.faqs;
+  if (en.hero) {
+    if (en.hero.title) vi.hero.title = en.hero.title;
+    if (en.hero.subtitle) vi.hero.subtitle = en.hero.subtitle;
+    if (en.hero.placeholder) vi.hero.placeholder = en.hero.placeholder;
+  }
+  if (en.content) {
+    if (en.content.columns) vi.content.columns = en.content.columns;
+    if (en.content.plans) vi.content.plans = en.content.plans;
+  }
+}
+
+const CATEGORY_NAV_EN = JSON.parse(JSON.stringify(CATEGORY_NAV));
+Object.assign(CATEGORY_NAV_EN, {
+  domain: { title: 'DOMAINS', items: CATEGORY_NAV.domain.items.map((item, i) => ({ ...item, label: EN_TRANSLATIONS[item.page]?.title || item.label })) },
+  hosting: { title: 'WEB & HOSTING', items: CATEGORY_NAV.hosting.items.map((item, i) => ({ ...item, label: EN_TRANSLATIONS[item.page]?.title || item.label })) },
+  email: { title: 'EMAIL', items: CATEGORY_NAV.email.items.map((item, i) => ({ ...item, label: EN_TRANSLATIONS[item.page]?.title || item.label })) },
+  ssl: { title: 'SSL & SECURITY', items: CATEGORY_NAV.ssl.items.map((item, i) => ({ ...item, label: EN_TRANSLATIONS[item.page]?.title || item.label })) },
+});
+
+const WHY_CHOOSE_EN = [
+  { icon: '🏆', title: 'Leading Trust', desc: 'ICANN and VNNIC accredited domain registrar' },
+  { icon: '🛡️', title: 'Absolute Security', desc: 'Committed to customer information and data security' },
+  { icon: '💬', title: '24/7 Support', desc: 'Dedicated technical team supporting anytime, anywhere' },
+  { icon: '⚡', title: 'High Speed', desc: 'Modern technology infrastructure, superior speed' },
+];
+
+const CATEGORY_FAQS_EN = {
+  domain: [
+    { q: 'What is a domain?', a: 'A domain is the name of a website on the Internet, helping users easily access instead of having to enter a numeric IP address.' },
+    { q: 'How to protect my domain?', a: 'You can enable WHOIS privacy, lock the domain against unauthorized transfer, and enable 2-factor authentication.' },
+    { q: 'How long does domain activation take?', a: 'International domains activate within 24h, .VN domains activate within 48h after verification notice from VNNIC.' },
+    { q: 'Can I get a refund if I do not use it?', a: 'Domain registration fees are non-refundable after activation, according to ICANN and VNNIC regulations.' },
+  ],
+  hosting: [
+    { q: 'What is Web Hosting?', a: 'Web Hosting is a service that stores your website on a server, allowing your website to be accessible from the Internet 24/7.' },
+    { q: 'Can I upgrade my Hosting plan?', a: 'Yes, you can upgrade at any time. The difference will be prorated based on the remaining time.' },
+    { q: 'Does Hosting support SSL?', a: 'Yes, all hosting plans include a free SSL certificate, keeping your website safe and improving SEO rankings.' },
+  ],
+  email: [
+    { q: 'What is business email?', a: 'Business email is an email system using your company\'s own domain (e.g., info@yourcompany.com), professional and reliable.' },
+    { q: 'Can I use Outlook to send and receive emails?', a: 'Yes, our email system is fully compatible with Outlook, Thunderbird, and other popular email applications.' },
+  ],
+  ssl: [
+    { q: 'What is SSL? Why do I need it?', a: 'SSL is a security certificate that encrypts data between browser and website, protecting user information and building trust.' },
+    { q: 'Difference between DV, OV, EV SSL?', a: 'DV validates domain (minutes), OV validates organization (days), EV is extended validation (green address bar).' },
+  ],
+};
+
+export function getSubPages(lang) {
+  return lang === 'en' ? SUB_PAGES_EN : SUB_PAGES;
+}
+
+export function getCategoryNav(lang) {
+  return lang === 'en' ? CATEGORY_NAV_EN : CATEGORY_NAV;
+}
+
+export function getWhyChoose(lang) {
+  return lang === 'en' ? WHY_CHOOSE_EN : WHY_CHOOSE;
+}
+
+export function getCategoryFaqs(lang) {
+  return lang === 'en' ? CATEGORY_FAQS_EN : CATEGORY_FAQS;
+}
+
 export { SUB_PAGES, CATEGORY_NAV, WHY_CHOOSE, CATEGORY_FAQS };
 export default SUB_PAGES;

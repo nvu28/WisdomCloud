@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
-import { CATEGORY_NAV, SUB_PAGES } from '../data/subPages';
+import { getCategoryNav, getSubPages } from '../data/subPages';
 
 const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
 
 const ICONS = ['🌟', '💼', '🏢'];
 
-export default function HostingPage({ pageKey, onNavigate }) {
-  const p = SUB_PAGES[pageKey];
-  const nav = CATEGORY_NAV['hosting'];
+const WHY_DATA = [
+  { icon: '🏆', title: 'Đối tác tin cậy', desc: 'Hơn 25 năm dẫn đầu thị trường hosting Việt Nam' },
+  { icon: '🛡️', title: 'Bảo mật đa lớp', desc: 'Imunify360, WAF, DDoS protection, daily backup' },
+  { icon: '⚡', title: 'Tốc độ vượt trội', desc: 'Litespeed Enterprise, Redis Cache, SSD NVMe' },
+  { icon: '💬', title: 'Hỗ trợ 24/7/365', desc: 'Đội ngũ kỹ thuật chuyên gia luôn sẵn sàng' },
+];
+
+const WHY_DATA_EN = [
+  { icon: '🏆', title: 'Trusted Partner', desc: '25+ years leading Vietnam hosting market' },
+  { icon: '🛡️', title: 'Multi-layer Security', desc: 'Imunify360, WAF, DDoS protection, daily backup' },
+  { icon: '⚡', title: 'Superior Speed', desc: 'Litespeed Enterprise, Redis Cache, SSD NVMe' },
+  { icon: '💬', title: '24/7/365 Support', desc: 'Expert technical team always ready' },
+];
+
+export default function HostingPage({ pageKey, onNavigate, lang }) {
+  const p = getSubPages(lang)[pageKey];
+  const nav = getCategoryNav(lang)['hosting'];
   const [expandedFaq, setExpandedFaq] = useState(null);
 
   const plans = p.content?.plans || [];
@@ -38,7 +52,7 @@ export default function HostingPage({ pageKey, onNavigate }) {
         <div style={sectionInner}>
           <div style={styles.heroInner}>
             <span style={{ fontSize: 48, marginBottom: 12, display: 'block' }}>{p.icon}</span>
-            <div style={styles.heroBadge}>DỊCH VỤ</div>
+            <div style={styles.heroBadge}>{lang === 'en' ? 'SERVICE' : 'DỊCH VỤ'}</div>
             <h1 style={styles.heroTitle}>{p.title}</h1>
             <p style={styles.heroDesc}>{p.desc}</p>
             {p.price && <div style={{ ...styles.heroPrice, color: p.color }}>{p.price}</div>}
@@ -50,8 +64,8 @@ export default function HostingPage({ pageKey, onNavigate }) {
       {plans.length > 0 && (
         <section style={styles.pricingSection}>
           <div style={sectionInner}>
-            <h2 style={styles.sectionTitle}>BẢNG GIÁ DỊCH VỤ</h2>
-            <p style={styles.sectionSub}>Chọn gói phù hợp với nhu cầu của bạn</p>
+            <h2 style={styles.sectionTitle}>{lang === 'en' ? 'PRICING' : 'BẢNG GIÁ DỊCH VỤ'}</h2>
+            <p style={styles.sectionSub}>{lang === 'en' ? 'Choose a plan that suits your needs' : 'Chọn gói phù hợp với nhu cầu của bạn'}</p>
             <div style={styles.plansGrid}>
               {plans.map((pl, i) => (
                 <div key={i} style={{
@@ -59,7 +73,7 @@ export default function HostingPage({ pageKey, onNavigate }) {
                   ...(pl.popular ? styles.planCardPopular : {}),
                   borderTopColor: pl.popular ? p.color : '#e2e8f0',
                 }}>
-                  {pl.popular && <div style={{ ...styles.planBadge, background: p.color }}>PHỔ BIẾN</div>}
+                  {pl.popular && <div style={{ ...styles.planBadge, background: p.color }}>{lang === 'en' ? 'POPULAR' : 'PHỔ BIẾN'}</div>}
                   <span style={{ fontSize: 36 }}>{ICONS[i] || '🚀'}</span>
                   <h3 style={styles.planName}>{pl.name}</h3>
                   <div style={{ ...styles.planPrice, color: p.color }}>
@@ -76,7 +90,7 @@ export default function HostingPage({ pageKey, onNavigate }) {
                       </li>
                     ))}
                   </ul>
-                  <a href="#" style={{ ...styles.planCta, background: p.color }}>Đăng ký ngay</a>
+                  <a href="#" style={{ ...styles.planCta, background: p.color }}>{lang === 'en' ? 'Register Now' : 'Đăng ký ngay'}</a>
                 </div>
               ))}
             </div>
@@ -88,7 +102,7 @@ export default function HostingPage({ pageKey, onNavigate }) {
       {p.features && (
         <section style={styles.featureSection}>
           <div style={sectionInner}>
-            <h2 style={styles.sectionTitle}>TÍNH NĂNG NỔI BẬT</h2>
+            <h2 style={styles.sectionTitle}>{lang === 'en' ? 'HIGHLIGHTS' : 'TÍNH NĂNG NỔI BẬT'}</h2>
             <div style={styles.featureGrid}>
               {p.features.map((f, i) => (
                 <div key={i} style={styles.featureCard}>
@@ -111,14 +125,9 @@ export default function HostingPage({ pageKey, onNavigate }) {
       {/* WHY CHOOSE US */}
       <section style={{ ...styles.featureSection, background: '#f8fafc' }}>
         <div style={sectionInner}>
-          <h2 style={styles.sectionTitle}>VÌ SAO CHỌN WISDOMCLOUD</h2>
+          <h2 style={styles.sectionTitle}>{lang === 'en' ? 'WHY CHOOSE WISDOMCLOUD' : 'VÌ SAO CHỌN WISDOMCLOUD'}</h2>
           <div style={styles.whyGrid}>
-            {[
-              { icon: '🏆', title: 'Đối tác tin cậy', desc: 'Hơn 25 năm dẫn đầu thị trường hosting Việt Nam' },
-              { icon: '🛡️', title: 'Bảo mật đa lớp', desc: 'Imunify360, WAF, DDoS protection, daily backup' },
-              { icon: '⚡', title: 'Tốc độ vượt trội', desc: 'Litespeed Enterprise, Redis Cache, SSD NVMe' },
-              { icon: '💬', title: 'Hỗ trợ 24/7/365', desc: 'Đội ngũ kỹ thuật chuyên gia luôn sẵn sàng' },
-            ].map((w, i) => (
+            {(lang === 'en' ? WHY_DATA_EN : WHY_DATA).map((w, i) => (
               <div key={i} style={styles.whyCard}>
                 <span style={{ fontSize: 36, display: 'block', marginBottom: 10 }}>{w.icon}</span>
                 <h4 style={{ fontSize: 15, fontWeight: 700, margin: '0 0 6px', color: '#1e293b' }}>{w.title}</h4>
@@ -132,12 +141,12 @@ export default function HostingPage({ pageKey, onNavigate }) {
       {/* FAQ */}
       <section style={{ padding: '50px 0', background: '#fff' }}>
         <div style={sectionInner}>
-          <h2 style={styles.sectionTitle}>Câu hỏi thường gặp</h2>
+          <h2 style={styles.sectionTitle}>{lang === 'en' ? 'FAQ' : 'Câu hỏi thường gặp'}</h2>
           <div style={{ maxWidth: 800, margin: '0 auto' }}>
             {[
-              { q: `${p.title} là gì?`, a: `${p.title} là dịch vụ ${p.desc?.toLowerCase() || 'chuyên nghiệp dành cho doanh nghiệp'}.` },
-              { q: 'Tôi có thể nâng cấp gói dịch vụ không?', a: 'Có, bạn có thể nâng cấp bất kỳ lúc nào. Phần chênh lệch được tính theo tỷ lệ thời gian còn lại.' },
-              { q: 'Có hỗ trợ kỹ thuật 24/7 không?', a: 'Có, đội ngũ kỹ thuật của chúng tôi hỗ trợ 24/7/365 qua hotline, email và chat trực tuyến.' },
+              { q: lang === 'en' ? `What is ${p.title}?` : `${p.title} là gì?`, a: lang === 'en' ? `${p.title} is a ${p.desc?.toLowerCase() || 'professional service for businesses'}.` : `${p.title} là dịch vụ ${p.desc?.toLowerCase() || 'chuyên nghiệp dành cho doanh nghiệp'}.` },
+              { q: lang === 'en' ? 'Can I upgrade my service plan?' : 'Tôi có thể nâng cấp gói dịch vụ không?', a: lang === 'en' ? 'Yes, you can upgrade at any time. The difference is prorated based on remaining time.' : 'Có, bạn có thể nâng cấp bất kỳ lúc nào. Phần chênh lệch được tính theo tỷ lệ thời gian còn lại.' },
+              { q: lang === 'en' ? 'Is 24/7 technical support available?' : 'Có hỗ trợ kỹ thuật 24/7 không?', a: lang === 'en' ? 'Yes, our technical team supports 24/7/365 via hotline, email and live chat.' : 'Có, đội ngũ kỹ thuật của chúng tôi hỗ trợ 24/7/365 qua hotline, email và chat trực tuyến.' },
             ].map((faq, i) => (
               <div key={i} style={{ borderBottom: '1px solid #e8e8e8' }}>
                 <button

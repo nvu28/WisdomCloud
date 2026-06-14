@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CATEGORY_NAV, SUB_PAGES } from '../data/subPages';
+import { getCategoryNav, getSubPages } from '../data/subPages';
 
 const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
 
@@ -18,6 +18,21 @@ const COMPARISON_FEATURES = [
   { label: 'Quản trị phân quyền', values: ['', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓'] },
 ];
 
+const COMPARISON_FEATURES_EN = [
+  { label: 'Storage', values: ['3GB', '10GB', '20GB', '50GB', '100GB', '200GB', '300GB', '500GB', '750GB', '1TB'] },
+  { label: 'Email Accounts', values: ['5', '10', '20', '50', '100', '200', '300', '500', '750', 'Unlimited'] },
+  { label: 'Email Forwarder', values: ['5', '10', '20', 'Unlimited', 'Unlimited', 'Unlimited', 'Unlimited', 'Unlimited', 'Unlimited', 'Unlimited'] },
+  { label: 'Mail List', values: ['1', '2', '5', '10', '20', '50', '100', '200', '300', '400'] },
+  { label: 'Auto Responder', values: ['✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓'] },
+  { label: 'Webmail Pro', values: ['✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓'] },
+  { label: 'AI Anti-Spam', values: ['✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓'] },
+  { label: 'SSL/TLS Encryption', values: ['✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓'] },
+  { label: 'SPF/DKIM/DMARC', values: ['✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓'] },
+  { label: 'Hybrid Email', values: ['✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓'] },
+  { label: 'Periodic Backup', values: ['', '', '', '✓', '✓', '✓', '✓', '✓', '✓', '✓'] },
+  { label: 'RBAC Management', values: ['', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓', '✓'] },
+];
+
 const ADDONS = [
   { name: 'Add On Email 247', price: '36.000₫/tháng' },
   { name: 'Quản Trị Email Server (50 User)', price: '500.000₫/tháng' },
@@ -26,10 +41,20 @@ const ADDONS = [
   { name: 'Bảo Mật Email (SSL)', price: '290.000₫/12 tháng' },
 ];
 
-export default function EmailPage({ pageKey, onNavigate }) {
-  const p = SUB_PAGES[pageKey];
-  const nav = CATEGORY_NAV['email'];
+const ADDONS_EN = [
+  { name: 'Add On Email 247', price: '36.000₫/tháng' },
+  { name: 'Email Server Administration (50 Users)', price: '500.000₫/tháng' },
+  { name: 'Hybrid Email Configuration', price: '1.000.000₫ (1 lần)' },
+  { name: 'Email Data Backup', price: '156.000₫/12 tháng' },
+  { name: 'Email Security (SSL)', price: '290.000₫/12 tháng' },
+];
+
+export default function EmailPage({ pageKey, onNavigate, lang }) {
+  const p = getSubPages(lang)[pageKey];
+  const nav = getCategoryNav(lang)['email'];
   const [expandedFaq, setExpandedFaq] = useState(null);
+  const comparisonData = lang === 'en' ? COMPARISON_FEATURES_EN : COMPARISON_FEATURES;
+  const addonData = lang === 'en' ? ADDONS_EN : ADDONS;
 
   return (
     <div>
@@ -37,7 +62,7 @@ export default function EmailPage({ pageKey, onNavigate }) {
       <nav style={styles.subNav}>
         <div style={sectionInner}>
           <div style={styles.subNavInner}>
-            <span style={styles.subNavTitle}>EMAIL</span>
+            <span style={styles.subNavTitle}>{lang === 'en' ? 'EMAIL' : 'EMAIL'}</span>
             {nav.items.map((item, i) => (
               <a
                 key={i}
@@ -57,12 +82,15 @@ export default function EmailPage({ pageKey, onNavigate }) {
         <div style={sectionInner}>
           <div style={styles.heroInner}>
             <span style={{ fontSize: 48, marginBottom: 12, display: 'block' }}>{p.icon}</span>
-            <div style={styles.heroBadge}>DỊCH VỤ</div>
+            <div style={styles.heroBadge}>{lang === 'en' ? 'SERVICE' : 'DỊCH VỤ'}</div>
             <h1 style={styles.heroTitle}>{p.title}</h1>
             <p style={styles.heroDesc}>{p.desc}</p>
             {p.price && <div style={{ ...styles.heroPrice, color: p.color }}>{p.price}</div>}
             <div style={styles.heroBullets}>
-              {['Hệ thống Email trên nền Linux siêu tốc độ', 'An toàn bảo mật vượt trội', 'Đáp ứng các yêu cầu phức tạp nhất'].map((b, i) => (
+              {(lang === 'en'
+  ? ['Lightning-fast Linux-based email system', 'Superior security and protection', 'Handles the most complex requirements']
+  : ['Hệ thống Email trên nền Linux siêu tốc độ', 'An toàn bảo mật vượt trội', 'Đáp ứng các yêu cầu phức tạp nhất']
+).map((b, i) => (
                 <div key={i} style={styles.heroBullet}>
                   <span style={{ color: p.color, marginRight: 8 }}>✓</span> {b}
                 </div>
@@ -76,7 +104,7 @@ export default function EmailPage({ pageKey, onNavigate }) {
       {p.features && (
         <section style={styles.featureSection}>
           <div style={sectionInner}>
-            <h2 style={styles.sectionTitle}>TÍNH NĂNG DỊCH VỤ</h2>
+            <h2 style={styles.sectionTitle}>{lang === 'en' ? 'FEATURES' : 'TÍNH NĂNG DỊCH VỤ'}</h2>
             <div style={styles.featureGrid}>
               {p.features.map((f, i) => (
                 <div key={i} style={styles.featureCard}>
@@ -99,19 +127,19 @@ export default function EmailPage({ pageKey, onNavigate }) {
       {/* COMPARISON TABLE */}
       <section style={{ ...styles.featureSection, background: '#f8fafc' }}>
         <div style={sectionInner}>
-          <h2 style={styles.sectionTitle}>BẢNG SO SÁNH CÁC GÓI GIẢI PHÁP</h2>
+          <h2 style={styles.sectionTitle}>{lang === 'en' ? 'COMPARISON TABLE' : 'BẢNG SO SÁNH CÁC GÓI GIẢI PHÁP'}</h2>
           <div style={styles.tableWrap}>
             <table style={styles.table}>
               <thead>
                 <tr>
-                  <th style={styles.th}>Tính năng</th>
+                  <th style={styles.th}>{lang === 'en' ? 'Feature' : 'Tính năng'}</th>
                   {['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10'].map((n, i) => (
                     <th key={i} style={{ ...styles.th, textAlign: 'center' }}>{n}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {COMPARISON_FEATURES.map((row, i) => (
+                {comparisonData.map((row, i) => (
                   <tr key={i} style={i % 2 === 0 ? styles.trEven : styles.trOdd}>
                     <td style={styles.tdLabel}>{row.label}</td>
                     {row.values.map((v, j) => (
@@ -130,13 +158,13 @@ export default function EmailPage({ pageKey, onNavigate }) {
       {/* ADD-ONS */}
       <section style={{ padding: '50px 0', background: '#fff' }}>
         <div style={sectionInner}>
-          <h2 style={styles.sectionTitle}>ĐĂNG KÝ DỊCH VỤ BỔ SUNG</h2>
+          <h2 style={styles.sectionTitle}>{lang === 'en' ? 'ADD-ON SERVICES' : 'ĐĂNG KÝ DỊCH VỤ BỔ SUNG'}</h2>
           <div style={styles.addonGrid}>
-            {ADDONS.map((a, i) => (
+            {addonData.map((a, i) => (
               <div key={i} style={styles.addonCard}>
                 <h4 style={{ fontSize: 14, fontWeight: 700, margin: '0 0 6px', color: '#1e293b' }}>{a.name}</h4>
                 <div style={{ fontSize: 16, fontWeight: 800, color: '#d97706', marginBottom: 10 }}>{a.price}</div>
-                <a href="#" style={styles.addonCta}>Đăng ký</a>
+                <a href="#" style={styles.addonCta}>{lang === 'en' ? 'Register' : 'Đăng ký'}</a>
               </div>
             ))}
           </div>
@@ -146,14 +174,22 @@ export default function EmailPage({ pageKey, onNavigate }) {
       {/* WHY CHOOSE US */}
       <section style={{ padding: '50px 0', background: '#f8fafc' }}>
         <div style={sectionInner}>
-          <h2 style={styles.sectionTitle}>CAM NHẬN SỰ KHÁC BIỆT</h2>
+          <h2 style={styles.sectionTitle}>{lang === 'en' ? 'EXPERIENCE THE DIFFERENCE' : 'CAM NHẬN SỰ KHÁC BIỆT'}</h2>
           <div style={styles.whyGrid}>
-            {[
-              { icon: '👥', title: 'Đội ngũ chuyên gia', desc: 'Hơn 25 năm kinh nghiệm trong lĩnh vực Email Server' },
-              { icon: '💰', title: 'Giá tốt nhất', desc: 'Sử dụng dịch vụ với giá tốt nhất từ nhà cung cấp Việt Nam' },
-              { icon: '📨', title: 'Giao hàng 100%', desc: 'Cam kết 100% email giao dịch vào hộp thư đến' },
-              { icon: '📱', title: 'Làm việc mọi nơi', desc: 'Truy cập và làm việc trên mọi thiết bị, mọi lúc mọi nơi' },
-            ].map((w, i) => (
+{(lang === 'en'
+  ? [
+    { icon: '👥', title: 'Expert Team', desc: '25+ years experience in Email Server' },
+    { icon: '💰', title: 'Best Price', desc: 'Best prices from a Vietnam provider' },
+    { icon: '📨', title: '100% Delivery', desc: '100% email delivery to inbox' },
+    { icon: '📱', title: 'Work Anywhere', desc: 'Access and work on any device, anytime' },
+  ]
+  : [
+    { icon: '👥', title: 'Đội ngũ chuyên gia', desc: 'Hơn 25 năm kinh nghiệm trong lĩnh vực Email Server' },
+    { icon: '💰', title: 'Giá tốt nhất', desc: 'Sử dụng dịch vụ với giá tốt nhất từ nhà cung cấp Việt Nam' },
+    { icon: '📨', title: 'Giao hàng 100%', desc: 'Cam kết 100% email giao dịch vào hộp thư đến' },
+    { icon: '📱', title: 'Làm việc mọi nơi', desc: 'Truy cập và làm việc trên mọi thiết bị, mọi lúc mọi nơi' },
+  ]
+).map((w, i) => (
               <div key={i} style={styles.whyCard}>
                 <span style={{ fontSize: 36, display: 'block', marginBottom: 10 }}>{w.icon}</span>
                 <h4 style={{ fontSize: 15, fontWeight: 700, margin: '0 0 6px' }}>{w.title}</h4>
@@ -167,13 +203,20 @@ export default function EmailPage({ pageKey, onNavigate }) {
       {/* FAQ */}
       <section style={{ padding: '50px 0', background: '#fff' }}>
         <div style={sectionInner}>
-          <h2 style={styles.sectionTitle}>Câu hỏi thường gặp</h2>
+          <h2 style={styles.sectionTitle}>{lang === 'en' ? 'FAQ' : 'Câu hỏi thường gặp'}</h2>
           <div style={{ maxWidth: 800, margin: '0 auto' }}>
-            {[
-              { q: `${p.title} khác gì so với Email thường?`, a: `${p.title} sử dụng tên miền riêng của doanh nghiệp, bảo mật cao hơn, chống spam tốt hơn và hỗ trợ đầy đủ các tính năng quản trị doanh nghiệp.` },
-              { q: 'Tại sao nên sử dụng Email doanh nghiệp?', a: 'Email doanh nghiệp giúp tăng tính chuyên nghiệp, bảo mật thông tin, quản lý tập trung và dễ dàng mở rộng theo nhu cầu.' },
-              { q: 'Tôi có thể dùng Outlook để gửi nhận email không?', a: 'Có, hệ thống email của chúng tôi tương thích hoàn toàn với Outlook, Thunderbird, Apple Mail và các ứng dụng email phổ biến khác.' },
-            ].map((faq, i) => (
+{(lang === 'en'
+  ? [
+    { q: `What makes ${p.title} different from regular email?`, a: `${p.title} uses your own business domain, offers higher security, better spam protection, and full enterprise management features.` },
+    { q: 'Why should I use business email?', a: 'Business email enhances professionalism, secures information, enables centralized management, and scales easily with your needs.' },
+    { q: 'Can I use Outlook to send and receive emails?', a: 'Yes, our email system is fully compatible with Outlook, Thunderbird, Apple Mail, and other popular email clients.' },
+  ]
+  : [
+    { q: `${p.title} khác gì so với Email thường?`, a: `${p.title} sử dụng tên miền riêng của doanh nghiệp, bảo mật cao hơn, chống spam tốt hơn và hỗ trợ đầy đủ các tính năng quản trị doanh nghiệp.` },
+    { q: 'Tại sao nên sử dụng Email doanh nghiệp?', a: 'Email doanh nghiệp giúp tăng tính chuyên nghiệp, bảo mật thông tin, quản lý tập trung và dễ dàng mở rộng theo nhu cầu.' },
+    { q: 'Tôi có thể dùng Outlook để gửi nhận email không?', a: 'Có, hệ thống email của chúng tôi tương thích hoàn toàn với Outlook, Thunderbird, Apple Mail và các ứng dụng email phổ biến khác.' },
+  ]
+).map((faq, i) => (
               <div key={i} style={{ borderBottom: '1px solid #e8e8e8' }}>
                 <button
                   onClick={() => setExpandedFaq(expandedFaq === i ? null : i)}

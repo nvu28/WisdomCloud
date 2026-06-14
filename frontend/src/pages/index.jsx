@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import DomainRegisterPage from './DomainRegisterPage';
 import DomainPricePage from './DomainPricePage';
+import DomainServicePage from './DomainServicePage';
 import HostingPage from './HostingPage';
 import EmailPage from './EmailPage';
-import { SUB_PAGES, CATEGORY_NAV, CATEGORY_FAQS } from '../data/subPages';
+import SslPage from './SslPage';
+import { getSubPages, getCategoryNav, getCategoryFaqs, getWhyChoose } from '../data/subPages';
 
 const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
 
+const DOMAIN_SERVICE_PAGES = ['chuyen-ve', 'tim-ten-mien', 'mien-mien-phi', 'mien-tu-do', 'bao-mat-ten-mien', 'tien-ich-dns', 'chuyen-nhuong-ten-mien'];
 const HOSTING_PAGES = ['web-hosting', 'wordpress', 'enterprise-hosting', 'chuyen-dung', 'cloud-server', 'vpc', 'dedicated-server', 'co-location'];
 const EMAIL_PAGES = ['may-chu-email', 'google-workspace', 'microsoft-365', 'hybrid-email', 'chu-ky-email', 'chu-ky-so-email', 'quan-tri-email', 'bao-mat-email'];
+const SSL_PAGES = ['sectigo', 'sectigo-comodo', 'rapid-geotrust', 'digicert', 'thawte', 'bao-mat-website', 'cloudbric-waf'];
 
-function ServiceSubMenu({ category, currentPage, onNavigate }) {
-  const nav = CATEGORY_NAV[category];
+function ServiceSubMenu({ category, currentPage, onNavigate, lang }) {
+  const nav = getCategoryNav(lang)[category];
   if (!nav) return null;
   return (
     <nav style={styles.subNav}>
@@ -34,12 +38,12 @@ function ServiceSubMenu({ category, currentPage, onNavigate }) {
   );
 }
 
-function GenericHero({ p }) {
+function GenericHero({ p, t }) {
   return (
     <section style={{ ...styles.genHero, borderBottom: '1px solid #e8e8e8' }}>
       <div style={sectionInner}>
         <div style={styles.genHeroInner}>
-          <div style={styles.genBadge}>DỊCH VỤ</div>
+          <div style={styles.genBadge}>{(t && t('common.service')) || 'DỊCH VỤ'}</div>
           <h1 style={styles.genTitle}>{p.title}</h1>
           <p style={styles.genDesc}>{p.desc}</p>
         </div>
@@ -48,12 +52,12 @@ function GenericHero({ p }) {
   );
 }
 
-function FeatureList({ features, color }) {
+function FeatureList({ features, color, t }) {
   const icons = ['🌐', '🛡️', '⚡', '💾', '🔧', '📧'];
   return (
     <section style={{ padding: '50px 0', background: '#fff' }}>
       <div style={sectionInner}>
-        <h2 style={styles.sectionTitle}>TÍNH NĂNG DỊCH VỤ</h2>
+        <h2 style={styles.sectionTitle}>{(t && t('subpage.features')) || 'TÍNH NĂNG DỊCH VỤ'}</h2>
         <div style={styles.featureGrid}>
           {features.map((f, i) => (
             <div key={i} style={styles.featureCard}>
@@ -69,31 +73,31 @@ function FeatureList({ features, color }) {
   );
 }
 
-function PriceBar({ price, color }) {
+function PriceBar({ price, color, t }) {
   return (
     <div style={{ textAlign: 'center', padding: '0 0 50px', background: '#fff' }}>
       <div style={sectionInner}>
         <div style={{ ...styles.priceBar, borderColor: color + '30' }}>
           <span style={{ ...styles.priceText, color }}>{price}</span>
-          <a href="#" style={{ ...styles.priceBtn, background: color }}>Đăng ký ngay</a>
+          <a href="#" style={{ ...styles.priceBtn, background: color }}>{(t && t('common.registerNow')) || 'Đăng ký ngay'}</a>
         </div>
       </div>
     </div>
   );
 }
 
-function PricingCards({ plans, color }) {
+function PricingCards({ plans, color, t }) {
   return (
     <section style={{ padding: '0 0 50px', background: '#fff' }}>
       <div style={sectionInner}>
-        <h2 style={styles.sectionTitle}>BẢNG GIÁ DỊCH VỤ</h2>
+        <h2 style={styles.sectionTitle}>{(t && t('subpage.pricing')) || 'BẢNG GIÁ DỊCH VỤ'}</h2>
         <div style={styles.plansGrid}>
           {plans.map((pl, i) => (
             <div key={i} style={{
               ...styles.planCard,
               ...(pl.popular ? styles.planCardPopular : {}),
             }}>
-              {pl.popular && <div style={styles.planBadge}>PHỔ BIẾN</div>}
+              {pl.popular && <div style={styles.planBadge}>{(t && t('common.popular')) || 'PHỔ BIẾN'}</div>}
               <h3 style={styles.planName}>{pl.name}</h3>
               <div style={styles.planPrice}>{pl.price}</div>
               <ul style={styles.planFeatures}>
@@ -112,18 +116,18 @@ function PricingCards({ plans, color }) {
   );
 }
 
-function GenericPlans({ plans, color }) {
+function GenericPlans({ plans, color, t }) {
   return (
     <section style={{ padding: '0 0 50px', background: '#fff' }}>
       <div style={sectionInner}>
-        <h2 style={styles.sectionTitle}>BẢNG GIÁ</h2>
+        <h2 style={styles.sectionTitle}>{(t && t('subpage.pricing')) || 'BẢNG GIÁ'}</h2>
         <div style={styles.plansSimple}>
           {plans.map((pl, i) => (
             <div key={i} style={styles.planSimple}>
               <div style={{ fontSize: 18, fontWeight: 800, color }}>{pl.name}</div>
               <div style={{ fontSize: 22, fontWeight: 700, color: '#1e293b', margin: '8px 0' }}>{pl.price}</div>
               <div style={{ fontSize: 12, color: '#999', marginBottom: 12 }}>{pl.note}</div>
-              <a href="#" style={{ fontSize: 13, color, fontWeight: 600, textDecoration: 'none' }}>Đăng ký →</a>
+              <a href="#" style={{ fontSize: 13, color, fontWeight: 600, textDecoration: 'none' }}>{(t && t('common.register')) || 'Đăng ký'} →</a>
             </div>
           ))}
         </div>
@@ -132,17 +136,12 @@ function GenericPlans({ plans, color }) {
   );
 }
 
-function WhyChooseUs() {
-  const items = [
-    { icon: '🏆', title: 'Uy tín hàng đầu', desc: 'Nhà đăng ký tên miền được ICANN và VNNIC công nhận' },
-    { icon: '🛡️', title: 'Bảo mật tuyệt đối', desc: 'Cam kết bảo mật thông tin và dữ liệu khách hàng' },
-    { icon: '💬', title: 'Hỗ trợ 24/7', desc: 'Đội ngũ kỹ thuật hỗ trợ tận tình mọi lúc' },
-    { icon: '⚡', title: 'Tốc độ cao', desc: 'Hạ tầng công nghệ hiện đại, tốc độ vượt trội' },
-  ];
+function WhyChooseUs({ lang }) {
+  const items = getWhyChoose(lang);
   return (
     <section style={{ padding: '50px 0', background: '#f8fafc' }}>
       <div style={sectionInner}>
-        <h2 style={styles.sectionTitle}>VÌ SAO CHỌN WISDOMCLOUD</h2>
+        <h2 style={styles.sectionTitle}>{(lang === 'en' ? 'WHY CHOOSE WISDOMCLOUD' : 'VÌ SAO CHỌN WISDOMCLOUD')}</h2>
         <div style={styles.whyGrid}>
           {items.map((w, i) => (
             <div key={i} style={styles.whyCard}>
@@ -157,12 +156,12 @@ function WhyChooseUs() {
   );
 }
 
-function FAQSection({ faqs }) {
+function FAQSection({ faqs, lang }) {
   const [expanded, setExpanded] = useState(null);
   return (
     <section style={{ padding: '50px 0', background: '#fff' }}>
       <div style={sectionInner}>
-        <h2 style={styles.sectionTitle}>Câu hỏi thường gặp</h2>
+        <h2 style={styles.sectionTitle}>{(lang === 'en' ? 'FAQ' : 'Câu hỏi thường gặp')}</h2>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
           {faqs.map((faq, i) => (
             <div key={i} style={{ borderBottom: '1px solid #e8e8e8' }}>
@@ -201,47 +200,55 @@ function FAQSection({ faqs }) {
   );
 }
 
-export default function PageRouter({ pageKey, onNavigate, onDomainSearch }) {
+export default function PageRouter({ pageKey, onNavigate, onDomainSearch, lang, t }) {
   if (pageKey === 'dang-ky-ten-mien') {
-    return <DomainRegisterPage onNavigate={onNavigate} onDomainSearch={onDomainSearch} />;
+    return <DomainRegisterPage onNavigate={onNavigate} onDomainSearch={onDomainSearch} lang={lang} t={t} />;
   }
 
   if (pageKey === 'bang-gia-ten-mien') {
-    return <DomainPricePage onNavigate={onNavigate} />;
+    return <DomainPricePage onNavigate={onNavigate} lang={lang} t={t} />;
+  }
+
+  if (DOMAIN_SERVICE_PAGES.includes(pageKey)) {
+    return <DomainServicePage pageKey={pageKey} onNavigate={onNavigate} lang={lang} t={t} />;
   }
 
   if (HOSTING_PAGES.includes(pageKey)) {
-    return <HostingPage pageKey={pageKey} onNavigate={onNavigate} />;
+    return <HostingPage pageKey={pageKey} onNavigate={onNavigate} lang={lang} t={t} />;
   }
 
   if (EMAIL_PAGES.includes(pageKey)) {
-    return <EmailPage pageKey={pageKey} onNavigate={onNavigate} />;
+    return <EmailPage pageKey={pageKey} onNavigate={onNavigate} lang={lang} t={t} />;
   }
 
-  const p = SUB_PAGES[pageKey];
+  if (SSL_PAGES.includes(pageKey)) {
+    return <SslPage pageKey={pageKey} onNavigate={onNavigate} lang={lang} t={t} />;
+  }
+
+  const p = getSubPages(lang)[pageKey];
   if (!p) return null;
 
-  const faqs = CATEGORY_FAQS[p.category];
+  const faqs = getCategoryFaqs(lang)[p.category];
 
   return (
     <div>
-      <ServiceSubMenu category={p.category} currentPage={pageKey} onNavigate={onNavigate} />
-      <GenericHero p={p} />
+      <ServiceSubMenu category={p.category} currentPage={pageKey} onNavigate={onNavigate} lang={lang} />
+      <GenericHero p={p} t={t} />
 
-      {p.features && <FeatureList features={p.features} color={p.color} />}
-      {p.price && !p.plans && <PriceBar price={p.price} color={p.color} />}
+      {p.features && <FeatureList features={p.features} color={p.color} t={t} />}
+      {p.price && !p.plans && <PriceBar price={p.price} color={p.color} t={t} />}
 
       {p.content?.type === 'pricing-cards' && p.content.plans && (
-        <PricingCards plans={p.content.plans} color={p.color} />
+        <PricingCards plans={p.content.plans} color={p.color} t={t} />
       )}
 
       {p.plans && !p.content && (
-        <GenericPlans plans={p.plans} color={p.color} />
+        <GenericPlans plans={p.plans} color={p.color} t={t} />
       )}
 
-      <WhyChooseUs />
+      <WhyChooseUs lang={lang} />
 
-      {faqs && <FAQSection faqs={faqs} />}
+      {faqs && <FAQSection faqs={faqs} lang={lang} />}
     </div>
   );
 }

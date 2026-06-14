@@ -17,3 +17,5 @@ update_timeline.py
 workflow/
 *.xlsx
 report-cloud.pdf
+docs/
+opencode.json
