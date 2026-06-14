@@ -115,11 +115,7 @@ const MENU_CONFIG = [
       },
     ],
   },
-  {
-    key: 'cloud',
-    page: 'cloud',
-    columns: [],
-  },
+
 ];
 
 export default function Header({ onNavigate, currentPage }) {
@@ -282,7 +278,7 @@ const styles = {
   logoImg: { width: 36, height: 36, borderRadius: 8, objectFit: 'contain' },
   logoName: { fontSize: 18, fontWeight: 800, color: '#1e293b', letterSpacing: 1 },
   logoSub: { fontSize: 11, color: '#94a3b8', letterSpacing: 0.5 },
-  nav: { display: 'flex', gap: 4, height: '100%' },
+  nav: { display: 'flex', gap: 4, height: '100%', marginLeft: 200 },
   navItem: { position: 'static', display: 'flex', alignItems: 'center' },
   navLink: {
     padding: '0 16px',

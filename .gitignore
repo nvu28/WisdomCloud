@@ -18,4 +18,5 @@ workflow/
 *.xlsx
 report-cloud.pdf
 docs/
+paper/
 opencode.json
