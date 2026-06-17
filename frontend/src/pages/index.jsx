@@ -8,6 +8,9 @@ import SslPage from './SslPage';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import ProfilePage from './ProfilePage';
+import CartPage from './CartPage';
+import CheckoutPage from './CheckoutPage';
+import OrderHistoryPage from './OrderHistoryPage';
 import { getSubPages, getCategoryNav, getCategoryFaqs, getWhyChoose } from '../data/subPages';
 
 const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
@@ -238,6 +241,18 @@ export default function PageRouter({ pageKey, onNavigate, onDomainSearch, lang, 
 
   if (pageKey === 'ho-so') {
     return <ProfilePage t={t} onLogout={onLogout} />;
+  }
+
+  if (pageKey === 'gio-hang') {
+    return <CartPage onNavigate={onNavigate} t={t} />;
+  }
+
+  if (pageKey === 'thanh-toan') {
+    return <CheckoutPage onNavigate={onNavigate} t={t} />;
+  }
+
+  if (pageKey === 'don-hang') {
+    return <OrderHistoryPage onNavigate={onNavigate} t={t} />;
   }
 
   const p = getSubPages(lang)[pageKey];

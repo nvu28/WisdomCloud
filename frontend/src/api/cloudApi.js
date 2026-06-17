@@ -61,3 +61,48 @@ export async function changePassword(token, data) {
   const response = await api.post('/auth/change-password', data, { headers: { Authorization: `Bearer ${token}` } });
   return response.data;
 }
+
+function authHeaders() {
+  const token = localStorage.getItem('wc_token');
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
+export async function getCart() {
+  const response = await api.get('/cart', { headers: authHeaders() });
+  return response.data;
+}
+
+export async function addToCart(data) {
+  const response = await api.post('/cart', data, { headers: authHeaders() });
+  return response.data;
+}
+
+export async function removeFromCart(serviceId) {
+  const response = await api.delete(`/cart/item/${serviceId}`, { headers: authHeaders() });
+  return response.data;
+}
+
+export async function updateCartItem(serviceId, data) {
+  const response = await api.put(`/cart/item/${serviceId}`, data, { headers: authHeaders() });
+  return response.data;
+}
+
+export async function applyCoupon(code) {
+  const response = await api.post('/cart/coupon', { code }, { headers: authHeaders() });
+  return response.data;
+}
+
+export async function createOrder(data) {
+  const response = await api.post('/orders', data, { headers: authHeaders() });
+  return response.data;
+}
+
+export async function getOrders() {
+  const response = await api.get('/orders', { headers: authHeaders() });
+  return response.data;
+}
+
+export async function getOrderDetail(orderCode) {
+  const response = await api.get(`/orders/${orderCode}`, { headers: authHeaders() });
+  return response.data;
+}

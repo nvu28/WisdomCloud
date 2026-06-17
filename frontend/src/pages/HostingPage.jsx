@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { addToCart } from '../api/cloudApi';
 import { getCategoryNav, getSubPages } from '../data/subPages';
 
 const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
@@ -90,7 +91,10 @@ export default function HostingPage({ pageKey, onNavigate, lang }) {
                       </li>
                     ))}
                   </ul>
-                  <a href="#" style={{ ...styles.planCta, background: p.color }}>{lang === 'en' ? 'Register Now' : 'Đăng ký ngay'}</a>
+                  <div style={{ display: 'flex', gap: 8, flexDirection: 'column' }}>
+                    <a href="#" style={{ ...styles.planCta, background: p.color }} onClick={(e) => { e.preventDefault(); addToCart({ serviceId: pl.slug || pl.name, name: pl.name, price: parseInt(pl.price.replace(/[^0-9]/g, '')) || 0, provider: p.title, category: p.title, quantity: 1 }).then(() => alert('Đã thêm vào giỏ hàng!')).catch(() => alert('Vui lòng đăng nhập để thêm vào giỏ hàng')); }}>{lang === 'en' ? 'Add to Cart' : 'Thêm vào giỏ'}</a>
+                    <a href="#" style={{ ...styles.planCta, background: '#1e293b' }}>{lang === 'en' ? 'Register Now' : 'Đăng ký ngay'}</a>
+                  </div>
                 </div>
               ))}
             </div>

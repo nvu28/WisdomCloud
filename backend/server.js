@@ -67,6 +67,10 @@ const hostingPlans = [
 
 const TAKEN_DOMAINS = ['google', 'facebook', 'youtube', 'amazon', 'wisdomcloud', 'wisdom', 'cloud', 'vietnam', 'shop', 'news', 'blog', 'hotel', 'travel', 'bank', 'money', 'game', 'vn', 'hanoi', 'saigon', 'dichvu', 'congnghe', 'thuongmai', 'giaido']; // Mô phỏng domain đã được đăng ký
 
+const carts = {};
+const orders = [];
+const coupons = { 'WISDOM10': { discount: 0.1, minTotal: 0 }, 'CLOUD20': { discount: 0.2, minTotal: 200000 } };
+
 const distPath = path.join(__dirname, '..', 'frontend', 'dist');
 app.use(express.static(distPath));
 
@@ -345,6 +349,126 @@ app.post('/api/v1/auth/change-password', authMiddleware, async (req, res) => {
   }
 });
 
+const authenticate = (req, res) => {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith('Bearer ')) {
+    res.status(401).json({ error: 'Unauthorized' });
+    return null;
+  }
+  try {
+    return jwt.verify(header.split(' ')[1], JWT_SECRET);
+  } catch {
+    res.status(401).json({ error: 'Invalid token' });
+    return null;
+  }
+};
+
+app.post('/api/v1/cart', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const { serviceId, name, provider, category, price, quantity, duration } = req.body;
+  if (!carts[user.id]) carts[user.id] = { items: [], couponCode: null, discount: 0 };
+  const cart = carts[user.id];
+  const existing = cart.items.find(i => i.serviceId === serviceId);
+  if (existing) {
+    existing.quantity = (existing.quantity || 1) + (quantity || 1);
+  } else {
+    cart.items.push({ serviceId, name, provider, category, price, quantity: quantity || 1, duration: duration || 1 });
+  }
+  cart.couponCode = null;
+  cart.discount = 0;
+  res.json(cart);
+});
+
+app.get('/api/v1/cart', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  res.json(carts[user.id] || { items: [], couponCode: null, discount: 0 });
+});
+
+app.delete('/api/v1/cart/item/:serviceId', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const cart = carts[user.id];
+  if (!cart) return res.json({ items: [], couponCode: null, discount: 0 });
+  cart.items = cart.items.filter(i => i.serviceId !== parseInt(req.params.serviceId));
+  cart.couponCode = null;
+  cart.discount = 0;
+  res.json(cart);
+});
+
+app.put('/api/v1/cart/item/:serviceId', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const cart = carts[user.id];
+  if (!cart) return res.status(404).json({ error: 'Cart not found' });
+  const item = cart.items.find(i => i.serviceId === parseInt(req.params.serviceId));
+  if (!item) return res.status(404).json({ error: 'Item not found' });
+  item.quantity = parseInt(req.body.quantity);
+  cart.couponCode = null;
+  cart.discount = 0;
+  res.json(cart);
+});
+
+app.post('/api/v1/cart/coupon', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const { code } = req.body;
+  const coupon = coupons[code];
+  if (!coupon) return res.status(400).json({ error: 'Mã khuyến mãi không hợp lệ' });
+  const cart = carts[user.id];
+  if (!cart || !cart.items.length) return res.status(400).json({ error: 'Giỏ hàng trống' });
+  const subtotal = cart.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  if (subtotal < coupon.minTotal) return res.status(400).json({ error: `Chưa đạt giá trị tối thiểu ${coupon.minTotal.toLocaleString()}₫` });
+  cart.couponCode = code;
+  cart.discount = subtotal * coupon.discount;
+  res.json(cart);
+});
+
+app.post('/api/v1/orders', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const { paymentMethod, note } = req.body;
+  const cart = carts[user.id];
+  if (!cart || !cart.items.length) return res.status(400).json({ error: 'Giỏ hàng trống' });
+  const subtotal = cart.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const discount = cart.discount || 0;
+  const total = subtotal - discount;
+  const order = {
+    orderCode: `DH${Date.now()}`,
+    userId: user.id,
+    items: [...cart.items],
+    couponCode: cart.couponCode,
+    discount,
+    subtotal,
+    total,
+    paymentMethod: paymentMethod || 'manual',
+    paymentStatus: 'unpaid',
+    status: 'pending',
+    note: note || '',
+    createdAt: new Date().toISOString(),
+  };
+  orders.push(order);
+  carts[user.id] = { items: [], couponCode: null, discount: 0 };
+  res.status(201).json(order);
+});
+
+app.get('/api/v1/orders', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const userOrders = orders.filter(o => o.userId === user.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  res.json(userOrders);
+});
+
+app.get('/api/v1/orders/:orderCode', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const order = orders.find(o => o.orderCode === req.params.orderCode);
+  if (!order) return res.status(404).json({ error: 'Order not found' });
+  if (order.userId !== user.id) return res.status(403).json({ error: 'Forbidden' });
+  res.json(order);
+});
+
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) return;
   res.sendFile(path.join(distPath, 'index.html'));
@@ -370,4 +494,11 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`  GET /api/v1/auth/profile`);
   console.log(`  PUT /api/v1/auth/profile`);
   console.log(`  POST /api/v1/auth/change-password`);
+  console.log(`  POST /api/v1/cart`);
+  console.log(`  GET /api/v1/cart`);
+  console.log(`  DELETE /api/v1/cart/item/:serviceId`);
+  console.log(`  PUT /api/v1/cart/item/:serviceId`);
+  console.log(`  POST /api/v1/cart/coupon`);
+  console.log(`  POST /api/v1/orders`);
+  console.log(`  GET /api/v1/orders`);
   });

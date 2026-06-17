@@ -13,6 +13,10 @@ const users = [];
 
 const TAKEN_DOMAINS = ['google', 'facebook', 'youtube', 'amazon', 'wisdomcloud', 'wisdom', 'cloud', 'vietnam', 'shop', 'news', 'blog', 'hotel', 'travel', 'bank', 'money', 'game', 'vn', 'hanoi', 'saigon', 'dichvu', 'congnghe', 'thuongmai', 'giaido'];
 
+const carts = {};
+const orders = [];
+const coupons = { 'WISDOM10': { discount: 0.1, minTotal: 0 }, 'CLOUD20': { discount: 0.2, minTotal: 200000 } };
+
 const emailPlans = [
   { id: 1, name: 'Email Server 3GB', slug: 'email-server-3gb', provider: 'WisdomCloud', category: 'Cloud Email', price: 24000, unit: 'vnd/tháng', mailboxes: 5, storage: '3GB', features: ['5 Email accounts', '3GB storage', 'AI Anti-Spam', 'SSL/TLS', 'SPF/DKIM/DMARC'], isPopular: false },
   { id: 2, name: 'Email Server 10GB', slug: 'email-server-10gb', provider: 'WisdomCloud', category: 'Cloud Email', price: 49000, unit: 'vnd/tháng', mailboxes: 10, storage: '10GB', features: ['10 Email accounts', '10GB storage', 'AI Anti-Spam', 'SSL/TLS', 'SPF/DKIM/DMARC', 'Backup'], isPopular: true },
@@ -288,6 +292,148 @@ export default async function handler(req, res) {
           };
         });
       return res.json({ domain: name, results, specificTld });
+    }
+
+    if (pathname === '/api/v1/cart' && req.method === 'POST') {
+      const header = req.headers.authorization;
+      if (!header || !header.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+      try {
+        const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+        let body = '';
+        await new Promise((resolve) => { req.on('data', chunk => { body += chunk; }); req.on('end', resolve); });
+        const { serviceId, name, provider, category, price, quantity, duration } = JSON.parse(body);
+        if (!carts[decoded.id]) carts[decoded.id] = { items: [], couponCode: null, discount: 0 };
+        const cart = carts[decoded.id];
+        const existing = cart.items.find(i => i.serviceId === serviceId);
+        if (existing) {
+          existing.quantity = (existing.quantity || 1) + (quantity || 1);
+        } else {
+          cart.items.push({ serviceId, name, provider, category, price, quantity: quantity || 1, duration: duration || 1 });
+        }
+        cart.couponCode = null;
+        cart.discount = 0;
+        return res.json(cart);
+      } catch { return res.status(401).json({ error: 'Invalid token' }); }
+    }
+
+    if (pathname === '/api/v1/cart' && req.method === 'GET') {
+      const header = req.headers.authorization;
+      if (!header || !header.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+      try {
+        const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+        return res.json(carts[decoded.id] || { items: [], couponCode: null, discount: 0 });
+      } catch { return res.status(401).json({ error: 'Invalid token' }); }
+    }
+
+    if (pathname === '/api/v1/cart/item' && req.method === 'DELETE') {
+      const header = req.headers.authorization;
+      if (!header || !header.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+      try {
+        const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+        const serviceId = parseInt(url.searchParams.get('serviceId'));
+        const cart = carts[decoded.id];
+        if (!cart) return res.json({ items: [], couponCode: null, discount: 0 });
+        cart.items = cart.items.filter(i => i.serviceId !== serviceId);
+        cart.couponCode = null;
+        cart.discount = 0;
+        return res.json(cart);
+      } catch { return res.status(401).json({ error: 'Invalid token' }); }
+    }
+
+    if (pathname === '/api/v1/cart/item' && req.method === 'PUT') {
+      const header = req.headers.authorization;
+      if (!header || !header.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+      try {
+        const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+        const serviceId = parseInt(url.searchParams.get('serviceId'));
+        let body = '';
+        await new Promise((resolve) => { req.on('data', chunk => { body += chunk; }); req.on('end', resolve); });
+        const { quantity } = JSON.parse(body);
+        const cart = carts[decoded.id];
+        if (!cart) return res.status(404).json({ error: 'Cart not found' });
+        const item = cart.items.find(i => i.serviceId === serviceId);
+        if (!item) return res.status(404).json({ error: 'Item not found' });
+        item.quantity = parseInt(quantity);
+        cart.couponCode = null;
+        cart.discount = 0;
+        return res.json(cart);
+      } catch { return res.status(401).json({ error: 'Invalid token' }); }
+    }
+
+    if (pathname === '/api/v1/cart/coupon' && req.method === 'POST') {
+      const header = req.headers.authorization;
+      if (!header || !header.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+      try {
+        const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+        let body = '';
+        await new Promise((resolve) => { req.on('data', chunk => { body += chunk; }); req.on('end', resolve); });
+        const { code } = JSON.parse(body);
+        const coupon = coupons[code];
+        if (!coupon) return res.status(400).json({ error: 'Mã khuyến mãi không hợp lệ' });
+        const cart = carts[decoded.id];
+        if (!cart || !cart.items.length) return res.status(400).json({ error: 'Giỏ hàng trống' });
+        const subtotal = cart.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+        if (subtotal < coupon.minTotal) return res.status(400).json({ error: `Chưa đạt giá trị tối thiểu ${coupon.minTotal.toLocaleString()}₫` });
+        cart.couponCode = code;
+        cart.discount = subtotal * coupon.discount;
+        return res.json(cart);
+      } catch { return res.status(401).json({ error: 'Invalid token' }); }
+    }
+
+    if (pathname === '/api/v1/orders' && req.method === 'POST') {
+      const header = req.headers.authorization;
+      if (!header || !header.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+      try {
+        const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+        let body = '';
+        await new Promise((resolve) => { req.on('data', chunk => { body += chunk; }); req.on('end', resolve); });
+        const { paymentMethod, note } = JSON.parse(body);
+        const cart = carts[decoded.id];
+        if (!cart || !cart.items.length) return res.status(400).json({ error: 'Giỏ hàng trống' });
+        const subtotal = cart.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+        const discount = cart.discount || 0;
+        const total = subtotal - discount;
+        const order = {
+          orderCode: `DH-${Date.now()}`,
+          userId: decoded.id,
+          items: [...cart.items],
+          couponCode: cart.couponCode,
+          discount,
+          subtotal,
+          total,
+          paymentMethod: paymentMethod || 'manual',
+          paymentStatus: 'unpaid',
+          status: 'pending',
+          note: note || '',
+          createdAt: new Date().toISOString(),
+        };
+        orders.push(order);
+        carts[decoded.id] = { items: [], couponCode: null, discount: 0 };
+        return res.status(201).json(order);
+      } catch { return res.status(401).json({ error: 'Invalid token' }); }
+    }
+
+    if (pathname === '/api/v1/orders' && req.method === 'GET') {
+      const header = req.headers.authorization;
+      if (!header || !header.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+      try {
+        const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+        const userOrders = orders.filter(o => o.userId === decoded.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        return res.json(userOrders);
+      } catch { return res.status(401).json({ error: 'Invalid token' }); }
+    }
+
+    if (pathname.startsWith('/api/v1/orders/') && req.method === 'GET') {
+      const header = req.headers.authorization;
+      if (!header || !header.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+      try {
+        const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+        const orderCode = pathname.replace('/api/v1/orders/', '');
+        const order = orders.find(o => o.orderCode === orderCode);
+        if (!order) return res.status(404).json({ error: 'Order not found' });
+        if (order.userId !== decoded.id) return res.status(403).json({ error: 'Forbidden' });
+        return res.json(order);
+      } catch { return res.status(401).json({ error: 'Invalid token' }); }
     }
 
     res.status(404).json({ error: 'Not found' });

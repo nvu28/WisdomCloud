@@ -168,6 +168,7 @@ export default function Header({ onNavigate, currentPage, user, onLogout }) {
             <span style={styles.topItem}>{t('common.email')}: support@wisdomcloud.vn</span>
           </div>
           <div style={styles.topRight}>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('gio-hang'); }} style={styles.topLink}>🛒 Giỏ hàng</a>
             {user ? (
               <>
                 <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('ho-so'); }} style={styles.topLink}>{user.fullName}</a>
