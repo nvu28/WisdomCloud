@@ -7,8 +7,12 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 const services = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), 'utf-8'));
+const tlds = JSON.parse(fs.readFileSync(path.join(__dirname, 'tlds.json'), 'utf-8'));
+
+const TAKEN_DOMAINS = ['google', 'facebook', 'youtube', 'amazon', 'wisdomcloud', 'wisdom', 'cloud', 'vietnam', 'shop', 'news', 'blog', 'hotel', 'travel', 'bank', 'money', 'game', 'vn', 'hanoi', 'saigon', 'dichvu', 'congnghe', 'thuongmai', 'giaido']; // Mô phỏng domain đã được đăng ký
 
 const distPath = path.join(__dirname, '..', 'frontend', 'dist');
 app.use(express.static(distPath));
@@ -120,6 +124,29 @@ app.get('/api/v1/cloud-services/stats', (req, res) => {
   res.json({ total: services.length, categories: cats, providers: provs });
 });
 
+app.get('/api/v1/tlds', (req, res) => {
+  res.json(tlds);
+});
+
+app.post('/api/v1/domains/check', express.json(), (req, res) => {
+  const { domain } = req.body;
+  if (!domain || !/^[a-zA-Z0-9][a-zA-Z0-9-]{0,62}$/.test(domain)) {
+    return res.status(400).json({ error: 'Tên miền không hợp lệ' });
+  }
+  const name = domain.toLowerCase();
+  const results = tlds.map(t => {
+    const isTaken = TAKEN_DOMAINS.includes(name) && Math.random() > 0.3;
+    return {
+      tld: t.tld,
+      available: !isTaken,
+      priceFirstYear: t.priceFirstYear,
+      priceRenew: t.priceRenew,
+      color: t.color,
+    };
+  });
+  res.json({ domain: name, results });
+});
+
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) return;
   res.sendFile(path.join(distPath, 'index.html'));
@@ -134,4 +161,6 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`  GET /api/v1/providers`);
   console.log(`  GET /api/v1/cloud-services/stats`);
   console.log(`  GET /api/v1/cloud-services/detail`);
+  console.log(`  GET /api/v1/tlds`);
+  console.log(`  POST /api/v1/domains/check`);
   });

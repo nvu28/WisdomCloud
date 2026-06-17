@@ -4,12 +4,15 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const services = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), 'utf-8'));
+const tlds = JSON.parse(fs.readFileSync(path.join(__dirname, 'tlds.json'), 'utf-8'));
+
+const TAKEN_DOMAINS = ['google', 'facebook', 'youtube', 'amazon', 'wisdomcloud', 'wisdom', 'cloud', 'vietnam', 'shop', 'news', 'blog', 'hotel', 'travel', 'bank', 'money', 'game', 'vn', 'hanoi', 'saigon', 'dichvu', 'congnghe', 'thuongmai', 'giaido'];
 
 const VALID_SORT_FIELDS = ['name', 'provider', 'price', 'category'];
 const ALLOWED_SORT_DIRS = ['asc', 'desc'];
 const MAX_SIZE = 100;
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const pathname = url.pathname;
 
@@ -107,6 +110,34 @@ export default function handler(req, res) {
         content, page, size, totalElements, totalPages,
         last: page >= totalPages - 1,
       });
+    }
+
+    if (pathname === '/api/v1/tlds') {
+      return res.json(tlds);
+    }
+
+    if (pathname === '/api/v1/domains/check' && req.method === 'POST') {
+      let body = '';
+      await new Promise((resolve) => {
+        req.on('data', chunk => { body += chunk; });
+        req.on('end', resolve);
+      });
+      const { domain } = JSON.parse(body);
+      if (!domain || !/^[a-zA-Z0-9][a-zA-Z0-9-]{0,62}$/.test(domain)) {
+        return res.status(400).json({ error: 'Tên miền không hợp lệ' });
+      }
+      const name = domain.toLowerCase();
+      const results = tlds.map(t => {
+        const isTaken = TAKEN_DOMAINS.includes(name) && Math.random() > 0.3;
+        return {
+          tld: t.tld,
+          available: !isTaken,
+          priceFirstYear: t.priceFirstYear,
+          priceRenew: t.priceRenew,
+          color: t.color,
+        };
+      });
+      return res.json({ domain: name, results });
     }
 
     res.status(404).json({ error: 'Not found' });

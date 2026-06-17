@@ -26,3 +26,13 @@ export async function getServiceDetail(id) {
   const response = await api.get('/cloud-services/detail', { params: { id } });
   return response.data;
 }
+
+export async function getTldList() {
+  const response = await api.get('/tlds');
+  return response.data;
+}
+
+export async function checkDomain(domain) {
+  const response = await api.post('/domains/check', { domain });
+  return response.data;
+}

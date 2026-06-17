@@ -1,0 +1,182 @@
+[
+  {
+    "tld": ".com",
+    "priceFirstYear": 19000,
+    "priceRenew": 250000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#2563eb"
+  },
+  {
+    "tld": ".net",
+    "priceFirstYear": 99000,
+    "priceRenew": 280000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#2563eb"
+  },
+  {
+    "tld": ".org",
+    "priceFirstYear": 245000,
+    "priceRenew": 280000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#0891b2"
+  },
+  {
+    "tld": ".vn",
+    "priceFirstYear": 250000,
+    "priceRenew": 150000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "Miễn phí",
+    "currency": "vnd",
+    "color": "#dc2626"
+  },
+  {
+    "tld": ".com.vn",
+    "priceFirstYear": 250000,
+    "priceRenew": 250000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "Miễn phí",
+    "currency": "vnd",
+    "color": "#dc2626"
+  },
+  {
+    "tld": ".xyz",
+    "priceFirstYear": 10000,
+    "priceRenew": 140000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#059669"
+  },
+  {
+    "tld": ".cloud",
+    "priceFirstYear": 45000,
+    "priceRenew": 200000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#7c3aed"
+  },
+  {
+    "tld": ".asia",
+    "priceFirstYear": 36000,
+    "priceRenew": 180000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#d97706"
+  },
+  {
+    "tld": ".info",
+    "priceFirstYear": 120000,
+    "priceRenew": 200000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#0891b2"
+  },
+  {
+    "tld": ".top",
+    "priceFirstYear": 15000,
+    "priceRenew": 120000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#059669"
+  },
+  {
+    "tld": ".online",
+    "priceFirstYear": 15000,
+    "priceRenew": 180000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#059669"
+  },
+  {
+    "tld": ".site",
+    "priceFirstYear": 10000,
+    "priceRenew": 120000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#059669"
+  },
+  {
+    "tld": ".store",
+    "priceFirstYear": 79000,
+    "priceRenew": 280000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#7c3aed"
+  },
+  {
+    "tld": ".me",
+    "priceFirstYear": 99000,
+    "priceRenew": 200000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#7c3aed"
+  },
+  {
+    "tld": ".pro",
+    "priceFirstYear": 59000,
+    "priceRenew": 200000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#d97706"
+  },
+  {
+    "tld": ".space",
+    "priceFirstYear": 15000,
+    "priceRenew": 120000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#059669"
+  },
+  {
+    "tld": ".tech",
+    "priceFirstYear": 79000,
+    "priceRenew": 350000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#2563eb"
+  },
+  {
+    "tld": ".blog",
+    "priceFirstYear": 108000,
+    "priceRenew": 200000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "25.000₫",
+    "currency": "vnd",
+    "color": "#0891b2"
+  },
+  {
+    "tld": ".id.vn",
+    "priceFirstYear": 200000,
+    "priceRenew": 200000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "Miễn phí",
+    "currency": "vnd",
+    "color": "#dc2626"
+  },
+  {
+    "tld": ".io.vn",
+    "priceFirstYear": 50000,
+    "priceRenew": 200000,
+    "priceTransfer": "Miễn phí",
+    "whoisProtection": "Miễn phí",
+    "currency": "vnd",
+    "color": "#dc2626"
+  }
+]

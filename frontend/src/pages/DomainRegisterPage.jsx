@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getCategoryNav } from '../data/subPages';
+import { checkDomain, getTldList } from '../api/cloudApi';
 
 const si = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
 
@@ -132,6 +133,10 @@ export default function DomainRegisterPage({ onNavigate, onDomainSearch, lang })
   const [ef, setEf] = useState(null);
   const [hoverIdx, setHoverIdx] = useState(null);
   const [extHover, setExtHover] = useState(null);
+  const [domainResults, setDomainResults] = useState(null);
+  const [searchDomain, setSearchDomain] = useState('');
+  const [checking, setChecking] = useState(false);
+  const [checkError, setCheckError] = useState('');
   const nav = getCategoryNav(lang)['domain'];
   const tldHero = lang === 'en' ? TLD_HERO_EN : TLD_HERO;
   const domainTlds = lang === 'en' ? DOMAIN_TLDS_EN : DOMAIN_TLDS;
@@ -140,7 +145,27 @@ export default function DomainRegisterPage({ onNavigate, onDomainSearch, lang })
   const principles = lang === 'en' ? PRINCIPLES_EN : PRINCIPLES;
   const faqs = lang === 'en' ? FAQS_EN : FAQS;
 
-  const handleSearch = (e) => { e.preventDefault(); if (q.trim()) onDomainSearch(q); };
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const name = q.trim();
+    if (!name) return;
+    setChecking(true);
+    setCheckError('');
+    setDomainResults(null);
+    setSearchDomain(name);
+    try {
+      const data = await checkDomain(name);
+      setDomainResults(data.results);
+    } catch {
+      setCheckError(lang === 'en' ? 'Cannot check domain. Try again.' : 'Không thể kiểm tra tên miền. Thử lại.');
+    }
+    setChecking(false);
+  };
+
+  const fmtPrice = (num) => {
+    if (!num) return '—';
+    return num.toLocaleString('vi-VN') + '₫';
+  };
 
   return (
     <div>
@@ -182,11 +207,73 @@ export default function DomainRegisterPage({ onNavigate, onDomainSearch, lang })
               <input style={{
                 flex: 1, padding: '16px 20px', border: 'none', fontSize: 15, outline: 'none',
               }} placeholder={lang === 'en' ? 'Enter your desired domain...' : 'Nhập tên miền mong muốn...'} value={q} onChange={e => setQ(e.target.value)} />
-              <button type="submit" style={{
+              <button type="submit" disabled={checking} style={{
                 padding: '16px 32px', background: '#000', color: '#fff', border: 'none',
                 fontSize: 14, fontWeight: 600, textTransform: 'uppercase', cursor: 'pointer',
-              }}>{lang === 'en' ? 'Check' : 'Kiểm tra'}</button>
+                opacity: checking ? 0.6 : 1,
+              }}>{checking ? (lang === 'en' ? '...' : '...') : (lang === 'en' ? 'Check' : 'Kiểm tra')}</button>
             </form>
+
+            {/* Domain check results */}
+            {checkError && (
+              <p style={{ color: '#dc2626', fontSize: 14, margin: '0 0 16px', textAlign: 'center' }}>{checkError}</p>
+            )}
+            {checking && (
+              <p style={{ color: '#666', fontSize: 14, margin: '0 0 16px', textAlign: 'center' }}>
+                {lang === 'en' ? 'Checking...' : 'Đang kiểm tra...'}
+              </p>
+            )}
+            {domainResults && (
+              <div style={{
+                maxWidth: 600, margin: '0 auto 24px', background: '#fff',
+                borderRadius: 10, border: '1px solid #e2e8f0', overflow: 'hidden',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+              }}>
+                <div style={{
+                  padding: '12px 20px', background: '#1e293b', color: '#fff',
+                  fontSize: 14, fontWeight: 700,
+                }}>
+                  {lang === 'en' ? `Results for: ${searchDomain}` : `Kết quả cho: ${searchDomain}`}
+                </div>
+                <div style={{ maxHeight: 320, overflowY: 'auto' }}>
+                  {domainResults.map((r, i) => (
+                    <div key={i} style={{
+                      display: 'flex', alignItems: 'center', gap: 12,
+                      padding: '10px 20px', borderBottom: '1px solid #f1f5f9',
+                      background: i % 2 === 0 ? '#fff' : '#f8fafc',
+                    }}>
+                      <span style={{ fontWeight: 700, fontSize: 15, color: r.color, minWidth: 80 }}>{r.tld}</span>
+                      <span style={{
+                        fontSize: 12, fontWeight: 600,
+                        color: r.available ? '#059669' : '#dc2626',
+                        minWidth: 80,
+                      }}>
+                        {r.available
+                          ? (lang === 'en' ? '✓ Available' : '✓ Có sẵn')
+                          : (lang === 'en' ? '✗ Taken' : '✗ Đã có')}
+                      </span>
+                      <span style={{ fontSize: 13, color: '#475569', minWidth: 100 }}>
+                        {fmtPrice(r.priceFirstYear)}/{lang === 'en' ? '1st yr' : 'năm đầu'}
+                      </span>
+                      <span style={{ fontSize: 12, color: '#94a3b8' }}>
+                        {lang === 'en' ? 'Renew: ' : 'Gia hạn: '}{fmtPrice(r.priceRenew)}
+                      </span>
+                      <a href="#" onClick={(e) => { e.preventDefault(); onDomainSearch(searchDomain + r.tld); }}
+                        style={{
+                          marginLeft: 'auto', padding: '6px 16px', fontSize: 12, fontWeight: 600,
+                          background: r.available ? '#2563eb' : '#e2e8f0',
+                          color: r.available ? '#fff' : '#94a3b8',
+                          borderRadius: 6, textDecoration: 'none', flexShrink: 0,
+                        }}>
+                        {r.available
+                          ? (lang === 'en' ? 'Register' : 'Đăng ký')
+                          : (lang === 'en' ? 'Search' : 'Tìm')}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Hero badges */}
             <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
