@@ -278,6 +278,14 @@ const SUB_PAGES = {
       'Staging Site — kiểm tra trước khi công bố',
     ],
     price: 'Chỉ từ 49.000₫ / tháng',
+    content: {
+      type: 'pricing-cards',
+      plans: [
+        { name: 'WP Starter', price: '49.000₫/th', features: ['1GB RAM', '10GB SSD', '1 WordPress', 'Litespeed + LSCache', 'SSL miễn phí'], popular: false },
+        { name: 'WP Business', price: '149.000₫/th', features: ['2GB RAM', '30GB SSD', '5 WordPress', 'Litespeed + LSCache', 'SSL miễn phí', 'Staging Site'], popular: true },
+        { name: 'WP Enterprise', price: '399.000₫/th', features: ['4GB RAM', '80GB SSD', 'Không giới hạn', 'Litespeed + LSCache', 'SSL miễn phí', 'Staging + CDN'], popular: false },
+      ],
+    },
     bg: '#f0fdf4',
   },
   'enterprise-hosting': {
@@ -294,6 +302,14 @@ const SUB_PAGES = {
       'Backup tự động hàng ngày, khôi phục tức thì',
     ],
     price: 'Liên hệ báo giá',
+    content: {
+      type: 'pricing-cards',
+      plans: [
+        { name: 'Enterprise Bronze', price: 'Liên hệ', features: ['4 vCPU', '8GB RAM', '200GB SSD NVMe', 'Uptime 99.99%', 'SLA cơ bản'], popular: false },
+        { name: 'Enterprise Silver', price: 'Liên hệ', features: ['8 vCPU', '16GB RAM', '500GB SSD NVMe', 'Uptime 99.99%', 'SLA nâng cao', 'Hotline riêng'], popular: true },
+        { name: 'Enterprise Gold', price: 'Liên hệ', features: ['16 vCPU', '32GB RAM', '1TB SSD NVMe', 'Uptime 99.99%', 'SLA toàn diện', 'VIP 24/7'], popular: false },
+      ],
+    },
     bg: '#f8fafc',
   },
   'chuyen-dung': {
@@ -310,6 +326,14 @@ const SUB_PAGES = {
       'Triển khai liên tục qua Git, SSH access',
     ],
     price: 'Chỉ từ 99.000₫ / tháng',
+    content: {
+      type: 'pricing-cards',
+      plans: [
+        { name: 'NodeJS', price: '99.000₫/th', features: ['1 vCPU', '2GB RAM', '20GB SSD', 'Node 18/20/22', 'SSH + Git deploy'], popular: false },
+        { name: 'Python', price: '149.000₫/th', features: ['2 vCPU', '4GB RAM', '40GB SSD', 'Python 3.10-3.12', 'SSH + Git deploy', 'PIP/venv'], popular: true },
+        { name: 'Java', price: '299.000₫/th', features: ['4 vCPU', '8GB RAM', '80GB SSD', 'Tomcat/Spring Boot', 'SSH + Git deploy', 'Maven/Gradle'], popular: false },
+      ],
+    },
     bg: '#f0fdf4',
   },
   'vpc': {
@@ -326,6 +350,14 @@ const SUB_PAGES = {
       'Giám sát và cảnh báo thời gian thực',
     ],
     price: 'Liên hệ báo giá',
+    content: {
+      type: 'pricing-cards',
+      plans: [
+        { name: 'VPC Basic', price: '350.000₫/th', features: ['10 IP riêng', '1 VLAN', 'VPN Site-to-Site', 'Firewall cơ bản', 'Giám sát 24/7'], popular: false },
+        { name: 'VPC Pro', price: '990.000₫/th', features: ['20 IP riêng', '2 VLAN', 'VPN Site-to-Site', 'Load Balancer', 'Auto Scaling', 'Giám sát 24/7'], popular: true },
+        { name: 'VPC Enterprise', price: '2.500.000₫/th', features: ['50+ IP riêng', '5+ VLAN', 'VPN Site-to-Site', 'Load Balancer nâng cao', 'Auto Scaling', 'Hỗ trợ VIP'], popular: false },
+      ],
+    },
     bg: '#eff6ff',
   },
   'dedicated-server': {
@@ -342,6 +374,14 @@ const SUB_PAGES = {
       'Hỗ trợ kỹ thuật 24/7, thay thế phần cứng khẩn cấp',
     ],
     price: 'Chỉ từ 1.500.000₫ / tháng',
+    content: {
+      type: 'pricing-cards',
+      plans: [
+        { name: 'E-2224', price: '1.500.000₫/th', features: ['Intel Xeon E-2224', '16GB DDR4 ECC', '2x1TB SSD NVMe', '1Gbps bandwidth', 'IPMI từ xa'], popular: false },
+        { name: 'Silver 4314', price: '3.500.000₫/th', features: ['Intel Xeon Silver 4314', '32GB DDR5 ECC', '2x2TB SSD NVMe', '10Gbps bandwidth', 'IPMI từ xa', 'Hot-swap'], popular: true },
+        { name: 'Gold 5418Y', price: '7.500.000₫/th', features: ['Intel Xeon Gold 5418Y', '64GB DDR5 ECC', '4x4TB SSD NVMe', '10Gbps bandwidth', 'IPMI từ xa', 'Hot-swap + VIP'], popular: false },
+      ],
+    },
     bg: '#f8fafc',
   },
   'co-location': {
@@ -358,6 +398,14 @@ const SUB_PAGES = {
       'Hỗ trợ vận hành, reset máy chủ từ xa',
     ],
     price: 'Chỉ từ 500.000₫ / tháng',
+    content: {
+      type: 'pricing-cards',
+      plans: [
+        { name: '1U', price: '500.000₫/th', features: ['Khung 1U', 'Băng thông 100Mbps', '1 IP tĩnh', 'Nguồn dự phòng', 'Giám sát 24/7'], popular: true },
+        { name: '2U', price: '800.000₫/th', features: ['Khung 2U', 'Băng thông 500Mbps', '2 IP tĩnh', 'Nguồn dự phòng', 'Giám sát 24/7', 'Hands hỗ trợ'], popular: false },
+        { name: '4U+Tủ', price: '2.000.000₫/th', features: ['Khung 4U hoặc tủ riêng', 'Băng thông 1Gbps', '5+ IP tĩnh', 'Nguồn dự phòng kép', 'Giám sát 24/7', 'Hands hỗ trợ', 'Bảo trì phần cứng'], popular: false },
+      ],
+    },
     bg: '#f8fafc',
   },
   'tao-website-nhanh': {
@@ -768,13 +816,13 @@ const EN_TRANSLATIONS = {
   'tien-ich-dns': { title: 'DNS Tools', desc: 'Essential DNS management tools for your domains.', features: ['DNS record management (A, CNAME, MX, TXT, NS)', 'DNS forwarding and redirect', 'DNSSEC security extension', 'Quick DNS propagation check', 'Bulk DNS record update'], price: 'Free' },
   'chuyen-nhuong-ten-mien': { title: 'Domain Transfer Service', desc: 'Safe and transparent domain transfer between parties.', features: ['Secure escrow service', 'Ensure safe transfer from seller to buyer', 'Transparent transaction process', 'Professional contract support', '24/7 transaction monitoring'], price: 'Contact for pricing' },
   'web-hosting': { title: 'Web Hosting', desc: 'Professional hosting, high speed with licensed Litespeed, easy cPanel.', features: ['Multi-platform Linux/Windows support', 'Optimized speed with licensed Litespeed + Redis Cache', 'Intuitive cPanel hosting management, easy to use', '99.9% uptime guarantee, DDoS protected', 'SSL, WordPress, PHP, NodeJS, Python support'], price: 'From only 33,000₫ / month', content: { plans: [{ name: 'Starter', price: '33,000₫', features: ['1GB Storage', '10GB Bandwidth', '5 Domains', '1 Database', 'Free SSL'], popular: false }, { name: 'Business', price: '99,000₫', features: ['5GB Storage', '50GB Bandwidth', '20 Domains', '10 Databases', 'Free SSL', 'Daily Backup'], popular: true }, { name: 'Enterprise', price: '199,000₫', features: ['20GB Storage', '200GB Bandwidth', 'Unlimited Domains', 'Unlimited Databases', 'Free SSL', 'Daily Backup', 'Priority Support'], popular: false }] } },
-  'wordpress': { title: 'WordPress Hosting', desc: 'WordPress hosting specially optimized for speed and performance.', features: ['Pre-installed WordPress with one click', 'Optimized Litespeed cache for WordPress', 'Free WordPress themes and plugins', 'Automatic WordPress updates', 'WordPress security scanning'], price: 'From 49,000₫ / month' },
-  'enterprise-hosting': { title: 'Enterprise Hosting', desc: 'Enterprise-grade hosting with dedicated resources, high performance.', features: ['Dedicated CPU and RAM resources', 'High-speed NVMe SSD storage', 'Advanced DDoS protection', 'SLA commitment 99.99% uptime', '24/7 dedicated technical support'], price: 'From 499,000₫ / month' },
-  'chuyen-dung': { title: 'Dedicated Hosting', desc: 'Dedicated hosting environment for NodeJS, Python, Java applications.', features: ['NodeJS, Python, Java, Ruby support', 'Custom runtime configuration', 'SSH access for full control', 'Composer, npm, pip pre-installed', 'Git deployment support'], price: 'From 149,000₫ / month' },
+  'wordpress': { title: 'WordPress Hosting', desc: 'WordPress hosting specially optimized for speed and performance.', features: ['Pre-installed WordPress with one click', 'Optimized Litespeed cache for WordPress', 'Free WordPress themes and plugins', 'Automatic WordPress updates', 'WordPress security scanning'], price: 'From 49,000₫ / month', content: { plans: [{ name: 'WP Starter', price: '49,000₫/mo', features: ['1GB RAM', '10GB SSD', '1 WordPress', 'Litespeed + LSCache', 'Free SSL'], popular: false }, { name: 'WP Business', price: '149,000₫/mo', features: ['2GB RAM', '30GB SSD', '5 WordPress', 'Litespeed + LSCache', 'Free SSL', 'Staging Site'], popular: true }, { name: 'WP Enterprise', price: '399,000₫/mo', features: ['4GB RAM', '80GB SSD', 'Unlimited', 'Litespeed + LSCache', 'Free SSL', 'Staging + CDN'], popular: false }] } },
+  'enterprise-hosting': { title: 'Enterprise Hosting', desc: 'Enterprise-grade hosting with dedicated resources, high performance.', features: ['Dedicated CPU and RAM resources', 'High-speed NVMe SSD storage', 'Advanced DDoS protection', 'SLA commitment 99.99% uptime', '24/7 dedicated technical support'], price: 'Contact for pricing', content: { plans: [{ name: 'Bronze', price: 'Contact', features: ['4 vCPU', '8GB RAM', '200GB NVMe', '99.99% uptime', 'Basic SLA'], popular: false }, { name: 'Silver', price: 'Contact', features: ['8 vCPU', '16GB RAM', '500GB NVMe', '99.99% uptime', 'Advanced SLA', 'Dedicated hotline'], popular: true }, { name: 'Gold', price: 'Contact', features: ['16 vCPU', '32GB RAM', '1TB NVMe', '99.99% uptime', 'Full SLA', 'VIP 24/7'], popular: false }] } },
+  'chuyen-dung': { title: 'Dedicated Hosting', desc: 'Dedicated hosting environment for NodeJS, Python, Java applications.', features: ['NodeJS, Python, Java, Ruby support', 'Custom runtime configuration', 'SSH access for full control', 'Composer, npm, pip pre-installed', 'Git deployment support'], price: 'From 149,000₫ / month', content: { plans: [{ name: 'NodeJS', price: '99,000₫/mo', features: ['1 vCPU', '2GB RAM', '20GB SSD', 'Node 18/20/22', 'SSH + Git deploy'], popular: false }, { name: 'Python', price: '149,000₫/mo', features: ['2 vCPU', '4GB RAM', '40GB SSD', 'Python 3.10-3.12', 'SSH + Git deploy', 'PIP/venv'], popular: true }, { name: 'Java', price: '299,000₫/mo', features: ['4 vCPU', '8GB RAM', '80GB SSD', 'Tomcat/Spring Boot', 'SSH + Git deploy', 'Maven/Gradle'], popular: false }] } },
   'cloud-server': { title: 'Cloud Server', desc: 'Intel Xeon cloud servers, NVMe SSD, Unlimited bandwidth.', features: ['New generation Intel Xeon, NVMe SSD storage', 'Unlimited bandwidth, free IPv6', 'Flexible auto-scaling resources', 'Proactive setup via management interface', 'Protected by CloudBric WAF, DDoS protection'], price: 'From only 175,000₫ / month', content: { plans: [{ name: 'Cloud 1', price: '175,000₫', features: ['1 vCPU', '2GB RAM', '30GB NVMe', 'Unlimited Bandwidth', 'Free IPv6'], popular: true }, { name: 'Cloud 2', price: '350,000₫', features: ['2 vCPU', '4GB RAM', '60GB NVMe', 'Unlimited Bandwidth', 'Free IPv6'], popular: false }, { name: 'Cloud 4', price: '700,000₫', features: ['4 vCPU', '8GB RAM', '120GB NVMe', 'Unlimited Bandwidth', 'Free IPv6', 'CloudBric WAF'], popular: false }] } },
-  'vpc': { title: 'Virtual Private Cloud', desc: 'Isolated virtual network with high security for your cloud infrastructure.', features: ['Isolated virtual network environment', 'Private IP address range', 'VPN tunnel connection', 'Subnet and routing management', 'Network security group/firewall'], price: 'From 350,000₫ / month' },
-  'dedicated-server': { title: 'Dedicated Server', desc: 'Genuine hardware dedicated servers with high performance.', features: ['Genuine Intel Xeon processors', 'ECC RAM for server stability', 'Enterprise NVMe/SSD storage', 'IPMI remote management', '99.99% uptime SLA'], price: 'From 1,500,000₫ / month' },
-  'co-location': { title: 'Co-Location', desc: 'Server colocation services with optimal costs and professional data center.', features: ['Professional data center in HCMC', '24/7 security and environmental monitoring', 'Unlimited bandwidth', 'Remote hands support', 'Power backup with generator'], price: 'From 500,000₫ / month' },
+  'vpc': { title: 'Virtual Private Cloud', desc: 'Isolated virtual network with high security for your cloud infrastructure.', features: ['Isolated virtual network environment', 'Private IP address range', 'VPN tunnel connection', 'Subnet and routing management', 'Network security group/firewall'], price: 'From 350,000₫ / month', content: { plans: [{ name: 'VPC Basic', price: '350,000₫/mo', features: ['10 Private IPs', '1 VLAN', 'VPN Site-to-Site', 'Basic Firewall', '24/7 Monitoring'], popular: false }, { name: 'VPC Pro', price: '990,000₫/mo', features: ['20 Private IPs', '2 VLAN', 'VPN Site-to-Site', 'Load Balancer', 'Auto Scaling', '24/7 Monitoring'], popular: true }, { name: 'VPC Enterprise', price: '2,500,000₫/mo', features: ['50+ Private IPs', '5+ VLAN', 'VPN Site-to-Site', 'Advanced LB', 'Auto Scaling', 'VIP Support'], popular: false }] } },
+  'dedicated-server': { title: 'Dedicated Server', desc: 'Genuine hardware dedicated servers with high performance.', features: ['Genuine Intel Xeon processors', 'ECC RAM for server stability', 'Enterprise NVMe/SSD storage', 'IPMI remote management', '99.99% uptime SLA'], price: 'From 1,500,000₫ / month', content: { plans: [{ name: 'E-2224', price: '1,500,000₫/mo', features: ['Intel Xeon E-2224', '16GB DDR4 ECC', '2x1TB SSD NVMe', '1Gbps bandwidth', 'Remote IPMI'], popular: false }, { name: 'Silver 4314', price: '3,500,000₫/mo', features: ['Intel Xeon Silver 4314', '32GB DDR5 ECC', '2x2TB SSD NVMe', '10Gbps bandwidth', 'Remote IPMI', 'Hot-swap'], popular: true }, { name: 'Gold 5418Y', price: '7,500,000₫/mo', features: ['Intel Xeon Gold 5418Y', '64GB DDR5 ECC', '4x4TB SSD NVMe', '10Gbps bandwidth', 'Remote IPMI', 'Hot-swap + VIP'], popular: false }] } },
+  'co-location': { title: 'Co-Location', desc: 'Server colocation services with optimal costs and professional data center.', features: ['Professional data center in HCMC', '24/7 security and environmental monitoring', 'Unlimited bandwidth', 'Remote hands support', 'Power backup with generator'], price: 'From 500,000₫ / month', content: { plans: [{ name: '1U', price: '500,000₫/mo', features: ['1U Space', '100Mbps bandwidth', '1 Static IP', 'Power backup', '24/7 Monitoring'], popular: true }, { name: '2U', price: '800,000₫/mo', features: ['2U Space', '500Mbps bandwidth', '2 Static IPs', 'Power backup', '24/7 Monitoring', 'Remote hands'], popular: false }, { name: '4U+Rack', price: '2,000,000₫/mo', features: ['4U or Full Rack', '1Gbps bandwidth', '5+ Static IPs', 'Dual power backup', '24/7 Monitoring', 'Remote hands', 'HW maintenance'], popular: false }] } },
   'tao-website-nhanh': { title: 'Quick Website Builder', desc: 'Create a professional website in seconds with our website builder.', features: ['Drag & drop website builder', '100+ professional templates', 'Mobile responsive design', 'SEO optimization built-in', 'E-commerce integration'], price: 'From 99,000₫ / month' },
   'cham-soc-website': { title: 'Website Care', desc: 'Professional website maintenance and care services.', features: ['Regular security updates', 'Content updates', 'Performance optimization', 'Database optimization', 'Regular backup reports'], price: 'From 199,000₫ / month' },
   'cdn': { title: 'CDN — Speed Up Your Website', desc: 'Global CDN to speed up your website and improve user experience.', features: ['Global CDN with multiple PoPs', 'Automatic content caching', 'DDoS protection', 'SSL/TLS acceleration', 'Real-time analytics'], price: 'From 50,000₫ / month' },

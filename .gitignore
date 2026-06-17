@@ -20,3 +20,5 @@ report-cloud.pdf
 docs/
 paper/
 opencode.json
+AGENTS.md
+backend/users.json
