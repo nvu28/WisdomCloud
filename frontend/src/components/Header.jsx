@@ -118,7 +118,7 @@ const MENU_CONFIG = [
 
 ];
 
-export default function Header({ onNavigate, currentPage }) {
+export default function Header({ onNavigate, currentPage, user, onLogout }) {
   const { t } = useTranslation();
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -168,8 +168,17 @@ export default function Header({ onNavigate, currentPage }) {
             <span style={styles.topItem}>{t('common.email')}: support@wisdomcloud.vn</span>
           </div>
           <div style={styles.topRight}>
-            <a href="#" style={styles.topLink}>{t('common.login')}</a>
-            <a href="#" style={styles.topLink}>{t('common.register')}</a>
+            {user ? (
+              <>
+                <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('ho-so'); }} style={styles.topLink}>{user.fullName}</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); onLogout && onLogout(); }} style={styles.topLink}>{t('common.logout')}</a>
+              </>
+            ) : (
+              <>
+                <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('dang-nhap'); }} style={styles.topLink}>{t('common.login')}</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('dang-ky'); }} style={styles.topLink}>{t('common.register')}</a>
+              </>
+            )}
             <LanguageSwitcher />
           </div>
         </div>

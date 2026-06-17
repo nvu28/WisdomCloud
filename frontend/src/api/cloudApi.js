@@ -36,3 +36,28 @@ export async function checkDomain(domain) {
   const response = await api.post('/domains/check', { domain });
   return response.data;
 }
+
+export async function registerUser(data) {
+  const response = await api.post('/auth/register', data);
+  return response.data;
+}
+
+export async function loginUser(data) {
+  const response = await api.post('/auth/login', data);
+  return response.data;
+}
+
+export async function getProfile(token) {
+  const response = await api.get('/auth/profile', { headers: { Authorization: `Bearer ${token}` } });
+  return response.data;
+}
+
+export async function updateProfile(token, data) {
+  const response = await api.put('/auth/profile', data, { headers: { Authorization: `Bearer ${token}` } });
+  return response.data;
+}
+
+export async function changePassword(token, data) {
+  const response = await api.post('/auth/change-password', data, { headers: { Authorization: `Bearer ${token}` } });
+  return response.data;
+}

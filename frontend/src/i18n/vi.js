@@ -11,6 +11,7 @@ const vi = {
     email: 'support@wisdomcloud.vn',
     login: 'Đăng nhập',
     register: 'Đăng ký',
+    logout: 'Đăng xuất',
     search: 'Tìm kiếm',
     viewDetail: 'Xem chi tiết',
     registerNow: 'Đăng ký ngay',
@@ -27,6 +28,7 @@ const vi = {
     support: 'Hỗ trợ',
     popular: 'PHỔ BIẾN',
     service: 'DỊCH VỤ',
+    password: 'Mật khẩu',
   },
 
   subpage: {

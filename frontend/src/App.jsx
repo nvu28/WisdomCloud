@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import SearchForm from './components/SearchForm';
-import SearchResults from './components/SearchResults';
-import Pagination from './components/Pagination';
-import ServiceDetail from './components/ServiceDetail';
 import SubPage from './pages/index';
 import { SUB_PAGES, getSubPages, WHY_CHOOSE } from './data/subPages';
-import { searchServices } from './api/cloudApi';
 import { useTranslation } from './i18n';
 
 const CATEGORIES_VI = [
@@ -131,50 +126,31 @@ export default function App() {
     name: t(tc.nameKey), service: t(tc.serviceKey), text: t(tc.textKey), stars: tc.stars,
   }));
   const [currentPage, setCurrentPage] = useState('home');
-  const [results, setResults] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [params, setParams] = useState({});
-  const [detailId, setDetailId] = useState(null);
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem('wc_user');
+    return saved ? JSON.parse(saved) : null;
+  });
 
   const handleNavigate = (page) => {
     setCurrentPage(page);
-    setResults(null);
-    setParams({});
   };
 
-  const handleSearch = async (newParams) => {
-    setLoading(true);
-    setParams(newParams);
-    try {
-      const data = await searchServices({ ...newParams, page: 0, size: 12 });
-      setResults(data);
-    } catch {
-      setResults({ content: [], totalElements: 0, totalPages: 0, page: 0, size: 12 });
-    } finally {
-      setLoading(false);
-    }
+  const handleLoginSuccess = (data) => {
+    localStorage.setItem('wc_token', data.token);
+    localStorage.setItem('wc_user', JSON.stringify(data.user));
+    setUser(data.user);
   };
 
-  const handlePageChange = async (newPage) => {
-    setLoading(true);
-    try {
-      const data = await searchServices({ ...params, page: newPage, size: 12 });
-      setResults(data);
-    } catch {}
-    setLoading(false);
-  };
-
-  const [domainQuery, setDomainQuery] = useState('');
-
-  const handleDomainSearch = () => {
-    if (!domainQuery.trim()) return;
-    handleNavigate('cloud');
-    handleSearch({ q: domainQuery, category: 'Domain' });
+  const handleLogout = () => {
+    localStorage.removeItem('wc_token');
+    localStorage.removeItem('wc_user');
+    setUser(null);
+    setCurrentPage('home');
   };
 
   return (
     <div style={styles.page}>
-      <Header onNavigate={handleNavigate} currentPage={currentPage} />
+      <Header onNavigate={handleNavigate} currentPage={currentPage} user={user} onLogout={handleLogout} />
 
       {currentPage === 'home' && (
         <>
@@ -187,16 +163,7 @@ export default function App() {
                   <div style={styles.heroLabel}>{t('home.hero.label')}</div>
                   <h1 style={styles.heroTitle}>{t('home.hero.title')}</h1>
                   <p style={styles.heroSub}>{t('home.hero.subtitle')}</p>
-                  <div style={styles.domainSearchBox}>
-                    <input
-                      style={styles.domainInput}
-                      placeholder={t('home.hero.placeholder')}
-                      value={domainQuery}
-                      onChange={e => setDomainQuery(e.target.value)}
-                      onKeyDown={e => e.key === 'Enter' && handleDomainSearch()}
-                    />
-                    <button style={styles.domainBtn} onClick={handleDomainSearch}>{t('home.hero.searchBtn')}</button>
-                  </div>
+
                   <div style={styles.tldGrid}>
                     {HERO_TLDS.map((td, i) => (
                       <div key={i} style={{...styles.tldItem, borderColor: td.color}}>
@@ -430,51 +397,22 @@ export default function App() {
         </>
       )}
 
-      {currentPage === 'cloud' && (
-        <section style={styles.cloudSection}>
-          <div style={styles.sectionInner}>
-            <div style={styles.cloudHeader}>
-              <h2 style={styles.sectionTitle}>{t('cloud.title')}</h2>
-              <p style={styles.sectionSub}>{t('cloud.sub')}</p>
-            </div>
-            <SearchForm onSearch={handleSearch} loading={loading} />
-            {results && (
-              <div style={styles.stats}>
-                <span>{t('cloud.found')} <strong>{results.totalElements}</strong> {t('cloud.services')}</span>
-                <span style={styles.statsSep}>|</span>
-                <span>{t('cloud.page')} {results.page + 1}/{results.totalPages || 1}</span>
-                <button style={styles.backBtn} onClick={() => { setResults(null); setParams({}); }}>
-                  ← {t('cloud.clear')}
-                </button>
-              </div>
-            )}
-            <SearchResults services={results?.content} loading={loading} onViewDetail={setDetailId} />
-            {results && (
-              <Pagination page={results.page} totalPages={results.totalPages} onPageChange={handlePageChange} />
-            )}
-          </div>
-        </section>
-      )}
 
-      {getSubPages(lang)[currentPage] && (
+
+      {currentPage !== 'home' && (
         <SubPage
           pageKey={currentPage}
           onNavigate={handleNavigate}
-          onDomainSearch={(q) => {
-            setDomainQuery(q);
-            handleNavigate('cloud');
-            handleSearch({ q, category: 'Domain' });
-          }}
+          onDomainSearch={() => handleNavigate('dang-ky-ten-mien')}
           lang={lang}
           t={t}
+          user={user}
+          onLoginSuccess={handleLoginSuccess}
+          onLogout={handleLogout}
         />
       )}
 
       <Footer />
-
-      {detailId && (
-        <ServiceDetail serviceId={detailId} onClose={() => setDetailId(null)} />
-      )}
     </div>
   );
 }
@@ -512,16 +450,7 @@ const styles = {
   heroSub: {
     fontSize: 15, color: '#94a3b8', margin: '0 0 24px', lineHeight: 1.6,
   },
-  domainSearchBox: { display: 'flex', gap: 8, marginBottom: 20, maxWidth: 520 },
-  domainInput: {
-    flex: 1, padding: '14px 20px', border: 'none', borderRadius: 8,
-    fontSize: 15, outline: 'none',
-  },
-  domainBtn: {
-    padding: '14px 28px', background: '#2563eb', color: '#fff',
-    border: 'none', borderRadius: 8, fontSize: 15, fontWeight: 600,
-    cursor: 'pointer', whiteSpace: 'nowrap',
-  },
+
   tldGrid: { display: 'flex', gap: 10, flexWrap: 'wrap', maxWidth: 520 },
   tldItem: {
     border: '1px solid', borderRadius: 8, padding: '8px 14px',
@@ -674,16 +603,4 @@ const styles = {
   testName: { fontSize: 14, fontWeight: 600, color: '#1e293b' },
   testService: { fontSize: 12, color: '#94a3b8' },
 
-  // CLOUD SEARCH
-  cloudSection: { padding: '40px 0 60px' },
-  cloudHeader: { marginBottom: 0 },
-  stats: {
-    fontSize: 14, color: '#64748b', marginBottom: 16,
-    display: 'flex', gap: 8, alignItems: 'center',
-  },
-  statsSep: { color: '#e2e8f0' },
-  backBtn: {
-    background: 'none', border: '1px solid #e2e8f0', borderRadius: 6,
-    padding: '4px 12px', fontSize: 13, color: '#64748b', cursor: 'pointer', marginLeft: 'auto',
-  },
 };

@@ -3,6 +3,8 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -11,6 +13,57 @@ app.use(express.json());
 
 const services = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), 'utf-8'));
 const tlds = JSON.parse(fs.readFileSync(path.join(__dirname, 'tlds.json'), 'utf-8'));
+
+const JWT_SECRET = process.env.JWT_SECRET || 'wisdomcloud_jwt_secret_key_2024';
+const USERS_PATH = path.join(__dirname, 'users.json');
+
+const readUsers = () => {
+  try {
+    return JSON.parse(fs.readFileSync(USERS_PATH, 'utf-8'));
+  } catch { return []; }
+};
+
+const writeUsers = (users) => {
+  fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 2));
+};
+
+const authMiddleware = (req, res, next) => {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  try {
+    const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+};
+
+const emailPlans = [
+  { id: 1, name: 'Email Server 3GB', slug: 'email-server-3gb', provider: 'WisdomCloud', category: 'Cloud Email', price: 24000, unit: 'vnd/tháng', mailboxes: 5, storage: '3GB', features: ['5 Email accounts', '3GB storage', 'AI Anti-Spam', 'SSL/TLS', 'SPF/DKIM/DMARC'], isPopular: false },
+  { id: 2, name: 'Email Server 10GB', slug: 'email-server-10gb', provider: 'WisdomCloud', category: 'Cloud Email', price: 49000, unit: 'vnd/tháng', mailboxes: 10, storage: '10GB', features: ['10 Email accounts', '10GB storage', 'AI Anti-Spam', 'SSL/TLS', 'SPF/DKIM/DMARC', 'Backup'], isPopular: true },
+  { id: 3, name: 'Email Server 20GB', slug: 'email-server-20gb', provider: 'WisdomCloud', category: 'Cloud Email', price: 99000, unit: 'vnd/tháng', mailboxes: 20, storage: '20GB', features: ['20 Email accounts', '20GB storage', 'AI Anti-Spam', 'SSL/TLS', 'SPF/DKIM/DMARC', 'Backup', 'RBAC'], isPopular: false },
+];
+
+const sslPlans = [
+  { id: 1, name: 'Sectigo DV', slug: 'sectigo-dv', brand: 'sectigo', type: 'dv', price: 299000, unit: 'vnd/năm', validation: 'Domain', warranty: '$10,000', features: ['Domain validation', 'Issued in 5-10 minutes', '256-bit encryption', 'Free unlimited server license'], isPopular: false },
+  { id: 2, name: 'Sectigo OV', slug: 'sectigo-ov', brand: 'sectigo', type: 'ov', price: 1200000, unit: 'vnd/năm', validation: 'Organization', warranty: '$1,000,000', features: ['Organization validation', 'Issued in 1-3 days', '256-bit encryption', 'Free unlimited server license'], isPopular: true },
+  { id: 3, name: 'Sectigo EV', slug: 'sectigo-ev', brand: 'sectigo', type: 'ev', price: 4500000, unit: 'vnd/năm', validation: 'Extended', warranty: '$2,000,000', features: ['Extended validation', 'Green address bar', '256-bit encryption', 'Free unlimited server license'], isPopular: false },
+];
+
+const serverPlans = [
+  { id: 1, name: 'VPS Lite', slug: 'vps-lite', type: 'vps', price: 175000, unit: 'vnd/tháng', features: ['1 vCPU', '2GB RAM', '50GB SSD NVMe', '1Tbps bandwidth', 'IPv4 + IPv6'], cores: '1 vCPU', ram: '2GB', storage: '50GB SSD NVMe', isPopular: false, color: '#2563eb' },
+  { id: 2, name: 'Cloud Pro', slug: 'cloud-pro', type: 'vps', price: 499000, unit: 'vnd/tháng', features: ['2 vCPU', '4GB RAM', '100GB SSD NVMe', 'Unlimited bandwidth', 'IPv4 + IPv6', 'Auto scaling'], cores: '2 vCPU', ram: '4GB', storage: '100GB SSD NVMe', isPopular: true, color: '#2563eb' },
+  { id: 3, name: 'Cloud Enterprise', slug: 'cloud-enterprise', type: 'vps', price: 1200000, unit: 'vnd/tháng', features: ['4 vCPU', '8GB RAM', '200GB SSD NVMe', 'Unlimited bandwidth', 'IPv4 + IPv6', 'Auto scaling', 'VIP support'], cores: '4 vCPU', ram: '8GB', storage: '200GB SSD NVMe', isPopular: false, color: '#2563eb' },
+];
+
+const hostingPlans = [
+  { id: 1, name: 'Starter', slug: 'starter', type: 'shared', price: 33000, unit: 'vnd/tháng', features: ['1GB RAM', '10GB SSD', '1 Website', 'cPanel', 'SSL miễn phí'], ram: '1GB', storage: '10GB', bandwidth: '100GB', websites: 1, isPopular: false, color: '#059669' },
+  { id: 2, name: 'Business', slug: 'business', type: 'shared', price: 99000, unit: 'vnd/tháng', features: ['2GB RAM', '30GB SSD', '10 Website', 'cPanel', 'SSL miễn phí', 'Backup hàng ngày'], ram: '2GB', storage: '30GB', bandwidth: '300GB', websites: 10, isPopular: true, color: '#059669' },
+  { id: 3, name: 'Enterprise', slug: 'enterprise', type: 'shared', price: 249000, unit: 'vnd/tháng', features: ['4GB RAM', '80GB SSD', 'Không giới hạn Website', 'cPanel', 'SSL miễn phí', 'Backup hàng ngày', 'Hỗ trợ VIP'], ram: '4GB', storage: '80GB', bandwidth: '1TB', websites: -1, isPopular: false, color: '#059669' },
+];
 
 const TAKEN_DOMAINS = ['google', 'facebook', 'youtube', 'amazon', 'wisdomcloud', 'wisdom', 'cloud', 'vietnam', 'shop', 'news', 'blog', 'hotel', 'travel', 'bank', 'money', 'game', 'vn', 'hanoi', 'saigon', 'dichvu', 'congnghe', 'thuongmai', 'giaido']; // Mô phỏng domain đã được đăng ký
 
@@ -128,23 +181,168 @@ app.get('/api/v1/tlds', (req, res) => {
   res.json(tlds);
 });
 
+app.get('/api/v1/hosting/plans', (req, res) => {
+  res.json(hostingPlans);
+});
+
+app.get('/api/v1/servers/plans', (req, res) => {
+  res.json(serverPlans);
+});
+
+app.get('/api/v1/email/plans', (req, res) => {
+  res.json(emailPlans);
+});
+
+app.get('/api/v1/ssl/plans', (req, res) => {
+  res.json(sslPlans);
+});
+
 app.post('/api/v1/domains/check', express.json(), (req, res) => {
   const { domain } = req.body;
-  if (!domain || !/^[a-zA-Z0-9][a-zA-Z0-9-]{0,62}$/.test(domain)) {
+  if (!domain) {
     return res.status(400).json({ error: 'Tên miền không hợp lệ' });
   }
-  const name = domain.toLowerCase();
-  const results = tlds.map(t => {
-    const isTaken = TAKEN_DOMAINS.includes(name) && Math.random() > 0.3;
-    return {
-      tld: t.tld,
-      available: !isTaken,
-      priceFirstYear: t.priceFirstYear,
-      priceRenew: t.priceRenew,
-      color: t.color,
+  const input = domain.toLowerCase().trim();
+  let name = input;
+  let specificTld = null;
+  const sorted = [...tlds].sort((a, b) => b.tld.length - a.tld.length);
+  for (const t of sorted) {
+    if (input.endsWith(t.tld)) {
+      const p = input.slice(0, -t.tld.length);
+      if (/^[a-zA-Z0-9][a-zA-Z0-9-]{0,62}$/.test(p)) {
+        name = p;
+        specificTld = t.tld;
+        break;
+      }
+    }
+  }
+  if (!/^[a-zA-Z0-9][a-zA-Z0-9-]{0,62}$/.test(name)) {
+    return res.status(400).json({ error: 'Tên miền không hợp lệ' });
+  }
+  const results = tlds
+    .filter(t => !specificTld || t.tld === specificTld)
+    .map(t => {
+      const isTaken = TAKEN_DOMAINS.includes(name) && Math.random() > 0.3;
+      return {
+        tld: t.tld,
+        available: !isTaken,
+        priceFirstYear: t.priceFirstYear,
+        priceRenew: t.priceRenew,
+        color: t.color,
+      };
+    });
+  res.json({ domain: name, results, specificTld });
+});
+
+app.post('/api/v1/auth/register', async (req, res) => {
+  try {
+    const { email, password, fullName, phone } = req.body;
+    if (!email || !password || !fullName) {
+      return res.status(400).json({ error: 'Vui lòng điền đầy đủ thông tin' });
+    }
+    const users = readUsers();
+    if (users.find(u => u.email === email)) {
+      return res.status(400).json({ error: 'Email đã được đăng ký' });
+    }
+    const hashed = await bcrypt.hash(password, 10);
+    const newUser = {
+      id: users.length + 1,
+      email,
+      password: hashed,
+      fullName,
+      phone: phone || '',
+      company: '',
+      role: 'customer',
+      createdAt: new Date().toISOString(),
     };
-  });
-  res.json({ domain: name, results });
+    users.push(newUser);
+    writeUsers(users);
+    const token = jwt.sign(
+      { id: newUser.id, email: newUser.email, role: newUser.role },
+      JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+    res.status(201).json({ token, user: { id: newUser.id, email: newUser.email, fullName: newUser.fullName, role: newUser.role } });
+  } catch (err) {
+    console.error('Register error:', err);
+    res.status(500).json({ error: 'Lỗi máy chủ nội bộ' });
+  }
+});
+
+app.post('/api/v1/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Vui lòng nhập email và mật khẩu' });
+    }
+    const users = readUsers();
+    const user = users.find(u => u.email === email);
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(401).json({ error: 'Email hoặc mật khẩu không đúng' });
+    }
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+    res.json({ token, user: { id: user.id, email: user.email, fullName: user.fullName, role: user.role } });
+  } catch (err) {
+    console.error('Login error:', err);
+    res.status(500).json({ error: 'Lỗi máy chủ nội bộ' });
+  }
+});
+
+app.get('/api/v1/auth/profile', authMiddleware, (req, res) => {
+  const users = readUsers();
+  const user = users.find(u => u.id === req.user.id);
+  if (!user) return res.status(404).json({ error: 'Không tìm thấy người dùng' });
+  const { password, ...safe } = user;
+  res.json(safe);
+});
+
+app.put('/api/v1/auth/profile', authMiddleware, async (req, res) => {
+  try {
+    const users = readUsers();
+    const idx = users.findIndex(u => u.id === req.user.id);
+    if (idx === -1) return res.status(404).json({ error: 'Không tìm thấy người dùng' });
+    const { fullName, phone, company, address } = req.body;
+    if (fullName) users[idx].fullName = fullName;
+    if (phone !== undefined) users[idx].phone = phone;
+    if (company !== undefined) users[idx].company = company;
+    if (address !== undefined) users[idx].address = address;
+    users[idx].updatedAt = new Date().toISOString();
+    writeUsers(users);
+    const { password, ...safe } = users[idx];
+    res.json(safe);
+  } catch (err) {
+    console.error('Update profile error:', err);
+    res.status(500).json({ error: 'Lỗi máy chủ nội bộ' });
+  }
+});
+
+app.post('/api/v1/auth/change-password', authMiddleware, async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: 'Vui lòng nhập đầy đủ thông tin' });
+    }
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: 'Mật khẩu mới phải có ít nhất 6 ký tự' });
+    }
+    const users = readUsers();
+    const idx = users.findIndex(u => u.id === req.user.id);
+    if (idx === -1) return res.status(404).json({ error: 'Không tìm thấy người dùng' });
+    if (!(await bcrypt.compare(currentPassword, users[idx].password))) {
+      return res.status(400).json({ error: 'Mật khẩu hiện tại không đúng' });
+    }
+    users[idx].password = await bcrypt.hash(newPassword, 10);
+    users[idx].updatedAt = new Date().toISOString();
+    writeUsers(users);
+    res.json({ message: 'Đổi mật khẩu thành công' });
+  } catch (err) {
+    console.error('Change password error:', err);
+    res.status(500).json({ error: 'Lỗi máy chủ nội bộ' });
+  }
 });
 
 app.get('*', (req, res) => {
@@ -162,5 +360,14 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`  GET /api/v1/cloud-services/stats`);
   console.log(`  GET /api/v1/cloud-services/detail`);
   console.log(`  GET /api/v1/tlds`);
+  console.log(`  GET /api/v1/hosting/plans`);
+  console.log(`  GET /api/v1/servers/plans`);
+  console.log(`  GET /api/v1/email/plans`);
+  console.log(`  GET /api/v1/ssl/plans`);
   console.log(`  POST /api/v1/domains/check`);
+  console.log(`  POST /api/v1/auth/register`);
+  console.log(`  POST /api/v1/auth/login`);
+  console.log(`  GET /api/v1/auth/profile`);
+  console.log(`  PUT /api/v1/auth/profile`);
+  console.log(`  POST /api/v1/auth/change-password`);
   });

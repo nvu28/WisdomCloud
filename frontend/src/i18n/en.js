@@ -11,6 +11,7 @@ const en = {
     email: 'support@wisdomcloud.vn',
     login: 'Login',
     register: 'Register',
+    logout: 'Logout',
     search: 'Search',
     viewDetail: 'View Details',
     registerNow: 'Register Now',
@@ -27,6 +28,7 @@ const en = {
     support: 'Support',
     popular: 'POPULAR',
     service: 'SERVICE',
+    password: 'Password',
   },
 
   subpage: {

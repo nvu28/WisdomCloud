@@ -5,6 +5,9 @@ import DomainServicePage from './DomainServicePage';
 import HostingPage from './HostingPage';
 import EmailPage from './EmailPage';
 import SslPage from './SslPage';
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
+import ProfilePage from './ProfilePage';
 import { getSubPages, getCategoryNav, getCategoryFaqs, getWhyChoose } from '../data/subPages';
 
 const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
@@ -200,7 +203,7 @@ function FAQSection({ faqs, lang }) {
   );
 }
 
-export default function PageRouter({ pageKey, onNavigate, onDomainSearch, lang, t }) {
+export default function PageRouter({ pageKey, onNavigate, onDomainSearch, lang, t, user, onLoginSuccess, onLogout }) {
   if (pageKey === 'dang-ky-ten-mien') {
     return <DomainRegisterPage onNavigate={onNavigate} onDomainSearch={onDomainSearch} lang={lang} t={t} />;
   }
@@ -223,6 +226,18 @@ export default function PageRouter({ pageKey, onNavigate, onDomainSearch, lang, 
 
   if (SSL_PAGES.includes(pageKey)) {
     return <SslPage pageKey={pageKey} onNavigate={onNavigate} lang={lang} t={t} />;
+  }
+
+  if (pageKey === 'dang-nhap') {
+    return <LoginPage onNavigate={onNavigate} onLoginSuccess={onLoginSuccess} t={t} />;
+  }
+
+  if (pageKey === 'dang-ky') {
+    return <RegisterPage onNavigate={onNavigate} onLoginSuccess={onLoginSuccess} t={t} />;
+  }
+
+  if (pageKey === 'ho-so') {
+    return <ProfilePage t={t} onLogout={onLogout} />;
   }
 
   const p = getSubPages(lang)[pageKey];
