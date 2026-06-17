@@ -27,6 +27,28 @@ const writeUsers = (users) => {
   fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 2));
 };
 
+const seedAdmin = async () => {
+  const users = readUsers();
+  if (!users.find(u => u.email === 'admin@wisdomcloud.vn')) {
+    const hashed = await bcrypt.hash('Admin123!', 10);
+    users.push({
+      id: users.length + 1,
+      email: 'admin@wisdomcloud.vn',
+      password: hashed,
+      fullName: 'Admin',
+      phone: '',
+      company: 'WisdomCloud',
+      role: 'admin',
+      createdAt: new Date().toISOString(),
+    });
+    writeUsers(users);
+  }
+};
+await seedAdmin();
+
+const DATA_PATH = path.join(__dirname, 'data.json');
+const TLDS_PATH = path.join(__dirname, 'tlds.json');
+
 const authMiddleware = (req, res, next) => {
   const header = req.headers.authorization;
   if (!header || !header.startsWith('Bearer ')) {
@@ -469,6 +491,219 @@ app.get('/api/v1/orders/:orderCode', (req, res) => {
   res.json(order);
 });
 
+const adminAuth = (req, res) => {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith('Bearer ')) {
+    res.status(401).json({ error: 'Unauthorized' });
+    return null;
+  }
+  try {
+    const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+    if (decoded.role !== 'admin') {
+      res.status(403).json({ error: 'Forbidden' });
+      return null;
+    }
+    return decoded;
+  } catch {
+    res.status(401).json({ error: 'Invalid token' });
+    return null;
+  }
+};
+
+app.get('/api/v1/admin/stats', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const users = readUsers();
+  const ordersByStatus = {};
+  let totalRevenue = 0;
+  orders.forEach(o => {
+    ordersByStatus[o.status] = (ordersByStatus[o.status] || 0) + 1;
+    if (o.paymentStatus === 'paid' || o.status === 'completed') {
+      totalRevenue += o.total;
+    }
+  });
+  const revenueByMonth = {};
+  orders.forEach(o => {
+    if (o.paymentStatus === 'paid' || o.status === 'completed') {
+      const m = o.createdAt.slice(0, 7);
+      revenueByMonth[m] = (revenueByMonth[m] || 0) + o.total;
+    }
+  });
+  res.json({
+    totalUsers: users.length,
+    totalOrders: orders.length,
+    totalServices: services.length,
+    totalRevenue,
+    ordersByStatus,
+    revenueByMonth,
+  });
+});
+
+app.get('/api/v1/admin/users', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const all = readUsers();
+  res.json(all.map(({ password, ...u }) => u));
+});
+
+app.get('/api/v1/admin/users/:id', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const all = readUsers();
+  const u = all.find(x => x.id === parseInt(req.params.id));
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { password, ...safe } = u;
+  res.json(safe);
+});
+
+app.put('/api/v1/admin/users/:id', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const all = readUsers();
+  const idx = all.findIndex(x => x.id === parseInt(req.params.id));
+  if (idx === -1) return res.status(404).json({ error: 'User not found' });
+  const { fullName, phone, company, address, role } = req.body;
+  if (fullName !== undefined) all[idx].fullName = fullName;
+  if (phone !== undefined) all[idx].phone = phone;
+  if (company !== undefined) all[idx].company = company;
+  if (address !== undefined) all[idx].address = address;
+  if (role !== undefined) all[idx].role = role;
+  all[idx].updatedAt = new Date().toISOString();
+  writeUsers(all);
+  const { password, ...safe } = all[idx];
+  res.json(safe);
+});
+
+app.delete('/api/v1/admin/users/:id', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const all = readUsers();
+  const idx = all.findIndex(x => x.id === parseInt(req.params.id));
+  if (idx === -1) return res.status(404).json({ error: 'User not found' });
+  all.splice(idx, 1);
+  writeUsers(all);
+  res.json({ message: 'User deleted' });
+});
+
+app.get('/api/v1/admin/services', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  res.json(services);
+});
+
+app.post('/api/v1/admin/services', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const { name, slug, provider, category, price, unit, specs, cores, ram, storage, description } = req.body;
+  const maxId = services.reduce((m, s) => Math.max(m, s.id), 0);
+  const newService = {
+    id: maxId + 1,
+    name,
+    slug,
+    provider,
+    category,
+    price: parseInt(price),
+    unit,
+    specs: specs || '',
+    cores: cores || '',
+    ram: ram || '',
+    storage: storage || '',
+    description: description || '',
+  };
+  services.push(newService);
+  fs.writeFileSync(DATA_PATH, JSON.stringify(services, null, 2));
+  res.status(201).json(newService);
+});
+
+app.put('/api/v1/admin/services/:id', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const idx = services.findIndex(s => s.id === parseInt(req.params.id));
+  if (idx === -1) return res.status(404).json({ error: 'Service not found' });
+  const { name, slug, provider, category, price, unit, specs, cores, ram, storage, description } = req.body;
+  if (name !== undefined) services[idx].name = name;
+  if (slug !== undefined) services[idx].slug = slug;
+  if (provider !== undefined) services[idx].provider = provider;
+  if (category !== undefined) services[idx].category = category;
+  if (price !== undefined) services[idx].price = parseInt(price);
+  if (unit !== undefined) services[idx].unit = unit;
+  if (specs !== undefined) services[idx].specs = specs;
+  if (cores !== undefined) services[idx].cores = cores;
+  if (ram !== undefined) services[idx].ram = ram;
+  if (storage !== undefined) services[idx].storage = storage;
+  if (description !== undefined) services[idx].description = description;
+  fs.writeFileSync(DATA_PATH, JSON.stringify(services, null, 2));
+  res.json(services[idx]);
+});
+
+app.delete('/api/v1/admin/services/:id', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const idx = services.findIndex(s => s.id === parseInt(req.params.id));
+  if (idx === -1) return res.status(404).json({ error: 'Service not found' });
+  services.splice(idx, 1);
+  fs.writeFileSync(DATA_PATH, JSON.stringify(services, null, 2));
+  res.json({ message: 'Service deleted' });
+});
+
+app.get('/api/v1/admin/orders', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  res.json(orders);
+});
+
+app.put('/api/v1/admin/orders/:orderCode', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const order = orders.find(o => o.orderCode === req.params.orderCode);
+  if (!order) return res.status(404).json({ error: 'Order not found' });
+  const { status, paymentStatus } = req.body;
+  if (status !== undefined) order.status = status;
+  if (paymentStatus !== undefined) order.paymentStatus = paymentStatus;
+  order.updatedAt = new Date().toISOString();
+  res.json(order);
+});
+
+app.get('/api/v1/admin/coupons', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  res.json(Object.entries(coupons).map(([code, data]) => ({ code, ...data })));
+});
+
+app.post('/api/v1/admin/coupons', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const { code, discount, minTotal } = req.body;
+  if (!code || discount === undefined) return res.status(400).json({ error: 'Missing code or discount' });
+  coupons[code] = { discount: parseFloat(discount), minTotal: parseInt(minTotal) || 0 };
+  res.status(201).json({ code, discount: parseFloat(discount), minTotal: parseInt(minTotal) || 0 });
+});
+
+app.delete('/api/v1/admin/coupons/:code', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  if (!coupons[req.params.code]) return res.status(404).json({ error: 'Coupon not found' });
+  delete coupons[req.params.code];
+  res.json({ message: 'Coupon deleted' });
+});
+
+app.get('/api/v1/admin/tlds', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  res.json(tlds);
+});
+
+app.put('/api/v1/admin/tlds', (req, res) => {
+  const user = adminAuth(req, res);
+  if (!user) return;
+  const { tlds: newTlds } = req.body;
+  if (!Array.isArray(newTlds)) return res.status(400).json({ error: 'Invalid tlds array' });
+  tlds.length = 0;
+  tlds.push(...newTlds);
+  fs.writeFileSync(TLDS_PATH, JSON.stringify(tlds, null, 2));
+  res.json(tlds);
+});
+
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) return;
   res.sendFile(path.join(distPath, 'index.html'));
@@ -501,4 +736,17 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`  POST /api/v1/cart/coupon`);
   console.log(`  POST /api/v1/orders`);
   console.log(`  GET /api/v1/orders`);
+  console.log(`  GET /api/v1/admin/stats`);
+  console.log(`  GET /api/v1/admin/users`);
+  console.log(`  GET /api/v1/admin/services`);
+  console.log(`  POST /api/v1/admin/services`);
+  console.log(`  PUT /api/v1/admin/services/:id`);
+  console.log(`  DELETE /api/v1/admin/services/:id`);
+  console.log(`  GET /api/v1/admin/orders`);
+  console.log(`  PUT /api/v1/admin/orders/:orderCode`);
+  console.log(`  GET /api/v1/admin/coupons`);
+  console.log(`  POST /api/v1/admin/coupons`);
+  console.log(`  DELETE /api/v1/admin/coupons/:code`);
+  console.log(`  GET /api/v1/admin/tlds`);
+  console.log(`  PUT /api/v1/admin/tlds`);
   });

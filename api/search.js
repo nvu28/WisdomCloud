@@ -10,6 +10,18 @@ const tlds = JSON.parse(fs.readFileSync(path.join(__dirname, 'tlds.json'), 'utf-
 
 const JWT_SECRET = process.env.JWT_SECRET || 'wisdomcloud_jwt_secret_key_2024';
 const users = [];
+if (!users.find(u => u.email === 'admin@wisdomcloud.vn')) {
+  users.push({
+    id: users.length + 1,
+    email: 'admin@wisdomcloud.vn',
+    password: '$2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQkfDEQiBKLgTZOB4GjCjPJz3FbG5u',
+    fullName: 'Admin',
+    phone: '',
+    company: 'WisdomCloud',
+    role: 'admin',
+    createdAt: new Date().toISOString(),
+  });
+}
 
 const TAKEN_DOMAINS = ['google', 'facebook', 'youtube', 'amazon', 'wisdomcloud', 'wisdom', 'cloud', 'vietnam', 'shop', 'news', 'blog', 'hotel', 'travel', 'bank', 'money', 'game', 'vn', 'hanoi', 'saigon', 'dichvu', 'congnghe', 'thuongmai', 'giaido'];
 
@@ -44,6 +56,31 @@ const hostingPlans = [
 const VALID_SORT_FIELDS = ['name', 'provider', 'price', 'category'];
 const ALLOWED_SORT_DIRS = ['asc', 'desc'];
 const MAX_SIZE = 100;
+
+const adminAuth = (req, res) => {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith('Bearer ')) {
+    res.status(401).json({ error: 'Unauthorized' });
+    return null;
+  }
+  try {
+    const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+    if (decoded.role !== 'admin') {
+      res.status(403).json({ error: 'Forbidden' });
+      return null;
+    }
+    return decoded;
+  } catch {
+    res.status(401).json({ error: 'Invalid token' });
+    return null;
+  }
+};
+
+const readBody = (req) => new Promise((resolve) => {
+  let body = '';
+  req.on('data', chunk => { body += chunk; });
+  req.on('end', () => resolve(JSON.parse(body)));
+});
 
 export default async function handler(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
@@ -434,6 +471,200 @@ export default async function handler(req, res) {
         if (order.userId !== decoded.id) return res.status(403).json({ error: 'Forbidden' });
         return res.json(order);
       } catch { return res.status(401).json({ error: 'Invalid token' }); }
+    }
+
+    if (pathname === '/api/v1/admin/stats') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const ordersByStatus = {};
+      let totalRevenue = 0;
+      orders.forEach(o => {
+        ordersByStatus[o.status] = (ordersByStatus[o.status] || 0) + 1;
+        if (o.paymentStatus === 'paid' || o.status === 'completed') totalRevenue += o.total;
+      });
+      const revenueByMonth = {};
+      orders.forEach(o => {
+        if (o.paymentStatus === 'paid' || o.status === 'completed') {
+          const m = o.createdAt.slice(0, 7);
+          revenueByMonth[m] = (revenueByMonth[m] || 0) + o.total;
+        }
+      });
+      return res.json({
+        totalUsers: users.length,
+        totalOrders: orders.length,
+        totalServices: services.length,
+        totalRevenue,
+        ordersByStatus,
+        revenueByMonth,
+      });
+    }
+
+    if (pathname === '/api/v1/admin/users' && req.method === 'GET') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      return res.json(users.map(({ password, ...u }) => u));
+    }
+
+    if (pathname.startsWith('/api/v1/admin/users/') && req.method === 'GET') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const id = parseInt(pathname.replace('/api/v1/admin/users/', ''));
+      const u = users.find(x => x.id === id);
+      if (!u) return res.status(404).json({ error: 'User not found' });
+      const { password, ...safe } = u;
+      return res.json(safe);
+    }
+
+    if (pathname.startsWith('/api/v1/admin/users/') && req.method === 'PUT') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const id = parseInt(pathname.replace('/api/v1/admin/users/', ''));
+      const idx = users.findIndex(x => x.id === id);
+      if (idx === -1) return res.status(404).json({ error: 'User not found' });
+      const body = await readBody(req);
+      const { fullName, phone, company, address, role } = body;
+      if (fullName !== undefined) users[idx].fullName = fullName;
+      if (phone !== undefined) users[idx].phone = phone;
+      if (company !== undefined) users[idx].company = company;
+      if (address !== undefined) users[idx].address = address;
+      if (role !== undefined) users[idx].role = role;
+      users[idx].updatedAt = new Date().toISOString();
+      const { password, ...safe } = users[idx];
+      return res.json(safe);
+    }
+
+    if (pathname.startsWith('/api/v1/admin/users/') && req.method === 'DELETE') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const id = parseInt(pathname.replace('/api/v1/admin/users/', ''));
+      const idx = users.findIndex(x => x.id === id);
+      if (idx === -1) return res.status(404).json({ error: 'User not found' });
+      users.splice(idx, 1);
+      return res.json({ message: 'User deleted' });
+    }
+
+    if (pathname === '/api/v1/admin/services' && req.method === 'GET') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      return res.json(services);
+    }
+
+    if (pathname === '/api/v1/admin/services' && req.method === 'POST') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const body = await readBody(req);
+      const { name, slug, provider, category, price, unit, specs, cores, ram, storage, description } = body;
+      const maxId = services.reduce((m, s) => Math.max(m, s.id), 0);
+      const newService = {
+        id: maxId + 1,
+        name,
+        slug,
+        provider,
+        category,
+        price: parseInt(price),
+        unit,
+        specs: specs || '',
+        cores: cores || '',
+        ram: ram || '',
+        storage: storage || '',
+        description: description || '',
+      };
+      services.push(newService);
+      return res.status(201).json(newService);
+    }
+
+    if (pathname.startsWith('/api/v1/admin/services/') && req.method === 'PUT') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const id = parseInt(pathname.replace('/api/v1/admin/services/', ''));
+      const idx = services.findIndex(s => s.id === id);
+      if (idx === -1) return res.status(404).json({ error: 'Service not found' });
+      const body = await readBody(req);
+      const { name, slug, provider, category, price, unit, specs, cores, ram, storage, description } = body;
+      if (name !== undefined) services[idx].name = name;
+      if (slug !== undefined) services[idx].slug = slug;
+      if (provider !== undefined) services[idx].provider = provider;
+      if (category !== undefined) services[idx].category = category;
+      if (price !== undefined) services[idx].price = parseInt(price);
+      if (unit !== undefined) services[idx].unit = unit;
+      if (specs !== undefined) services[idx].specs = specs;
+      if (cores !== undefined) services[idx].cores = cores;
+      if (ram !== undefined) services[idx].ram = ram;
+      if (storage !== undefined) services[idx].storage = storage;
+      if (description !== undefined) services[idx].description = description;
+      return res.json(services[idx]);
+    }
+
+    if (pathname.startsWith('/api/v1/admin/services/') && req.method === 'DELETE') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const id = parseInt(pathname.replace('/api/v1/admin/services/', ''));
+      const idx = services.findIndex(s => s.id === id);
+      if (idx === -1) return res.status(404).json({ error: 'Service not found' });
+      services.splice(idx, 1);
+      return res.json({ message: 'Service deleted' });
+    }
+
+    if (pathname === '/api/v1/admin/orders' && req.method === 'GET') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      return res.json(orders);
+    }
+
+    if (pathname.startsWith('/api/v1/admin/orders/') && req.method === 'PUT') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const orderCode = pathname.replace('/api/v1/admin/orders/', '');
+      const order = orders.find(o => o.orderCode === orderCode);
+      if (!order) return res.status(404).json({ error: 'Order not found' });
+      const body = await readBody(req);
+      const { status, paymentStatus } = body;
+      if (status !== undefined) order.status = status;
+      if (paymentStatus !== undefined) order.paymentStatus = paymentStatus;
+      order.updatedAt = new Date().toISOString();
+      return res.json(order);
+    }
+
+    if (pathname === '/api/v1/admin/coupons' && req.method === 'GET') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      return res.json(Object.entries(coupons).map(([code, data]) => ({ code, ...data })));
+    }
+
+    if (pathname === '/api/v1/admin/coupons' && req.method === 'POST') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const body = await readBody(req);
+      const { code, discount, minTotal } = body;
+      if (!code || discount === undefined) return res.status(400).json({ error: 'Missing code or discount' });
+      coupons[code] = { discount: parseFloat(discount), minTotal: parseInt(minTotal) || 0 };
+      return res.status(201).json({ code, discount: parseFloat(discount), minTotal: parseInt(minTotal) || 0 });
+    }
+
+    if (pathname.startsWith('/api/v1/admin/coupons/') && req.method === 'DELETE') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const code = pathname.replace('/api/v1/admin/coupons/', '');
+      if (!coupons[code]) return res.status(404).json({ error: 'Coupon not found' });
+      delete coupons[code];
+      return res.json({ message: 'Coupon deleted' });
+    }
+
+    if (pathname === '/api/v1/admin/tlds' && req.method === 'GET') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      return res.json(tlds);
+    }
+
+    if (pathname === '/api/v1/admin/tlds' && req.method === 'PUT') {
+      const user = adminAuth(req, res);
+      if (!user) return;
+      const body = await readBody(req);
+      const { tlds: newTlds } = body;
+      if (!Array.isArray(newTlds)) return res.status(400).json({ error: 'Invalid tlds array' });
+      tlds.length = 0;
+      tlds.push(...newTlds);
+      return res.json(tlds);
     }
 
     res.status(404).json({ error: 'Not found' });
