@@ -35,6 +35,12 @@ const emailPlans = [
   { id: 3, name: 'Email Server 20GB', slug: 'email-server-20gb', provider: 'WisdomCloud', category: 'Cloud Email', price: 99000, unit: 'vnd/tháng', mailboxes: 20, storage: '20GB', features: ['20 Email accounts', '20GB storage', 'AI Anti-Spam', 'SSL/TLS', 'SPF/DKIM/DMARC', 'Backup', 'RBAC'], isPopular: false },
 ];
 
+let nextMailId = 3;
+const emails = [
+  { id: 1, from: 'admin@wisdomcloud.vn', fromName: 'Admin WisdomCloud', to: 'admin@wisdomcloud.vn', subject: 'Chào mừng đến với WisdomCloud Webmail', body: 'Chào bạn,\n\nĐây là email đầu tiên từ hệ thống Webmail WisdomCloud.\n\nBạn có thể:\n- Gửi và nhận email trực tiếp từ giao diện web\n- Quản lý hộp thư đến và thư đã gửi\n- Soạn thư với định dạng văn bản\n\nMọi thắc mắc vui lòng liên hệ support@wisdomcloud.vn\n\nTrân trọng,\nWisdomCloud Team', sentAt: '2026-06-24T08:00:00.000Z', read: false, deletedBy: [] },
+  { id: 2, from: 'admin@wisdomcloud.vn', fromName: 'admin@wisdomcloud.vn', to: 'admin@wisdomcloud.vn', subject: 'Test Email', body: 'This is a test', sentAt: '2026-06-24T07:50:28.852Z', read: false, deletedBy: [] },
+];
+
 const sslPlans = [
   { id: 1, name: 'Sectigo DV', slug: 'sectigo-dv', brand: 'sectigo', type: 'dv', price: 299000, unit: 'vnd/năm', validation: 'Domain', warranty: '$10,000', features: ['Domain validation', 'Issued in 5-10 minutes', '256-bit encryption', 'Free unlimited server license'], isPopular: false },
   { id: 2, name: 'Sectigo OV', slug: 'sectigo-ov', brand: 'sectigo', type: 'ov', price: 1200000, unit: 'vnd/năm', validation: 'Organization', warranty: '$1,000,000', features: ['Organization validation', 'Issued in 1-3 days', '256-bit encryption', 'Free unlimited server license'], isPopular: true },
@@ -665,6 +671,80 @@ export default async function handler(req, res) {
       tlds.length = 0;
       tlds.push(...newTlds);
       return res.json(tlds);
+    }
+
+    // ── Webmail ──────────────────────────────────────
+    const userAuth = (req, res) => {
+      const header = req.headers.authorization;
+      if (!header || !header.startsWith('Bearer ')) { res.status(401).json({ error: 'Unauthorized' }); return null; }
+      try {
+        const decoded = jwt.verify(header.split(' ')[1], JWT_SECRET);
+        const user = users.find(u => u.id === decoded.id);
+        if (!user) { res.status(401).json({ error: 'User not found' }); return null; }
+        return user;
+      } catch { res.status(401).json({ error: 'Invalid token' }); return null; }
+    };
+
+    if (pathname === '/api/v1/mail/inbox' && req.method === 'GET') {
+      const user = userAuth(req, res);
+      if (!user) return;
+      return res.json(emails.filter(e => e.to === user.email && !e.deletedBy.includes(user.email)));
+    }
+
+    if (pathname === '/api/v1/mail/sent' && req.method === 'GET') {
+      const user = userAuth(req, res);
+      if (!user) return;
+      return res.json(emails.filter(e => e.from === user.email && !e.deletedBy.includes(user.email)));
+    }
+
+    const mailMatch = pathname.match(/^\/api\/v1\/mail\/(\d+)$/);
+    if (mailMatch && req.method === 'GET') {
+      const user = userAuth(req, res);
+      if (!user) return;
+      const email = emails.find(e => e.id === parseInt(mailMatch[1]));
+      if (!email) return res.status(404).json({ error: 'Email not found' });
+      return res.json(email);
+    }
+
+    if (pathname === '/api/v1/mail/send' && req.method === 'POST') {
+      const user = userAuth(req, res);
+      if (!user) return;
+      const body = await readBody(req);
+      if (!body.to || !body.subject || !body.body) {
+        return res.status(400).json({ error: 'Vui lòng nhập đầy đủ thông tin' });
+      }
+      const newEmail = {
+        id: nextMailId++,
+        from: user.email,
+        fromName: user.fullName || user.email,
+        to: body.to,
+        subject: body.subject,
+        body: body.body,
+        sentAt: new Date().toISOString(),
+        read: false,
+        deletedBy: [],
+      };
+      emails.push(newEmail);
+      return res.status(201).json(newEmail);
+    }
+
+    const mailReadMatch = pathname.match(/^\/api\/v1\/mail\/(\d+)\/read$/);
+    if (mailReadMatch && req.method === 'PUT') {
+      const user = userAuth(req, res);
+      if (!user) return;
+      const email = emails.find(e => e.id === parseInt(mailReadMatch[1]));
+      if (!email) return res.status(404).json({ error: 'Email not found' });
+      email.read = true;
+      return res.json({ message: 'Marked as read' });
+    }
+
+    if (mailMatch && req.method === 'DELETE') {
+      const user = userAuth(req, res);
+      if (!user) return;
+      const email = emails.find(e => e.id === parseInt(mailMatch[1]));
+      if (!email) return res.status(404).json({ error: 'Email not found' });
+      if (!email.deletedBy.includes(user.email)) email.deletedBy.push(user.email);
+      return res.json({ message: 'Email deleted' });
     }
 
     res.status(404).json({ error: 'Not found' });

@@ -12,6 +12,7 @@ import CartPage from './CartPage';
 import CheckoutPage from './CheckoutPage';
 import OrderHistoryPage from './OrderHistoryPage';
 import AdminPage from './AdminPage';
+import WebmailPage from './WebmailPage';
 import { getSubPages, getCategoryNav, getCategoryFaqs, getWhyChoose } from '../data/subPages';
 
 const sectionInner = { maxWidth: 1200, margin: '0 auto', padding: '0 24px' };
@@ -254,6 +255,10 @@ export default function PageRouter({ pageKey, onNavigate, onDomainSearch, lang, 
 
   if (pageKey === 'don-hang') {
     return <OrderHistoryPage onNavigate={onNavigate} t={t} />;
+  }
+
+  if (pageKey === 'webmail') {
+    return <WebmailPage user={user} onNavigate={onNavigate} />;
   }
 
   if (pageKey === 'admin') {

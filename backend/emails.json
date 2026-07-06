@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "from": "admin@wisdomcloud.vn",
+    "fromName": "Admin WisdomCloud",
+    "to": "admin@wisdomcloud.vn",
+    "subject": "Chào mừng đến với WisdomCloud Webmail",
+    "body": "Chào bạn,\n\nĐây là email đầu tiên từ hệ thống Webmail WisdomCloud.\n\nBạn có thể:\n- Gửi và nhận email trực tiếp từ giao diện web\n- Quản lý hộp thư đến và thư đã gửi\n- Soạn thư với định dạng văn bản\n\nMọi thắc mắc vui lòng liên hệ support@wisdomcloud.vn\n\nTrân trọng,\nWisdomCloud Team",
+    "sentAt": "2026-06-24T08:00:00.000Z",
+    "read": false,
+    "deletedBy": []
+  },
+  {
+    "id": 2,
+    "from": "admin@wisdomcloud.vn",
+    "fromName": "admin@wisdomcloud.vn",
+    "to": "admin@wisdomcloud.vn",
+    "subject": "Test Email",
+    "body": "This is a test",
+    "sentAt": "2026-06-24T07:50:28.852Z",
+    "read": false,
+    "deletedBy": []
+  }
+]

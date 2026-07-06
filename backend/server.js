@@ -704,6 +704,103 @@ app.put('/api/v1/admin/tlds', (req, res) => {
   res.json(tlds);
 });
 
+// ── Email / Webmail ──────────────────────────────────────
+const EMAILS_PATH = path.join(__dirname, 'emails.json');
+
+const readEmails = () => {
+  try {
+    return JSON.parse(fs.readFileSync(EMAILS_PATH, 'utf-8'));
+  } catch { return []; }
+};
+
+const writeEmails = (data) => {
+  fs.writeFileSync(EMAILS_PATH, JSON.stringify(data, null, 2));
+};
+
+app.get('/api/v1/mail/inbox', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const all = readEmails();
+  const inbox = all
+    .filter(e => e.to === user.email && !e.deletedBy?.includes(user.email))
+    .sort((a, b) => new Date(b.sentAt) - new Date(a.sentAt));
+  res.json(inbox);
+});
+
+app.get('/api/v1/mail/sent', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const all = readEmails();
+  const sent = all
+    .filter(e => e.from === user.email && !e.deletedBy?.includes(user.email))
+    .sort((a, b) => new Date(b.sentAt) - new Date(a.sentAt));
+  res.json(sent);
+});
+
+app.get('/api/v1/mail/:id', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const all = readEmails();
+  const email = all.find(e => e.id === parseInt(req.params.id));
+  if (!email) return res.status(404).json({ error: 'Email not found' });
+  if (email.to !== user.email && email.from !== user.email) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+  res.json(email);
+});
+
+app.post('/api/v1/mail/send', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const { to, subject, body } = req.body;
+  if (!to || !subject || !body) {
+    return res.status(400).json({ error: 'Vui lòng nhập đầy đủ người nhận, tiêu đề và nội dung' });
+  }
+  const all = readEmails();
+  const maxId = all.reduce((m, e) => Math.max(m, e.id), 0);
+  const newEmail = {
+    id: maxId + 1,
+    from: user.email,
+    fromName: user.fullName || user.email,
+    to,
+    subject,
+    body,
+    sentAt: new Date().toISOString(),
+    read: false,
+    deletedBy: [],
+  };
+  all.push(newEmail);
+  writeEmails(all);
+  res.status(201).json(newEmail);
+});
+
+app.put('/api/v1/mail/:id/read', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const all = readEmails();
+  const email = all.find(e => e.id === parseInt(req.params.id));
+  if (!email) return res.status(404).json({ error: 'Email not found' });
+  if (email.to !== user.email) return res.status(403).json({ error: 'Forbidden' });
+  email.read = true;
+  writeEmails(all);
+  res.json(email);
+});
+
+app.delete('/api/v1/mail/:id', (req, res) => {
+  const user = authenticate(req, res);
+  if (!user) return;
+  const all = readEmails();
+  const email = all.find(e => e.id === parseInt(req.params.id));
+  if (!email) return res.status(404).json({ error: 'Email not found' });
+  if (email.to !== user.email && email.from !== user.email) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+  if (!email.deletedBy) email.deletedBy = [];
+  email.deletedBy.push(user.email);
+  writeEmails(all);
+  res.json({ message: 'Email deleted' });
+});
+
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) return;
   res.sendFile(path.join(distPath, 'index.html'));

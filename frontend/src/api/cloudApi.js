@@ -106,3 +106,34 @@ export async function getOrderDetail(orderCode) {
   const response = await api.get(`/orders/${orderCode}`, { headers: authHeaders() });
   return response.data;
 }
+
+// ── Email / Webmail ──
+export async function getInbox() {
+  const response = await api.get('/mail/inbox', { headers: authHeaders() });
+  return response.data;
+}
+
+export async function getSentEmails() {
+  const response = await api.get('/mail/sent', { headers: authHeaders() });
+  return response.data;
+}
+
+export async function getEmail(id) {
+  const response = await api.get(`/mail/${id}`, { headers: authHeaders() });
+  return response.data;
+}
+
+export async function sendEmail(data) {
+  const response = await api.post('/mail/send', data, { headers: authHeaders() });
+  return response.data;
+}
+
+export async function markAsRead(id) {
+  const response = await api.put(`/mail/${id}/read`, {}, { headers: authHeaders() });
+  return response.data;
+}
+
+export async function deleteEmail(id) {
+  const response = await api.delete(`/mail/${id}`, { headers: authHeaders() });
+  return response.data;
+}

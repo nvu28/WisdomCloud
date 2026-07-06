@@ -171,6 +171,7 @@ export default function Header({ onNavigate, currentPage, user, onLogout }) {
             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('gio-hang'); }} style={styles.topLink}>🛒 Giỏ hàng</a>
             {user ? (
               <>
+                <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('webmail'); }} style={{...styles.topLink, color: '#d97706', fontWeight: 700}}>📧 Webmail</a>
                 {user.role === 'admin' && <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('admin'); }} style={{...styles.topLink, color: '#7c3aed', fontWeight: 700}}>Admin</a>}
                 <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('ho-so'); }} style={styles.topLink}>{user.fullName}</a>
                 <a href="#" onClick={(e) => { e.preventDefault(); onLogout && onLogout(); }} style={styles.topLink}>{t('common.logout')}</a>
