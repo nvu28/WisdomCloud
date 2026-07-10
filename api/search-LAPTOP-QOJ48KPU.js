@@ -10,18 +10,22 @@ const tlds = JSON.parse(fs.readFileSync(path.join(__dirname, 'tlds.json'), 'utf-
 
 const JWT_SECRET = process.env.JWT_SECRET || 'wisdomcloud_jwt_secret_key_2024';
 const users = [];
-if (!users.find(u => u.email === 'admin@wisdomcloud.vn')) {
-  users.push({
-    id: users.length + 1,
-    email: 'admin@wisdomcloud.vn',
-    password: '$2a$10$8K1p/a0dL1LXMIgoEDFrwOfMQkfDEQiBKLgTZOB4GjCjPJz3FbG5u',
-    fullName: 'Admin',
-    phone: '',
-    company: 'WisdomCloud',
-    role: 'admin',
-    createdAt: new Date().toISOString(),
-  });
-}
+const seedAdmin = async () => {
+  if (!users.find(u => u.email === 'admin@wisdomcloud.vn')) {
+    const hashed = await bcrypt.hash('Admin123!', 10);
+    users.push({
+      id: users.length + 1,
+      email: 'admin@wisdomcloud.vn',
+      password: hashed,
+      fullName: 'Admin',
+      phone: '',
+      company: 'WisdomCloud',
+      role: 'admin',
+      createdAt: new Date().toISOString(),
+    });
+  }
+};
+await seedAdmin();
 
 const TAKEN_DOMAINS = ['google', 'facebook', 'youtube', 'amazon', 'wisdomcloud', 'wisdom', 'cloud', 'vietnam', 'shop', 'news', 'blog', 'hotel', 'travel', 'bank', 'money', 'game', 'vn', 'hanoi', 'saigon', 'dichvu', 'congnghe', 'thuongmai', 'giaido'];
 
@@ -437,7 +441,7 @@ export default async function handler(req, res) {
         const discount = cart.discount || 0;
         const total = subtotal - discount;
         const order = {
-          orderCode: `DH-${Date.now()}`,
+          orderCode: `DH${Date.now()}`,
           userId: decoded.id,
           items: [...cart.items],
           couponCode: cart.couponCode,
