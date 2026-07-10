@@ -1,16 +1,13 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/dist",
-  "experimentalServices": {
+  "services": {
     "frontend": {
       "root": "frontend",
-      "routePrefix": "/",
-      "framework": "vite"
-    },
-    "backend": {
-      "root": "backend",
-      "entrypoint": "server.js",
-      "routePrefix": "/_/backend"
+      "buildCommand": "npm install && npm run build",
+      "outputDirectory": "dist"
     }
-  }
+  },
+  "rewrites": [
+    { "source": "/_/backend/api/v1/(.*)", "destination": "/api/search" },
+    { "source": "/api/v1/(.*)", "destination": "/api/search" }
+  ]
 }
