@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import nodemailer from 'nodemailer';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const services = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), 'utf-8'));
@@ -27,6 +28,16 @@ const seedAdmin = async () => {
 };
 await seedAdmin();
 
+const mailTransporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: parseInt(process.env.SMTP_PORT) || 587,
+  secure: process.env.SMTP_SECURE === 'true',
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
 const TAKEN_DOMAINS = ['google', 'facebook', 'youtube', 'amazon', 'wisdomcloud', 'wisdom', 'cloud', 'vietnam', 'shop', 'news', 'blog', 'hotel', 'travel', 'bank', 'money', 'game', 'vn', 'hanoi', 'saigon', 'dichvu', 'congnghe', 'thuongmai', 'giaido'];
 
 const carts = {};
@@ -41,8 +52,8 @@ const emailPlans = [
 
 let nextMailId = 3;
 const emails = [
-  { id: 1, from: 'admin@wisdomcloud.vn', fromName: 'Admin WisdomCloud', to: 'admin@wisdomcloud.vn', subject: 'Chào mừng đến với WisdomCloud Webmail', body: 'Chào bạn,\n\nĐây là email đầu tiên từ hệ thống Webmail WisdomCloud.\n\nBạn có thể:\n- Gửi và nhận email trực tiếp từ giao diện web\n- Quản lý hộp thư đến và thư đã gửi\n- Soạn thư với định dạng văn bản\n\nMọi thắc mắc vui lòng liên hệ support@wisdomcloud.vn\n\nTrân trọng,\nWisdomCloud Team', sentAt: '2026-06-24T08:00:00.000Z', read: false, deletedBy: [] },
-  { id: 2, from: 'admin@wisdomcloud.vn', fromName: 'admin@wisdomcloud.vn', to: 'admin@wisdomcloud.vn', subject: 'Test Email', body: 'This is a test', sentAt: '2026-06-24T07:50:28.852Z', read: false, deletedBy: [] },
+  { id: 1, from: 'admin@wisdomcloud.vn', fromName: 'Admin WisdomCloud', to: 'admin@wisdomcloud.vn', subject: 'Chào mừng đến với WisdomCloud Webmail', body: 'Chào bạn,\n\nĐây là email đầu tiên từ hệ thống Webmail WisdomCloud.\n\nBạn có thể:\n- Gửi và nhận email trực tiếp từ giao diện web\n- Quản lý hộp thư đến và thư đã gửi\n- Soạn thư với định dạng văn bản\n\nMọi thắc mắc vui lòng liên hệ support@wisdomcloud.vn\n\nTrân trọng,\nWisdomCloud Team', sentAt: '2026-06-24T08:00:00.000Z', read: false, deletedBy: [], status: 'sent' },
+  { id: 2, from: 'admin@wisdomcloud.vn', fromName: 'admin@wisdomcloud.vn', to: 'admin@wisdomcloud.vn', subject: 'Test Email', body: 'This is a test', sentAt: '2026-06-24T07:50:28.852Z', read: false, deletedBy: [], status: 'sent' },
 ];
 
 const sslPlans = [
@@ -740,6 +751,10 @@ export default async function handler(req, res) {
       if (!body.to || !body.subject || !body.body) {
         return res.status(400).json({ error: 'Vui lòng nhập đầy đủ thông tin' });
       }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(body.to)) {
+        return res.status(400).json({ error: 'Địa chỉ email người nhận không hợp lệ' });
+      }
       const newEmail = {
         id: nextMailId++,
         from: user.email,
@@ -750,8 +765,39 @@ export default async function handler(req, res) {
         sentAt: new Date().toISOString(),
         read: false,
         deletedBy: [],
+        status: 'sending',
       };
       emails.push(newEmail);
+
+      try {
+        if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+          await mailTransporter.sendMail({
+            from: `"${process.env.MAIL_FROM_NAME || user.fullName || 'WisdomCloud'}" <${process.env.SMTP_USER}>`,
+            to: body.to,
+            subject: body.subject,
+            text: body.body,
+            html: `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <div style="background: #1a1a2e; color: white; padding: 16px 24px; border-radius: 8px 8px 0 0;">
+                <h2 style="margin: 0;">WisdomCloud Webmail</h2>
+              </div>
+              <div style="border: 1px solid #e0e0e0; border-top: none; padding: 24px; border-radius: 0 0 8px 8px;">
+                <p style="color: #666; margin: 0 0 8px;"><strong>Từ:</strong> ${user.fullName || user.email} &lt;${user.email}&gt;</p>
+                <p style="color: #666; margin: 0 0 16px;"><strong>Đến:</strong> ${body.to}</p>
+                <hr style="border: none; border-top: 1px solid #eee; margin: 16px 0;">
+                <div style="line-height: 1.6; color: #333;">${body.body.replace(/\n/g, '<br>')}</div>
+              </div>
+              <p style="color: #999; font-size: 12px; text-align: center; margin-top: 16px;">Sent from WisdomCloud Webmail</p>
+            </div>`,
+          });
+          newEmail.status = 'sent';
+        } else {
+          newEmail.status = 'local_only';
+        }
+      } catch (err) {
+        newEmail.status = 'failed';
+        newEmail.error = err.message;
+      }
+
       return res.status(201).json(newEmail);
     }
 
