@@ -97,6 +97,29 @@ export default async function handler(req, res) {
   const pathname = url.pathname;
 
   try {
+    if (pathname === '/api/v1/debug') {
+      let bodyVal;
+      try { bodyVal = JSON.stringify(req.body); } catch(e) { bodyVal = 'ERR:' + e.message; }
+      try {
+        const rawBody = await new Promise((resolve) => {
+          let data = '';
+          req.on('data', chunk => { data += chunk; });
+          req.on('end', () => resolve(data));
+          setTimeout(() => resolve('TIMEOUT_' + data), 3000);
+        });
+        return res.json({
+          method: req.method,
+          pathname,
+          ct: req.headers['content-type'],
+          cl: req.headers['content-length'],
+          bodyJson: bodyVal,
+          rawBody: rawBody || '(empty)',
+          keys: Object.keys(req).filter(k => !k.startsWith('_'))
+        });
+      } catch(e) {
+        return res.json({ error: e.message, stack: e.stack });
+      }
+    }
     if (pathname === '/api/v1/categories') {
       const cats = [...new Set(services.map(s => s.category))].sort();
       return res.json(cats);

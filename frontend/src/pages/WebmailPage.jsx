@@ -60,12 +60,20 @@ export default function WebmailPage({ user, onNavigate }) {
     setSending(true);
     setError('');
     try {
-      await sendEmail(composeForm);
-      setSuccess('Gửi email thành công!');
+      const result = await sendEmail(composeForm);
+      const statusMsg = result.status === 'sent' ? 'Gửi email thành công!' :
+                        result.status === 'local_only' ? 'Email đã lưu (SMTP chưa cấu hình)' :
+                        result.status === 'failed' ? `Gửi email thất bại: ${result.error || 'Lỗi không xác định'}` :
+                        'Email đã được xử lý';
+      if (result.status === 'failed') {
+        setError(statusMsg);
+      } else {
+        setSuccess(statusMsg);
+      }
       setShowCompose(false);
       setComposeForm({ to: '', subject: '', body: '' });
       if (folder === 'sent') fetchEmails();
-      setTimeout(() => setSuccess(''), 3000);
+      setTimeout(() => { setSuccess(''); setError(''); }, 4000);
     } catch (err) {
       setError(err.response?.data?.error || 'Lỗi gửi email');
     }
@@ -215,6 +223,15 @@ export default function WebmailPage({ user, onNavigate }) {
                           <span style={styles.emailSubject}>{email.subject}</span>
                         </div>
                         <div style={styles.emailRowRight}>
+                          {folder === 'sent' && email.status && (
+                            <span style={{
+                              ...styles.statusBadge,
+                              background: email.status === 'sent' ? '#dcfce7' : email.status === 'sending' ? '#fef3c7' : email.status === 'failed' ? '#fef2f2' : '#f1f5f9',
+                              color: email.status === 'sent' ? '#166534' : email.status === 'sending' ? '#92400e' : email.status === 'failed' ? '#991b1b' : '#64748b',
+                            }}>
+                              {email.status === 'sent' ? '✓ Đã gửi' : email.status === 'sending' ? '⏳ Đang gửi' : email.status === 'failed' ? '✗ Lỗi' : '📋 Local'}
+                            </span>
+                          )}
                           <span style={styles.emailDate}>{formatDate(email.sentAt)}</span>
                           <button style={styles.rowDelBtn} onClick={(e) => handleDelete(email.id, e)} title="Xóa">
                             🗑
@@ -316,6 +333,10 @@ const styles = {
   emailSubject: { fontSize: 13, color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
   emailRowRight: { display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 },
   emailDate: { fontSize: 12, color: '#94a3b8', whiteSpace: 'nowrap' },
+  statusBadge: {
+    fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 12,
+    whiteSpace: 'nowrap',
+  },
   rowDelBtn: {
     background: 'none', border: 'none', fontSize: 14, cursor: 'pointer',
     opacity: 0.5, padding: 4, lineHeight: 1,

@@ -20,5 +20,17 @@
     "sentAt": "2026-06-24T07:50:28.852Z",
     "read": false,
     "deletedBy": []
+  },
+  {
+    "id": 3,
+    "from": "admin@wisdomcloud.vn",
+    "fromName": "admin@wisdomcloud.vn",
+    "to": "anhthph48663@gmail.com",
+    "subject": "23",
+    "body": "123",
+    "sentAt": "2026-07-17T07:16:47.166Z",
+    "read": false,
+    "deletedBy": [],
+    "status": "sent"
   }
 ]

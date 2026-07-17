@@ -5,8 +5,29 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const mailTransporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: parseInt(process.env.SMTP_PORT) || 587,
+  secure: process.env.SMTP_SECURE === 'true',
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
+mailTransporter.verify().then(() => {
+  console.log('SMTP connection verified OK');
+}).catch(err => {
+  console.warn('SMTP verification failed:', err.message);
+  console.warn('Emails will be saved locally only (no real sending)');
+});
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -749,12 +770,16 @@ app.get('/api/v1/mail/:id', (req, res) => {
   res.json(email);
 });
 
-app.post('/api/v1/mail/send', (req, res) => {
+app.post('/api/v1/mail/send', async (req, res) => {
   const user = authenticate(req, res);
   if (!user) return;
   const { to, subject, body } = req.body;
   if (!to || !subject || !body) {
     return res.status(400).json({ error: 'Vui lòng nhập đầy đủ người nhận, tiêu đề và nội dung' });
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(to)) {
+    return res.status(400).json({ error: 'Địa chỉ email người nhận không hợp lệ' });
   }
   const all = readEmails();
   const maxId = all.reduce((m, e) => Math.max(m, e.id), 0);
@@ -768,8 +793,43 @@ app.post('/api/v1/mail/send', (req, res) => {
     sentAt: new Date().toISOString(),
     read: false,
     deletedBy: [],
+    status: 'sending',
   };
   all.push(newEmail);
+  writeEmails(all);
+
+  try {
+    if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+      await mailTransporter.sendMail({
+        from: `"${process.env.MAIL_FROM_NAME || user.fullName || 'WisdomCloud'}" <${process.env.SMTP_USER}>`,
+        to,
+        subject,
+        text: body,
+        html: `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: #1a1a2e; color: white; padding: 16px 24px; border-radius: 8px 8px 0 0;">
+            <h2 style="margin: 0;">WisdomCloud Webmail</h2>
+          </div>
+          <div style="border: 1px solid #e0e0e0; border-top: none; padding: 24px; border-radius: 0 0 8px 8px;">
+            <p style="color: #666; margin: 0 0 8px;"><strong>Từ:</strong> ${user.fullName || user.email} &lt;${user.email}&gt;</p>
+            <p style="color: #666; margin: 0 0 16px;"><strong>Đến:</strong> ${to}</p>
+            <hr style="border: none; border-top: 1px solid #eee; margin: 16px 0;">
+            <div style="line-height: 1.6; color: #333;">${body.replace(/\n/g, '<br>')}</div>
+          </div>
+          <p style="color: #999; font-size: 12px; text-align: center; margin-top: 16px;">Sent from WisdomCloud Webmail</p>
+        </div>`,
+      });
+      newEmail.status = 'sent';
+      console.log(`Email sent successfully: ${subject} -> ${to}`);
+    } else {
+      newEmail.status = 'local_only';
+      console.log(`SMTP not configured. Email saved locally: ${subject} -> ${to}`);
+    }
+  } catch (err) {
+    newEmail.status = 'failed';
+    newEmail.error = err.message;
+    console.error(`Failed to send email to ${to}:`, err.message);
+  }
+
   writeEmails(all);
   res.status(201).json(newEmail);
 });
