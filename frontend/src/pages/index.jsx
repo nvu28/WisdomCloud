@@ -4,6 +4,8 @@ import DomainPricePage from './DomainPricePage';
 import DomainServicePage from './DomainServicePage';
 import HostingPage from './HostingPage';
 import EmailPage from './EmailPage';
+import EmailSignaturePage from './EmailSignaturePage';
+import EmailDigitalSignaturePage from './EmailDigitalSignaturePage';
 import SslPage from './SslPage';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
@@ -223,6 +225,14 @@ export default function PageRouter({ pageKey, onNavigate, onDomainSearch, lang, 
 
   if (HOSTING_PAGES.includes(pageKey)) {
     return <HostingPage pageKey={pageKey} onNavigate={onNavigate} lang={lang} t={t} />;
+  }
+
+  if (pageKey === 'chu-ky-email') {
+    return <EmailSignaturePage pageKey={pageKey} onNavigate={onNavigate} lang={lang} t={t} />;
+  }
+
+  if (pageKey === 'chu-ky-so-email') {
+    return <EmailDigitalSignaturePage pageKey={pageKey} onNavigate={onNavigate} lang={lang} t={t} />;
   }
 
   if (EMAIL_PAGES.includes(pageKey)) {
